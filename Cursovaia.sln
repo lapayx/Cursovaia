@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursovaiaTemp", "Cursovaia\CursovaiaTemp.csproj", "{6044E9CF-E346-42FE-8373-59FC71C6C411}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cursovaia", "Cursovaia2\Cursovaia.csproj", "{042B939D-97C6-429B-BB03-76DFFDAAAD65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6044E9CF-E346-42FE-8373-59FC71C6C411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6044E9CF-E346-42FE-8373-59FC71C6C411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6044E9CF-E346-42FE-8373-59FC71C6C411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6044E9CF-E346-42FE-8373-59FC71C6C411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{042B939D-97C6-429B-BB03-76DFFDAAAD65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{042B939D-97C6-429B-BB03-76DFFDAAAD65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{042B939D-97C6-429B-BB03-76DFFDAAAD65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{042B939D-97C6-429B-BB03-76DFFDAAAD65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,15 @@
+﻿<Page x:Class="Cursovaia.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="Page1">
+
+    <Grid>
+        <Ellipse Fill="#FF1D1DC7" HorizontalAlignment="Left" Height="147" Margin="90,73,0,0" Stroke="Black" VerticalAlignment="Top" Width="123"/>
+        <Label Content="{Binding tt, FallbackValue='No Data'}" HorizontalAlignment="Left" Margin="56,27,0,0" VerticalAlignment="Top" Foreground="#FFEC2121" FontSize="20"/>
+
+    </Grid>
+</Page>
