@@ -82,25 +82,13 @@ namespace Cursovaia
         {
             container.Register<INotifyPropertyChanged, vievmodel1>("page1");
             container.Register<INotifyPropertyChanged, ViewModel2>("page2");
-            /* container.Register<IImportService, ImportService>();
-             container.Register<ISearchService, SearchSevice>();
-             container.Register<IVcsService, VcsService>();
-             container.Register<IMedalService, MedalService>();
-             container.Register<IAdminService, AdminService>();
-             container.Register<IAccountService, AccountService>();
-             container.Register<IImageService, ImageService>();*/
+
         }
         internal static void RegisterPages(IServiceContainer container)
         {
             container.Register<Page, Page1>("page1");
             container.Register<Page, Page2>("page2");
-            /* container.Register<IImportService, ImportService>();
-             container.Register<ISearchService, SearchSevice>();
-             container.Register<IVcsService, VcsService>();
-             container.Register<IMedalService, MedalService>();
-             container.Register<IAdminService, AdminService>();
-             container.Register<IAccountService, AccountService>();
-             container.Register<IImageService, ImageService>();*/
+
         }
     }
 }
