@@ -13,10 +13,10 @@ namespace Cursovaia.Logic.DataBase
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LocalDB : DbContext
+    public partial class WIN_Server : DbContext
     {
-        public LocalDB()
-            : base("name=LocalDB")
+        public WIN_Server()
+            : base("name=WIN_Server")
         {
         }
     
@@ -25,5 +25,16 @@ namespace Cursovaia.Logic.DataBase
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Applicant> Applicant { get; set; }
+        public DbSet<Employee> Employee { get; set; }
+        public DbSet<History> History { get; set; }
+        public DbSet<Organization> Organization { get; set; }
+        public DbSet<Profession> Profession { get; set; }
+        public DbSet<ProfessionSkill> ProfessionSkill { get; set; }
+        public DbSet<RefresherCours> RefresherCours { get; set; }
+        public DbSet<Refreshering> Refreshering { get; set; }
+        public DbSet<ShereProfession> ShereProfession { get; set; }
+        public DbSet<Speciality> Speciality { get; set; }
+        public DbSet<Vacancy> Vacancy { get; set; }
     }
 }

@@ -4,20 +4,747 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="DBModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="APPLICANT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SECOND_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FATHER_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LAST_WORK_SPACE" Type="varchar" MaxLength="255" />
+          <Property Name="EDUCATION" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BIRTHDAY" Type="datetime" Nullable="false" />
+          <Property Name="FAMILY" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SOCIAL_STATUS" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_SPECIALITY" Type="int" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SECOND_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FATHER_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BIRTHDAY" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HISTORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_EMPLOYEE" Type="int" Nullable="false" />
+          <Property Name="ID_VACANCY" Type="int" Nullable="false" />
+          <Property Name="ID_APPLICANT" Type="int" Nullable="false" />
+          <Property Name="STATUS" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DATE_ADD" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORGANIZATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ABOUT" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PROFESSION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_SHERE_PROFESSION" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PROFESSION_SKILL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_APPLICANT" Type="int" Nullable="false" />
+          <Property Name="ID_PROFESSION" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REFRESHER_COURSE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DURATION" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REFRESHERING">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_REFRESHER_COURSE" Type="int" Nullable="false" />
+          <Property Name="ID_APPLICANT" Type="int" Nullable="false" />
+          <Property Name="START_DATE" Type="datetime" Nullable="false" />
+          <Property Name="END_DATE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SHERE_PROFESSION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SPECIALITY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SYSTEM_SHEMA" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VACANCY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_ORGANIZATION" Type="int" Nullable="false" />
+          <Property Name="ID_PROFESSION" Type="int" Nullable="false" />
+          <Property Name="ABOUT" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="STATUS" Type="bit" Nullable="false" />
+          <Property Name="MIN_EXPERIENCE" Type="int" Nullable="false" />
+          <Property Name="MAX_EXPERIENCE" Type="int" Nullable="false" />
+          <Property Name="DATE_ADD" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK1EMPLOYEE">
+          <End Role="SPECIALITY" Type="Self.SPECIALITY" Multiplicity="1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPECIALITY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="ID_SPECIALITY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK1HISTORY">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="HISTORY" Type="Self.HISTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HISTORY">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK1PROFESSION">
+          <End Role="SHERE_PROFESSION" Type="Self.SHERE_PROFESSION" Multiplicity="1" />
+          <End Role="PROFESSION" Type="Self.PROFESSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHERE_PROFESSION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PROFESSION">
+              <PropertyRef Name="ID_SHERE_PROFESSION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK1PROFESSION_SKILL">
+          <End Role="APPLICANT" Type="Self.APPLICANT" Multiplicity="1" />
+          <End Role="PROFESSION_SKILL" Type="Self.PROFESSION_SKILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPLICANT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PROFESSION_SKILL">
+              <PropertyRef Name="ID_APPLICANT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK1REFRESHERING">
+          <End Role="REFRESHER_COURSE" Type="Self.REFRESHER_COURSE" Multiplicity="1" />
+          <End Role="REFRESHERING" Type="Self.REFRESHERING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REFRESHER_COURSE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REFRESHERING">
+              <PropertyRef Name="ID_REFRESHER_COURSE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK1VACANCY">
+          <End Role="PROFESSION" Type="Self.PROFESSION" Multiplicity="1" />
+          <End Role="VACANCY" Type="Self.VACANCY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFESSION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VACANCY">
+              <PropertyRef Name="ID_PROFESSION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2HISTORY">
+          <End Role="VACANCY" Type="Self.VACANCY" Multiplicity="1" />
+          <End Role="HISTORY" Type="Self.HISTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VACANCY">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HISTORY">
+              <PropertyRef Name="ID_VACANCY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2PROFESSION_SKILL">
+          <End Role="PROFESSION" Type="Self.PROFESSION" Multiplicity="1" />
+          <End Role="PROFESSION_SKILL" Type="Self.PROFESSION_SKILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFESSION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PROFESSION_SKILL">
+              <PropertyRef Name="ID_PROFESSION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2REFRESHERING">
+          <End Role="APPLICANT" Type="Self.APPLICANT" Multiplicity="1" />
+          <End Role="REFRESHERING" Type="Self.REFRESHERING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPLICANT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="REFRESHERING">
+              <PropertyRef Name="ID_APPLICANT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2VACANCY">
+          <End Role="ORGANIZATION" Type="Self.ORGANIZATION" Multiplicity="1" />
+          <End Role="VACANCY" Type="Self.VACANCY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORGANIZATION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VACANCY">
+              <PropertyRef Name="ID_ORGANIZATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK3HISTORY">
+          <End Role="APPLICANT" Type="Self.APPLICANT" Multiplicity="1" />
+          <End Role="HISTORY" Type="Self.HISTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPLICANT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HISTORY">
+              <PropertyRef Name="ID_APPLICANT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="masterModelStoreContainer">
+          <EntitySet Name="APPLICANT" EntityType="Self.APPLICANT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HISTORY" EntityType="Self.HISTORY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORGANIZATION" EntityType="Self.ORGANIZATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROFESSION" EntityType="Self.PROFESSION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROFESSION_SKILL" EntityType="Self.PROFESSION_SKILL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REFRESHER_COURSE" EntityType="Self.REFRESHER_COURSE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REFRESHERING" EntityType="Self.REFRESHERING" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHERE_PROFESSION" EntityType="Self.SHERE_PROFESSION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SPECIALITY" EntityType="Self.SPECIALITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VACANCY" EntityType="Self.VACANCY" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK1EMPLOYEE" Association="Self.FK1EMPLOYEE">
+            <End Role="SPECIALITY" EntitySet="SPECIALITY" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK1HISTORY" Association="Self.FK1HISTORY">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="HISTORY" EntitySet="HISTORY" />
+          </AssociationSet>
+          <AssociationSet Name="FK1PROFESSION" Association="Self.FK1PROFESSION">
+            <End Role="SHERE_PROFESSION" EntitySet="SHERE_PROFESSION" />
+            <End Role="PROFESSION" EntitySet="PROFESSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK1PROFESSION_SKILL" Association="Self.FK1PROFESSION_SKILL">
+            <End Role="APPLICANT" EntitySet="APPLICANT" />
+            <End Role="PROFESSION_SKILL" EntitySet="PROFESSION_SKILL" />
+          </AssociationSet>
+          <AssociationSet Name="FK1REFRESHERING" Association="Self.FK1REFRESHERING">
+            <End Role="REFRESHER_COURSE" EntitySet="REFRESHER_COURSE" />
+            <End Role="REFRESHERING" EntitySet="REFRESHERING" />
+          </AssociationSet>
+          <AssociationSet Name="FK1VACANCY" Association="Self.FK1VACANCY">
+            <End Role="PROFESSION" EntitySet="PROFESSION" />
+            <End Role="VACANCY" EntitySet="VACANCY" />
+          </AssociationSet>
+          <AssociationSet Name="FK2HISTORY" Association="Self.FK2HISTORY">
+            <End Role="VACANCY" EntitySet="VACANCY" />
+            <End Role="HISTORY" EntitySet="HISTORY" />
+          </AssociationSet>
+          <AssociationSet Name="FK2PROFESSION_SKILL" Association="Self.FK2PROFESSION_SKILL">
+            <End Role="PROFESSION" EntitySet="PROFESSION" />
+            <End Role="PROFESSION_SKILL" EntitySet="PROFESSION_SKILL" />
+          </AssociationSet>
+          <AssociationSet Name="FK2REFRESHERING" Association="Self.FK2REFRESHERING">
+            <End Role="APPLICANT" EntitySet="APPLICANT" />
+            <End Role="REFRESHERING" EntitySet="REFRESHERING" />
+          </AssociationSet>
+          <AssociationSet Name="FK2VACANCY" Association="Self.FK2VACANCY">
+            <End Role="ORGANIZATION" EntitySet="ORGANIZATION" />
+            <End Role="VACANCY" EntitySet="VACANCY" />
+          </AssociationSet>
+          <AssociationSet Name="FK3HISTORY" Association="Self.FK3HISTORY">
+            <End Role="APPLICANT" EntitySet="APPLICANT" />
+            <End Role="HISTORY" EntitySet="HISTORY" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="LocalDB" annotation:LazyLoadingEnabled="true" />
+      <Schema Namespace="masterModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="WIN_Server" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Applicant" EntityType="masterModel.Applicant" />
+          <EntitySet Name="Employee" EntityType="masterModel.Employee" />
+          <EntitySet Name="History" EntityType="masterModel.History" />
+          <EntitySet Name="Organization" EntityType="masterModel.Organization" />
+          <EntitySet Name="Profession" EntityType="masterModel.Profession" />
+          <EntitySet Name="ProfessionSkill" EntityType="masterModel.ProfessionSkill" />
+          <EntitySet Name="RefresherCours" EntityType="masterModel.RefresherCours" />
+          <EntitySet Name="Refreshering" EntityType="masterModel.Refreshering" />
+          <EntitySet Name="ShereProfession" EntityType="masterModel.ShereProfession" />
+          <EntitySet Name="Speciality" EntityType="masterModel.Speciality" />
+          <EntitySet Name="Vacancy" EntityType="masterModel.Vacancy" />
+          <AssociationSet Name="FK1PROFESSION_SKILL" Association="masterModel.FK1PROFESSION_SKILL">
+            <End Role="APPLICANT" EntitySet="Applicant" />
+            <End Role="PROFESSION_SKILL" EntitySet="ProfessionSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK2REFRESHERING" Association="masterModel.FK2REFRESHERING">
+            <End Role="APPLICANT" EntitySet="Applicant" />
+            <End Role="REFRESHERING" EntitySet="Refreshering" />
+          </AssociationSet>
+          <AssociationSet Name="FK3HISTORY" Association="masterModel.FK3HISTORY">
+            <End Role="APPLICANT" EntitySet="Applicant" />
+            <End Role="HISTORY" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK1EMPLOYEE" Association="masterModel.FK1EMPLOYEE">
+            <End Role="SPECIALITY" EntitySet="Speciality" />
+            <End Role="EMPLOYEE" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK1HISTORY" Association="masterModel.FK1HISTORY">
+            <End Role="EMPLOYEE" EntitySet="Employee" />
+            <End Role="HISTORY" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK2HISTORY" Association="masterModel.FK2HISTORY">
+            <End Role="VACANCY" EntitySet="Vacancy" />
+            <End Role="HISTORY" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK2VACANCY" Association="masterModel.FK2VACANCY">
+            <End Role="ORGANIZATION" EntitySet="Organization" />
+            <End Role="VACANCY" EntitySet="Vacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK1PROFESSION" Association="masterModel.FK1PROFESSION">
+            <End Role="SHERE_PROFESSION" EntitySet="ShereProfession" />
+            <End Role="PROFESSION" EntitySet="Profession" />
+          </AssociationSet>
+          <AssociationSet Name="FK1VACANCY" Association="masterModel.FK1VACANCY">
+            <End Role="PROFESSION" EntitySet="Profession" />
+            <End Role="VACANCY" EntitySet="Vacancy" />
+          </AssociationSet>
+          <AssociationSet Name="FK2PROFESSION_SKILL" Association="masterModel.FK2PROFESSION_SKILL">
+            <End Role="PROFESSION" EntitySet="Profession" />
+            <End Role="PROFESSION_SKILL" EntitySet="ProfessionSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK1REFRESHERING" Association="masterModel.FK1REFRESHERING">
+            <End Role="REFRESHER_COURSE" EntitySet="RefresherCours" />
+            <End Role="REFRESHERING" EntitySet="Refreshering" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Applicant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SecondName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FathterName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastWorkSpace" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Education" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Family" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SocialStatus" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PROFESSION_SKILL" Relationship="masterModel.FK1PROFESSION_SKILL" FromRole="APPLICANT" ToRole="PROFESSION_SKILL" />
+          <NavigationProperty Name="REFRESHERING" Relationship="masterModel.FK2REFRESHERING" FromRole="APPLICANT" ToRole="REFRESHERING" />
+          <NavigationProperty Name="HISTORY" Relationship="masterModel.FK3HISTORY" FromRole="APPLICANT" ToRole="HISTORY" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSpeciality" Type="Int32" Nullable="false" />
+          <Property Name="FirsName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SecondName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FatherName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Spetialiry" Relationship="masterModel.FK1EMPLOYEE" FromRole="EMPLOYEE" ToRole="SPECIALITY" />
+          <NavigationProperty Name="History" Relationship="masterModel.FK1HISTORY" FromRole="EMPLOYEE" ToRole="HISTORY" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <Property Name="IdVacancy" Type="Int32" Nullable="false" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="AddDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="APPLICANT" Relationship="masterModel.FK3HISTORY" FromRole="HISTORY" ToRole="APPLICANT" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="masterModel.FK1HISTORY" FromRole="HISTORY" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="VACANCY" Relationship="masterModel.FK2HISTORY" FromRole="HISTORY" ToRole="VACANCY" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="About" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Vacansy" Relationship="masterModel.FK2VACANCY" FromRole="ORGANIZATION" ToRole="VACANCY" />
+        </EntityType>
+        <EntityType Name="Profession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdShereProfession" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SHERE_PROFESSION" Relationship="masterModel.FK1PROFESSION" FromRole="PROFESSION" ToRole="SHERE_PROFESSION" />
+          <NavigationProperty Name="VACANCY" Relationship="masterModel.FK1VACANCY" FromRole="PROFESSION" ToRole="VACANCY" />
+          <NavigationProperty Name="PROFESSION_SKILL" Relationship="masterModel.FK2PROFESSION_SKILL" FromRole="PROFESSION" ToRole="PROFESSION_SKILL" />
+        </EntityType>
+        <EntityType Name="ProfessionSkill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="IdProfession" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="APPLICANT" Relationship="masterModel.FK1PROFESSION_SKILL" FromRole="PROFESSION_SKILL" ToRole="APPLICANT" />
+          <NavigationProperty Name="PROFESSION" Relationship="masterModel.FK2PROFESSION_SKILL" FromRole="PROFESSION_SKILL" ToRole="PROFESSION" />
+        </EntityType>
+        <EntityType Name="RefresherCours">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DURATION" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Refreshering" Relationship="masterModel.FK1REFRESHERING" FromRole="REFRESHER_COURSE" ToRole="REFRESHERING" />
+        </EntityType>
+        <EntityType Name="Refreshering">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdRefresherCours" Type="Int32" Nullable="false" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="APPLICANT" Relationship="masterModel.FK2REFRESHERING" FromRole="REFRESHERING" ToRole="APPLICANT" />
+          <NavigationProperty Name="RefresherCours" Relationship="masterModel.FK1REFRESHERING" FromRole="REFRESHERING" ToRole="REFRESHER_COURSE" />
+        </EntityType>
+        <EntityType Name="ShereProfession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Profession" Relationship="masterModel.FK1PROFESSION" FromRole="SHERE_PROFESSION" ToRole="PROFESSION" />
+        </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SystemShema" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="masterModel.FK1EMPLOYEE" FromRole="SPECIALITY" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="Vacancy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
+          <Property Name="IdProfession" Type="Int32" Nullable="false" />
+          <Property Name="About" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="MinExperience" Type="Int32" Nullable="false" />
+          <Property Name="MaxExperience" Type="Int32" Nullable="false" />
+          <Property Name="AddDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="HISTORY" Relationship="masterModel.FK2HISTORY" FromRole="VACANCY" ToRole="HISTORY" />
+          <NavigationProperty Name="ORGANIZATION" Relationship="masterModel.FK2VACANCY" FromRole="VACANCY" ToRole="ORGANIZATION" />
+          <NavigationProperty Name="PROFESSION" Relationship="masterModel.FK1VACANCY" FromRole="VACANCY" ToRole="PROFESSION" />
+        </EntityType>
+        <Association Name="FK1PROFESSION_SKILL">
+          <End Type="masterModel.Applicant" Role="APPLICANT" Multiplicity="1" />
+          <End Type="masterModel.ProfessionSkill" Role="PROFESSION_SKILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPLICANT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PROFESSION_SKILL">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2REFRESHERING">
+          <End Type="masterModel.Applicant" Role="APPLICANT" Multiplicity="1" />
+          <End Type="masterModel.Refreshering" Role="REFRESHERING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPLICANT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="REFRESHERING">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK3HISTORY">
+          <End Type="masterModel.Applicant" Role="APPLICANT" Multiplicity="1" />
+          <End Type="masterModel.History" Role="HISTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPLICANT">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HISTORY">
+              <PropertyRef Name="IdApplicant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK1EMPLOYEE">
+          <End Type="masterModel.Speciality" Role="SPECIALITY" Multiplicity="1" />
+          <End Type="masterModel.Employee" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SPECIALITY">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="IdSpeciality" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK1HISTORY">
+          <End Type="masterModel.Employee" Role="EMPLOYEE" Multiplicity="1" />
+          <End Type="masterModel.History" Role="HISTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HISTORY">
+              <PropertyRef Name="IdEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2HISTORY">
+          <End Type="masterModel.Vacancy" Role="VACANCY" Multiplicity="1" />
+          <End Type="masterModel.History" Role="HISTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VACANCY">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HISTORY">
+              <PropertyRef Name="IdVacancy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2VACANCY">
+          <End Type="masterModel.Organization" Role="ORGANIZATION" Multiplicity="1" />
+          <End Type="masterModel.Vacancy" Role="VACANCY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ORGANIZATION">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VACANCY">
+              <PropertyRef Name="IdOrganization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK1PROFESSION">
+          <End Type="masterModel.ShereProfession" Role="SHERE_PROFESSION" Multiplicity="1" />
+          <End Type="masterModel.Profession" Role="PROFESSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHERE_PROFESSION">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PROFESSION">
+              <PropertyRef Name="IdShereProfession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK1VACANCY">
+          <End Type="masterModel.Profession" Role="PROFESSION" Multiplicity="1" />
+          <End Type="masterModel.Vacancy" Role="VACANCY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFESSION">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VACANCY">
+              <PropertyRef Name="IdProfession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2PROFESSION_SKILL">
+          <End Type="masterModel.Profession" Role="PROFESSION" Multiplicity="1" />
+          <End Type="masterModel.ProfessionSkill" Role="PROFESSION_SKILL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFESSION">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PROFESSION_SKILL">
+              <PropertyRef Name="IdProfession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK1REFRESHERING">
+          <End Type="masterModel.RefresherCours" Role="REFRESHER_COURSE" Multiplicity="1" />
+          <End Type="masterModel.Refreshering" Role="REFRESHERING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REFRESHER_COURSE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="REFRESHERING">
+              <PropertyRef Name="IdRefresherCours" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="LocalDB" />
+        <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="WIN_Server" >
+          <EntitySetMapping Name="Applicant">
+            <EntityTypeMapping TypeName="masterModel.Applicant">
+              <MappingFragment StoreEntitySet="APPLICANT">
+                <ScalarProperty Name="SocialStatus" ColumnName="SOCIAL_STATUS" />
+                <ScalarProperty Name="Family" ColumnName="FAMILY" />
+                <ScalarProperty Name="Birthday" ColumnName="BIRTHDAY" />
+                <ScalarProperty Name="Education" ColumnName="EDUCATION" />
+                <ScalarProperty Name="LastWorkSpace" ColumnName="LAST_WORK_SPACE" />
+                <ScalarProperty Name="FathterName" ColumnName="FATHER_NAME" />
+                <ScalarProperty Name="SecondName" ColumnName="SECOND_NAME" />
+                <ScalarProperty Name="FirstName" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="masterModel.Employee">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="Birthday" ColumnName="BIRTHDAY" />
+                <ScalarProperty Name="FatherName" ColumnName="FATHER_NAME" />
+                <ScalarProperty Name="SecondName" ColumnName="SECOND_NAME" />
+                <ScalarProperty Name="FirsName" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="IdSpeciality" ColumnName="ID_SPECIALITY" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History">
+            <EntityTypeMapping TypeName="masterModel.History">
+              <MappingFragment StoreEntitySet="HISTORY">
+                <ScalarProperty Name="AddDate" ColumnName="DATE_ADD" />
+                <ScalarProperty Name="Status" ColumnName="STATUS" />
+                <ScalarProperty Name="IdApplicant" ColumnName="ID_APPLICANT" />
+                <ScalarProperty Name="IdVacancy" ColumnName="ID_VACANCY" />
+                <ScalarProperty Name="IdEmployee" ColumnName="ID_EMPLOYEE" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organization">
+            <EntityTypeMapping TypeName="masterModel.Organization">
+              <MappingFragment StoreEntitySet="ORGANIZATION">
+                <ScalarProperty Name="About" ColumnName="ABOUT" />
+                <ScalarProperty Name="Name" ColumnName="NAME" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profession">
+            <EntityTypeMapping TypeName="masterModel.Profession">
+              <MappingFragment StoreEntitySet="PROFESSION">
+                <ScalarProperty Name="IdShereProfession" ColumnName="ID_SHERE_PROFESSION" />
+                <ScalarProperty Name="Name" ColumnName="NAME" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfessionSkill">
+            <EntityTypeMapping TypeName="masterModel.ProfessionSkill">
+              <MappingFragment StoreEntitySet="PROFESSION_SKILL">
+                <ScalarProperty Name="IdProfession" ColumnName="ID_PROFESSION" />
+                <ScalarProperty Name="IdApplicant" ColumnName="ID_APPLICANT" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RefresherCours">
+            <EntityTypeMapping TypeName="masterModel.RefresherCours">
+              <MappingFragment StoreEntitySet="REFRESHER_COURSE">
+                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+                <ScalarProperty Name="Name" ColumnName="NAME" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Refreshering">
+            <EntityTypeMapping TypeName="masterModel.Refreshering">
+              <MappingFragment StoreEntitySet="REFRESHERING">
+                <ScalarProperty Name="EndDate" ColumnName="END_DATE" />
+                <ScalarProperty Name="StartDate" ColumnName="START_DATE" />
+                <ScalarProperty Name="IdApplicant" ColumnName="ID_APPLICANT" />
+                <ScalarProperty Name="IdRefresherCours" ColumnName="ID_REFRESHER_COURSE" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShereProfession">
+            <EntityTypeMapping TypeName="masterModel.ShereProfession">
+              <MappingFragment StoreEntitySet="SHERE_PROFESSION">
+                <ScalarProperty Name="Name" ColumnName="NAME" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Speciality">
+            <EntityTypeMapping TypeName="masterModel.Speciality">
+              <MappingFragment StoreEntitySet="SPECIALITY">
+                <ScalarProperty Name="SystemShema" ColumnName="SYSTEM_SHEMA" />
+                <ScalarProperty Name="Name" ColumnName="NAME" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacancy">
+            <EntityTypeMapping TypeName="masterModel.Vacancy">
+              <MappingFragment StoreEntitySet="VACANCY">
+                <ScalarProperty Name="AddDate" ColumnName="DATE_ADD" />
+                <ScalarProperty Name="MaxExperience" ColumnName="MAX_EXPERIENCE" />
+                <ScalarProperty Name="MinExperience" ColumnName="MIN_EXPERIENCE" />
+                <ScalarProperty Name="Status" ColumnName="STATUS" />
+                <ScalarProperty Name="About" ColumnName="ABOUT" />
+                <ScalarProperty Name="IdProfession" ColumnName="ID_PROFESSION" />
+                <ScalarProperty Name="IdOrganization" ColumnName="ID_ORGANIZATION" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -32,7 +759,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
