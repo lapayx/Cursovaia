@@ -6,13 +6,16 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
+//using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+
+using Cursovaia.Logic.Interface;
+using Cursovaia.Logic.DataBase;
 
 namespace Cursovaia
 {
@@ -21,11 +24,13 @@ namespace Cursovaia
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        private IGenericRepository<Applicant> tt;// = DIConfig.container.GetInstance < IGenericRepository<Applicant>>();
         public MainWindow()
         {
             InitializeComponent();
 
             Loaded += MainWindow_Loaded;
+            
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -33,11 +38,19 @@ namespace Cursovaia
             Navigation.Service = MainFrame.NavigationService;
 
             DataContext = new MainViewModel();
+            //var t = new WIN_Server();
+            tt = DIConfig.container.GetInstance<IGenericRepository<Applicant>>();
+            
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var res = tt.SelectAll();
         }
     }
 }

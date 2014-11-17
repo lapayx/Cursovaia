@@ -87,6 +87,7 @@
     <Compile Include="Logic\DataBase\Applicant.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Logic\DataBase\DBModel+GenericRepository.cs" />
     <Compile Include="Logic\DataBase\DBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -133,6 +134,7 @@
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Logic\Interface\IEmplayeeRepository.cs" />
+    <Compile Include="Logic\Interface\IGenericRepository.cs" />
     <Compile Include="Logic\Interface\ISavingRepository.cs" />
     <Compile Include="Page\Page2.xaml.cs">
       <DependentUpon>Page2.xaml</DependentUpon>

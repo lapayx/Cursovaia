@@ -7,6 +7,10 @@ using System.ComponentModel;
 using Cursovaia.ViewModel;
 using System.Windows.Documents;
 using System.Windows.Controls;
+using Cursovaia.Logic.DataBase;
+using Cursovaia.Logic.Interface;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity;
 namespace Cursovaia
 {
     /// <summary>
@@ -46,6 +50,10 @@ namespace Cursovaia
             container.Register<IMedalRepository, Entities>();
             container.Register<IVersionControlSystemRepository, Entities>();
             container.Register<IImageRepository, Entities>();*/
+            container.Register<DbContext, WIN_Server>(new PerScopeLifetime());
+
+           // container.Register<IGenericRepository<Applicant>, Entities<Applicant>>((factory,value) => new Entities<Applicant>(factory.GetInstance<WIN_Server>()));
+            container.Register(typeof(IGenericRepository<>), typeof(Entities<>));
         }
 
 
