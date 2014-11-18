@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Cursovaia
+namespace Cursovaia.Pages
 {
     /// <summary>
     /// Interaction logic for Page2.xaml

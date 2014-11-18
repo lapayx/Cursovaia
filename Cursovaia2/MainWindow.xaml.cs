@@ -16,6 +16,8 @@ using MahApps.Metro.Controls;
 
 using Cursovaia.Logic.Interface;
 using Cursovaia.Logic.DataBase;
+using Ninject.Modules;
+using Ninject;
 
 namespace Cursovaia
 {
@@ -39,7 +41,7 @@ namespace Cursovaia
 
             DataContext = new MainViewModel();
             //var t = new WIN_Server();
-            tt = DIConfig.container.GetInstance<IGenericRepository<Applicant>>();
+            //tt = DIConfig.kernel.Get<IGenericRepository<Applicant>>();
             
         }
 

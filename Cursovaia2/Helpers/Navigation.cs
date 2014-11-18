@@ -2,7 +2,8 @@
 using System.Windows.Navigation;
 using System.Windows.Controls;
 using System.ComponentModel;
-
+using Ninject.Modules;
+using Ninject;
 
 namespace Cursovaia
 {
@@ -64,10 +65,9 @@ namespace Cursovaia
             {
                 return;
             }
-
-            var page = DIConfig.container.GetInstance<Page>(name);
+            var page = DIConfig.kernel.Get<Page>(name);
             if (context == null) {
-                context = DIConfig.container.GetInstance<INotifyPropertyChanged>(name);
+                context = DIConfig.kernel.Get<INotifyPropertyChanged>(name);
             }
             Navigate(page, context);
         }

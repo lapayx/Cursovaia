@@ -6,17 +6,20 @@ using Cursovaia.Logic.Interface;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data;
+using Ninject;
 namespace Cursovaia.Logic.DataBase
 {
     public partial class Entities<T> : IGenericRepository<T> where T:class
     {
-        private DbContext db = null;
+        [Inject]
+        private DbContext db {get;set;}
         public  DbSet<T> table = null;
-       /* public Entities()
+        public Entities()
         {
-            this.db = new WIN_Server();
+           
+            //this.db = new WIN_Server();
             this.table = db.Set<T>();
-        }*/
+        }
         public Entities(DbContext db)
         {
             this.db = db;

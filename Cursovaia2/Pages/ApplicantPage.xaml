@@ -1,0 +1,24 @@
+﻿<Page x:Class="Cursovaia.Pages.ApplicantPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="500"
+	Title="ApplicantPage">
+
+    <Grid Margin="0,0,10,0" Background="#FFA62A2A">
+        <DataGrid x:Name="gg" HorizontalAlignment="Left" Margin="0,55,0,0" VerticalAlignment="Top" Height="171" Width="480" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id"/>
+                <DataGridTextColumn Header="Naem" />
+                <DataGridTextColumn/>
+                <DataGridTextColumn/>
+            </DataGrid.Columns>
+            <DataGrid.BindingGroup>
+                <BindingGroup/>
+            </DataGrid.BindingGroup>
+        </DataGrid>
+
+    </Grid>
+</Page>
