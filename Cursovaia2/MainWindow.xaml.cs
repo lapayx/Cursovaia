@@ -18,6 +18,7 @@ using Cursovaia.Logic.Interface;
 using Cursovaia.Logic.DataBase;
 using Ninject.Modules;
 using Ninject;
+using System.Diagnostics;
 
 namespace Cursovaia
 {
@@ -26,11 +27,10 @@ namespace Cursovaia
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        private IGenericRepository<Applicant> tt;// = DIConfig.container.GetInstance < IGenericRepository<Applicant>>();
         public MainWindow()
         {
             InitializeComponent();
-
+            DIConfig.kernel.Get<WIN_Server>();
             Loaded += MainWindow_Loaded;
             
         }
@@ -38,7 +38,6 @@ namespace Cursovaia
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Navigation.Service = MainFrame.NavigationService;
-
             DataContext = new MainViewModel();
             //var t = new WIN_Server();
             //tt = DIConfig.kernel.Get<IGenericRepository<Applicant>>();
@@ -52,7 +51,12 @@ namespace Cursovaia
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var res = tt.SelectAll();
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+          //  this.TabHistor
+            Debug.WriteLine("dfsf");
         }
     }
 }

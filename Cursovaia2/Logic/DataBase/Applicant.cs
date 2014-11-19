@@ -24,7 +24,7 @@ namespace Cursovaia.Logic.DataBase
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
-        public string FathterName { get; set; }
+        public string FatherName { get; set; }
         public string LastWorkSpace { get; set; }
         public string Education { get; set; }
         public System.DateTime Birthday { get; set; }

@@ -41,10 +41,11 @@ namespace Cursovaia
         public override void Load()
         {
             this.Bind<INotifyPropertyChanged>().To<vievmodel1>().Named("page1");
-            this.Bind<INotifyPropertyChanged>().To<ViewModel2>().Named("page2");
+           // this.Bind<INotifyPropertyChanged>().To<ViewModel2>().Named("page2");
+            this.Bind<INotifyPropertyChanged>().To<ApplicantViewModel>().Named("applicant");
 
             this.Bind<Page>().To<Page1>().Named("page1");
-            this.Bind<Page>().To<ApplicantPage>().Named("page2");
+            this.Bind<Page>().To<ApplicantPage>().Named("applicant");
 
 
             this.Bind<DbContext>().To<WIN_Server>().InSingletonScope();

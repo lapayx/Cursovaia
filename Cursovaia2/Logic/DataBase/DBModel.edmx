@@ -368,7 +368,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="SecondName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FathterName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FatherName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="LastWorkSpace" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Education" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
@@ -635,7 +635,7 @@
                 <ScalarProperty Name="Birthday" ColumnName="BIRTHDAY" />
                 <ScalarProperty Name="Education" ColumnName="EDUCATION" />
                 <ScalarProperty Name="LastWorkSpace" ColumnName="LAST_WORK_SPACE" />
-                <ScalarProperty Name="FathterName" ColumnName="FATHER_NAME" />
+                <ScalarProperty Name="FatherName" ColumnName="FATHER_NAME" />
                 <ScalarProperty Name="SecondName" ColumnName="SECOND_NAME" />
                 <ScalarProperty Name="FirstName" ColumnName="FIRST_NAME" />
                 <ScalarProperty Name="Id" ColumnName="ID" />

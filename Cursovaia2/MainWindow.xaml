@@ -17,10 +17,12 @@
             <MenuItem Header="Гланая">
                 <MenuItem Header="Выход" Click="MenuItem_Click"/>
             </MenuItem>
+            <MenuItem Header="Справочникики">
+                <MenuItem Header="Соискатели" Command="{Binding GoToReferen}" CommandParameter="applicant"/>
+            </MenuItem>
         </Menu>
-        <Frame x:Name="MainFrame" Content="Frame" Margin="10,10,10,40" Grid.Row="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
-        <Button Content="Button1" Grid.Column="1" HorizontalAlignment="Left" Margin="347,133,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" Command="{Binding GoToReferen}" CommandParameter="page1"/>
-        <Button Content="Button2" Grid.Column="1" HorizontalAlignment="Left" Margin="320,200,0,0" Grid.Row="1" VerticalAlignment="Top" Width="76" Command="{Binding GoToReferen}" CommandParameter="page2" RenderTransformOrigin="0.501,2.918"/>
+        <Frame x:Name="MainFrame" Content="Тут что-то должно быть, выберите что" Margin="10,10,10,40" Grid.Row="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
+        <Button Content="Кнопка тест, не забыть как делать" Grid.Column="1" HorizontalAlignment="Left" Margin="287,0,0,0" VerticalAlignment="Top" Width="209" Command="{Binding GoToReferen}" CommandParameter="page1"/>
 
     </Grid>
     <Controls:MetroWindow.RightWindowCommands>
