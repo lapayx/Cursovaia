@@ -16,6 +16,7 @@ namespace Cursovaia.ViewModel
         } }
         public ApplicantViewModel(IGenericRepository<Applicant> app) {
             this.applicant = app;
+            InitializeCommands();
         }
     }
 }

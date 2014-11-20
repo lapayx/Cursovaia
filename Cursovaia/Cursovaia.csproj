@@ -137,12 +137,16 @@
     <Compile Include="Logic\Interface\IEmplayeeRepository.cs" />
     <Compile Include="Logic\Interface\IGenericRepository.cs" />
     <Compile Include="Logic\Interface\ISavingRepository.cs" />
+    <Compile Include="Pages\ApplicantCreatePage.xaml.cs">
+      <DependentUpon>ApplicantCreatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ApplicantPage.xaml.cs">
       <DependentUpon>ApplicantPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Page2.xaml.cs">
       <DependentUpon>Page2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ApplicantCreateViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ApplicantViewModel.cs" />
@@ -162,6 +166,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\ApplicantCreatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ApplicantPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

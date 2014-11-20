@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Cursovaia.Pages
 {
     /// <summary>
-    /// Interaction logic for Page.xaml
+    /// Interaction logic for ApplicantCreatePage.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class ApplicantCreatePage : Page
     {
-        public Page1()
+        public ApplicantCreatePage()
         {
             InitializeComponent();
         }

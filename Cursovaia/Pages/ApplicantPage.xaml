@@ -22,6 +22,7 @@
                 <BindingGroup/>
             </DataGrid.BindingGroup>
         </DataGrid>
+        <Button Content="Добавить нового соискателя" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="196" Command="{Binding GoToReferen}" CommandParameter="applicantCreate" />
 
     </Grid>
 </Page>
