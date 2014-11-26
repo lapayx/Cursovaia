@@ -21,6 +21,7 @@ namespace Cursovaia
     /// </summary>
     public static  class DIConfig
     {
+        public static MainWindow MainVindow;
         static DIConfig() 
         {
             DIConfig.Register();

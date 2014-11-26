@@ -61,7 +61,7 @@ namespace Cursovaia.ViewModel
         }
 
 
-        protected void InitializeCommands()
+        protected virtual void InitializeCommands()
         {
 
             GoToReferen = new RelayCommand<string>(GoToReferense);

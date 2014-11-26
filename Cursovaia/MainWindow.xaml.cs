@@ -13,12 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 
 using Cursovaia.Logic.Interface;
 using Cursovaia.Logic.DataBase;
 using Ninject.Modules;
 using Ninject;
 using System.Diagnostics;
+
+
+using System.Threading.Tasks;
 
 namespace Cursovaia
 {
@@ -31,6 +35,7 @@ namespace Cursovaia
         {
             InitializeComponent();
             DIConfig.kernel.Get<WIN_Server>();
+            DIConfig.MainVindow = this;
             Loaded += MainWindow_Loaded;
             
         }
@@ -46,17 +51,15 @@ namespace Cursovaia
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
+            
             this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-        }
 
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void ShowMessage(string title, string message)
         {
-          //  this.TabHistor
-            Debug.WriteLine("dfsf");
+            //var result =  this.ShowInputAsync("Hello!", "What is your name?");
+            this.ShowMessageAsync(title, message);
         }
     }
 }
