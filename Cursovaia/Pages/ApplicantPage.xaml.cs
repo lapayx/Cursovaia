@@ -23,5 +23,15 @@ namespace Cursovaia.Pages
         {
             InitializeComponent();
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DataGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            var t = 1;
+        }
     }
 }

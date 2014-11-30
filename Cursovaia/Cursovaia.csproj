@@ -134,9 +134,12 @@
     <Compile Include="Logic\DataBase\Vacancy.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Logic\Interface\IActionParam.cs" />
     <Compile Include="Logic\Interface\IEmplayeeRepository.cs" />
     <Compile Include="Logic\Interface\IGenericRepository.cs" />
     <Compile Include="Logic\Interface\ISavingRepository.cs" />
+    <Compile Include="Logic\Model\ActionParamsTyps.cs" />
+    <Compile Include="Logic\Service\ActionParam.cs" />
     <Compile Include="Pages\ApplicantCreatePage.xaml.cs">
       <DependentUpon>ApplicantCreatePage.xaml</DependentUpon>
     </Compile>
@@ -235,7 +238,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppData\" />
-    <Folder Include="Logic\Service\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

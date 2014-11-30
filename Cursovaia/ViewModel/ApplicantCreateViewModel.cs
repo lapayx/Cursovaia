@@ -9,62 +9,75 @@ using System.Windows.Input;
 using MahApps.Metro.Controls;
 
 using System.Threading.Tasks;
+using Cursovaia.Logic.Model;
 
 namespace Cursovaia.ViewModel
 {
     class ApplicantCreateViewModel : BaseViewModel
     {
-        readonly IGenericRepository<Applicant> applicant;
-        private Applicant newApplicant;
+        readonly IGenericRepository<Applicant> repository;
+        private Applicant Applicant;
         private Dictionary<string, bool> cheakList;
-        public string firstName { get { return this.newApplicant.FirstName; }
-            set { this.newApplicant.FirstName = value.Trim(); RaisePropertyChanged("firstName"); }
+        public string firstName { get { return this.Applicant.FirstName; }
+            set { this.Applicant.FirstName = value.Trim(); RaisePropertyChanged("firstName"); }
         }
         public string secondName
         {
-            get { return this.newApplicant.SecondName; }
-            set { this.newApplicant.SecondName = value.Trim(); RaisePropertyChanged("secondName"); }
+            get { return this.Applicant.SecondName; }
+            set { this.Applicant.SecondName = value.Trim(); RaisePropertyChanged("secondName"); }
         }
         public string fatherName
         {
-            get { return this.newApplicant.FatherName; }
-            set { this.newApplicant.FatherName = value.Trim(); RaisePropertyChanged("fatherName"); }
+            get { return this.Applicant.FatherName; }
+            set { this.Applicant.FatherName = value.Trim(); RaisePropertyChanged("fatherName"); }
         }
         public DateTime birthday
         {
-            get { return this.newApplicant.Birthday; }
-            set { this.newApplicant.Birthday = value; RaisePropertyChanged("birthday"); }
+            get { return this.Applicant.Birthday; }
+            set { this.Applicant.Birthday = value; RaisePropertyChanged("birthday"); }
         }
       
         public string lastWorkSpace
         {
-            get { return this.newApplicant.LastWorkSpace; }
-            set { this.newApplicant.LastWorkSpace = value.Trim(); RaisePropertyChanged("lastWorkSpace"); }
+            get { return this.Applicant.LastWorkSpace; }
+            set { this.Applicant.LastWorkSpace = value.Trim(); RaisePropertyChanged("lastWorkSpace"); }
         }
 
 
         public string education
         {
-            get { return this.newApplicant.Education; }
-            set { this.newApplicant.Education = value.Trim(); RaisePropertyChanged("education"); }
+            get { return this.Applicant.Education; }
+            set { this.Applicant.Education = value.Trim(); RaisePropertyChanged("education"); }
         }
         public string family
         {
-            get { return this.newApplicant.Family; }
-            set { this.newApplicant.Family = value.Trim(); RaisePropertyChanged("family"); }
+            get { return this.Applicant.Family; }
+            set { this.Applicant.Family = value.Trim(); RaisePropertyChanged("family"); }
         }
         public string socialStatus
         {
-            get { return this.newApplicant.SocialStatus; }
-            set { this.newApplicant.SocialStatus = value.Trim(); RaisePropertyChanged("socialStatus"); }
+            get { return this.Applicant.SocialStatus; }
+            set { this.Applicant.SocialStatus = value.Trim(); RaisePropertyChanged("socialStatus"); }
         }
-        public ApplicantCreateViewModel(IGenericRepository<Applicant> app) {
-            this.applicant = app;
-            this.newApplicant = new Applicant { 
-                Birthday = DateTime.Now
-            
-            
-            };
+        public ApplicantCreateViewModel(IGenericRepository<Applicant> app,IActionParam param) {
+            this.repository = app;
+            if (param.Action == PageAction.Appplicant && param.TypeAction != TypeAction.Create)
+            {
+                this.Applicant = this.repository.SelectById(param.Parameter);
+                if (this.Applicant == null) { 
+                     this.Applicant = new Applicant
+                    {
+                        Birthday = DateTime.Now
+                    };
+                }
+            }
+            else
+            {
+                this.Applicant = new Applicant
+                {
+                    Birthday = DateTime.Now
+                };
+            }
             this.cheakList = new Dictionary<string, bool>();
             cheakList.Add("firstName", false);
             cheakList.Add("secondName", false);
@@ -121,8 +134,8 @@ namespace Cursovaia.ViewModel
                 DIConfig.MainVindow.ShowMessage("Ошибка", "Не все поля заполнены верно");
                 return; 
             }
-            applicant.Insert(newApplicant);
-            applicant.Save();
+            repository.Insert(Applicant);
+            repository.Save();
             GoToReferense("applicant");
         
         }
@@ -141,44 +154,44 @@ namespace Cursovaia.ViewModel
                 {
 
                     case "firstName":
-                        if (this.newApplicant.FirstName != null && this.newApplicant.FirstName.Length < 2)
+                        if (this.Applicant.FirstName != null && this.Applicant.FirstName.Length < 2)
                             return "Слишком короткое имя";
-                        cheakList[columnName] = (this.newApplicant.FirstName != null)? true : false;
+                        cheakList[columnName] = (this.Applicant.FirstName != null)? true : false;
                         break;
                     case "secondName":
-                        if (this.newApplicant.SecondName != null && this.newApplicant.SecondName.Length < 2)
+                        if (this.Applicant.SecondName != null && this.Applicant.SecondName.Length < 2)
                             return "Слишком короткая Фамилия";
-                        cheakList[columnName] = (this.newApplicant.SecondName != null) ? true : false;
+                        cheakList[columnName] = (this.Applicant.SecondName != null) ? true : false;
                         break;
                     case "fatherName":
-                        if (this.newApplicant.FatherName != null && this.newApplicant.FatherName.Length < 2)
+                        if (this.Applicant.FatherName != null && this.Applicant.FatherName.Length < 2)
                             return "Слишком короткая Отчество";
-                        cheakList[columnName] = (this.newApplicant.FatherName != null) ? true : false;
+                        cheakList[columnName] = (this.Applicant.FatherName != null) ? true : false;
                         break;
                     case "lastWorkSpace":
-                        if (this.newApplicant.LastWorkSpace != null && this.newApplicant.LastWorkSpace.Length < 2)
+                        if (this.Applicant.LastWorkSpace != null && this.Applicant.LastWorkSpace.Length < 2)
                             return "Больше 2 символов";
-                        cheakList[columnName] = (this.newApplicant.LastWorkSpace != null) ? true : false;
+                        cheakList[columnName] = (this.Applicant.LastWorkSpace != null) ? true : false;
                         break;
                     case "education":
-                        if (this.newApplicant.Education != null && this.newApplicant.Education.Length < 2)
+                        if (this.Applicant.Education != null && this.Applicant.Education.Length < 2)
                             return "Больше 2 символов";
-                        cheakList[columnName] = (this.newApplicant.Education != null) ? true : false;
+                        cheakList[columnName] = (this.Applicant.Education != null) ? true : false;
                         break;
                     case "family":
-                        if (this.newApplicant.Family != null && this.newApplicant.Family.Length < 2)
+                        if (this.Applicant.Family != null && this.Applicant.Family.Length < 2)
                             return "Больше 2 символов";
-                        cheakList[columnName] = (this.newApplicant.Family != null) ? true : false;
+                        cheakList[columnName] = (this.Applicant.Family != null) ? true : false;
                         break;
                     case "socialStatus":
-                        if (this.newApplicant.SocialStatus != null && this.newApplicant.SocialStatus.Length < 2)
+                        if (this.Applicant.SocialStatus != null && this.Applicant.SocialStatus.Length < 2)
                             return "Больше 2 символов";
-                        cheakList[columnName] = (this.newApplicant.SocialStatus != null) ? true : false;
+                        cheakList[columnName] = (this.Applicant.SocialStatus != null) ? true : false;
                         break;
                     case "birthday":
-                        if (this.newApplicant.Birthday > DateTime.Now.AddYears(-14) )
+                        if (this.Applicant.Birthday > DateTime.Now.AddYears(-14) )
                             return "неверно выбрана дата рождения";
-                        cheakList[columnName] = (this.newApplicant.Birthday != null) ? true : false;
+                        cheakList[columnName] = (this.Applicant.Birthday != null) ? true : false;
                         break;
 
                     default :

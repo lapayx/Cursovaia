@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using Cursovaia.ViewModel;
 using System.Windows.Documents;
 using System.Windows.Controls;
-using Cursovaia.Logic.DataBase;
-using Cursovaia.Logic.Interface;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
 using Ninject.Modules;
 using Ninject;
 using Cursovaia.Pages;
+using Cursovaia.Logic.Service;
+using Cursovaia.ViewModel;
+using Cursovaia.Logic.DataBase;
+using Cursovaia.Logic.Interface;
+
 namespace Cursovaia
 {
     /// <summary>
@@ -51,6 +52,7 @@ namespace Cursovaia
             this.Bind<Page>().To<ApplicantCreatePage>().Named("applicantCreate");
 
             this.Bind<DbContext>().To<WIN_Server>().InSingletonScope();
+            this.Bind<IActionParam>().To<ActionParam>().InSingletonScope();
             this.Bind<IGenericRepository<Applicant>>().To<Entities<Applicant>>();
             //container.Register<DbContext, WIN_Server>(new PerScopeLifetime());
         }

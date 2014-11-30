@@ -3,13 +3,17 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:tkx="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="500"
+      d:DesignHeight="500" d:DesignWidth="700
+      "
 	Title="ApplicantPage">
 
     <Grid Margin="0,0,10,0" Background="#FFA62A2A">
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=sourse}" Margin="10,55,10,10" >
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Path=sourse}" Margin="10,55,10,10" 
+                  SelectionMode="Single"
+                  SelectedItem="{Binding Current_row}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id"  Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Имя"  Binding="{Binding FirstName}" />
@@ -23,6 +27,7 @@
             </DataGrid.BindingGroup>
         </DataGrid>
         <Button Content="Добавить нового соискателя" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="196" Command="{Binding GoToReferen}" CommandParameter="applicantCreate" />
+        <Button Content="Изменить данные" HorizontalAlignment="Left" Height="25" Margin="211,10,0,0" VerticalAlignment="Top" Width="150" Command="{Binding Change}" CommandParameter="applicantCreate" />
 
     </Grid>
 </Page>
