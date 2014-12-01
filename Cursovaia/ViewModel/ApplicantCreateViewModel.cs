@@ -16,10 +16,15 @@ namespace Cursovaia.ViewModel
     class ApplicantCreateViewModel : BaseViewModel
     {
         readonly IGenericRepository<Applicant> repository;
+
         private Applicant Applicant;
         private Dictionary<string, bool> cheakList;
+        public string Caption { get; set; }
+        private bool _isNewApplicant = true;
+
+        #region Свойства полей формы
         public string firstName { get { return this.Applicant.FirstName; }
-            set { this.Applicant.FirstName = value.Trim(); RaisePropertyChanged("firstName"); }
+            set {this.Applicant.FirstName = value.Trim(); RaisePropertyChanged("firstName"); }
         }
         public string secondName
         {
@@ -59,17 +64,27 @@ namespace Cursovaia.ViewModel
             get { return this.Applicant.SocialStatus; }
             set { this.Applicant.SocialStatus = value.Trim(); RaisePropertyChanged("socialStatus"); }
         }
-        public ApplicantCreateViewModel(IGenericRepository<Applicant> app,IActionParam param) {
+        #endregion
+
+
+        public ApplicantCreateViewModel(IGenericRepository<Applicant> app,IActionParamService param) {
             this.repository = app;
+            this.Caption = "Создание нового Соискателя";
             if (param.Action == PageAction.Appplicant && param.TypeAction != TypeAction.Create)
             {
                 this.Applicant = this.repository.SelectById(param.Parameter);
-                if (this.Applicant == null) { 
-                     this.Applicant = new Applicant
-                    {
-                        Birthday = DateTime.Now
-                    };
+                if (this.Applicant == null)
+                {
+                    this.Applicant = new Applicant
+                   {
+                       Birthday = DateTime.Now
+                   };
                 }
+                else {
+                    this.Caption = "Изменение данных соискателя";
+                    this._isNewApplicant = false;
+                }
+
             }
             else
             {
@@ -134,7 +149,10 @@ namespace Cursovaia.ViewModel
                 DIConfig.MainVindow.ShowMessage("Ошибка", "Не все поля заполнены верно");
                 return; 
             }
-            repository.Insert(Applicant);
+            if (this._isNewApplicant)
+                repository.Insert(Applicant);
+            else
+                repository.Update(Applicant); ;
             repository.Save();
             GoToReferense("applicant");
         

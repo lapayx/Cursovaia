@@ -11,14 +11,18 @@
 	Title="ApplicantPage">
 
     <Grid Margin="0,0,10,0" Background="#FFA62A2A">
-        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Path=sourse}" Margin="10,55,10,10" 
-                  SelectionMode="Single"
-                  SelectedItem="{Binding Current_row}">
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding sourse}" Margin="10,55,10,10" 
+                 
+                 
+                 SelectedItem="{Binding Path=Current_row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id"  Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Имя"  Binding="{Binding FirstName}" />
-                <DataGridTextColumn Header="Фамилия"  Binding="{Binding SecondName}" />
-                <DataGridTextColumn Header="Отчество"  Binding="{Binding FatherName}" />
+                <DataGridTextColumn Width="50" Header="Id"  Binding="{Binding Id}"/>
+                <DataGridTextColumn Width="100" Header="Имя"  Binding="{Binding FirstName}" />
+                <DataGridTextColumn Width="100" Header="Фамилия"  Binding="{Binding SecondName}" />
+                <DataGridTextColumn Width="100" Header="Отчество"  Binding="{Binding FatherName}" />
+                <DataGridTextColumn Width="130" Header="Дата рождения"  Binding="{Binding Birthday,StringFormat=dd.MM.yyyy}"  />
+                <DataGridTextColumn Width="100" Header="Дата рождения"  Binding="{Binding }"  />
                 <DataGridTextColumn/>
                 <DataGridTextColumn/>
             </DataGrid.Columns>
@@ -27,7 +31,28 @@
             </DataGrid.BindingGroup>
         </DataGrid>
         <Button Content="Добавить нового соискателя" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="196" Command="{Binding GoToReferen}" CommandParameter="applicantCreate" />
-        <Button Content="Изменить данные" HorizontalAlignment="Left" Height="25" Margin="211,10,0,0" VerticalAlignment="Top" Width="150" Command="{Binding Change}" CommandParameter="applicantCreate" />
+        <Button 
+            Content="Изменить данные" 
+            HorizontalAlignment="Left" 
+            Height="25" Margin="211,10,0,0" 
+            VerticalAlignment="Top" 
+            Width="150" 
+            Command="{Binding Change}" 
+            CommandParameter="applicantCreate" 
+            IsEnabled="{Binding IsSelectedApplicant}"
+            
+            />
+        <Button 
+        	Content="Удалить" 
+        	HorizontalAlignment="Left" 
+        	Height="25" Margin="366,10,0,0" 
+        	VerticalAlignment="Top" 
+        	Width="150" 
+        	Command="{Binding Delete}" 
+        	CommandParameter="applicantCreate" 
+        	IsEnabled="{Binding IsSelectedApplicant}"
+            
+            />
 
     </Grid>
 </Page>

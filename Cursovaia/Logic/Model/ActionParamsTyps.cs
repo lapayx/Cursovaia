@@ -11,7 +11,8 @@ namespace Cursovaia.Logic.Model
         Delete
     }
     public enum PageAction { 
-        Appplicant  
+        Appplicant ,
+        Organization
     }
     
 }

@@ -11,46 +11,48 @@ using System.Windows.Input;
 
 namespace Cursovaia.ViewModel
 {
-    class ApplicantViewModel : BaseViewModel
+    class OrganizationViewModel : BaseViewModel
     {
-        readonly IGenericRepository<Applicant> repository;
+        readonly IGenericRepository<Organization> repository;
         private IActionParamService actionParam;
-        private Applicant _selectedApplicant;
-        public bool IsSelectedApplicant {get;set;}
+        private Organization _selectedOrganization;
+        public bool IsSelectedRow { get; set; }
 
-        public List<Applicant> sourse { get {
+        public List<Organization> sourse
+        {
+            get {
             return this.repository.SelectAll().ToList();
         } }
 
-       // ChangeApplicant
-        public ApplicantViewModel(IGenericRepository<Applicant> app, IActionParamService param)
+
+        public OrganizationViewModel(IGenericRepository<Organization> app, IActionParamService param)
         {
             this.repository = app;
             this.actionParam = param;
-            this.actionParam.Set(PageAction.Appplicant);
+            this.actionParam.Set(PageAction.Organization);
 
             InitializeCommands();
         }
 
-        public Applicant Current_row
+        public Organization Current_row
         {
             get {
-                return _selectedApplicant;
+                return _selectedOrganization;
         } set {
-            _selectedApplicant = value;
+            _selectedOrganization = value;
             if (value == null) 
             { 
                 this.actionParam.Parameter = null;
-                this.IsSelectedApplicant = false;
+                this.IsSelectedRow = false;
             } 
             else 
             { 
                 this.actionParam.Parameter =  value.Id;
-                IsSelectedApplicant = true;
+                IsSelectedRow = true;
             }
-            
-            RaisePropertyChanged("IsSelectedApplicant");
-         //   RaisePropertyChanged("Current_row"); 
+
+            RaisePropertyChanged("IsSelectedRow");
+             
         } }
 
 
@@ -68,7 +70,7 @@ namespace Cursovaia.ViewModel
         private void ChangeApplicant(string s)
         {
             if (this.actionParam.Parameter == null) {
-                DIConfig.MainVindow.ShowMessage("Ошибка", "Не выбран Соискатель");
+                DIConfig.MainVindow.ShowMessage("Ошибка", "Не выбрана организация");
                 return;
             }
             this.actionParam.TypeAction = TypeAction.Change;
@@ -76,13 +78,25 @@ namespace Cursovaia.ViewModel
         }
         private void DeleteApplicant(string s)
         {
+
             if (this.actionParam.Parameter == null) {
-                DIConfig.MainVindow.ShowMessage("Ошибка", "Не выбран Соискатель");
+                DIConfig.MainVindow.ShowMessage("Ошибка", "Не выбрана Организация");
                 return;
             }
-            repository.Delete(this.actionParam.Parameter);
-            repository.Save();
-            DIConfig.MainVindow.ShowMessage("Успех", "Запись удалена");
+            bool success = true;
+            try
+            {
+                repository.Delete(this.actionParam.Parameter);
+                repository.Save();
+            }
+            catch (ExecutionEngineException e) {
+                success = false;
+            }
+            if(success)
+            
+                DIConfig.MainVindow.ShowMessage("Успех", "Запись удалена");
+            else
+                DIConfig.MainVindow.ShowMessage("Неудача", "Произошла ошибка повторите операцию");
             RaisePropertyChanged("sourse");
         }
     }

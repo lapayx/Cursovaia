@@ -46,15 +46,44 @@ namespace Cursovaia
            // this.Bind<INotifyPropertyChanged>().To<ViewModel2>().Named("page2");
             this.Bind<INotifyPropertyChanged>().To<ApplicantViewModel>().Named("applicant");
             this.Bind<INotifyPropertyChanged>().To<ApplicantCreateViewModel>().Named("applicantCreate");
+            this.Bind<INotifyPropertyChanged>().To<OrganizationViewModel>().Named("organization");
+            this.Bind<INotifyPropertyChanged>().To<OrganizationCreateViewModel>().Named("organizationCreate");
+
+
+
+
+
 
             this.Bind<Page>().To<Page1>().Named("page1");
             this.Bind<Page>().To<ApplicantPage>().Named("applicant");
             this.Bind<Page>().To<ApplicantCreatePage>().Named("applicantCreate");
+            this.Bind<Page>().To<OrganizationPage>().Named("organization");
+            this.Bind<Page>().To<OrganizationCreatePage>().Named("organizationCreate");
 
+
+
+
+
+
+
+
+
+
+
+
+            this.Repozitory();
+            this.Service();
+        }
+        private void Service()
+        {
+            this.Bind<IActionParamService>().To<ActionParamService>().InSingletonScope();
+        }
+        private void Repozitory() {
             this.Bind<DbContext>().To<WIN_Server>().InSingletonScope();
-            this.Bind<IActionParam>().To<ActionParam>().InSingletonScope();
             this.Bind<IGenericRepository<Applicant>>().To<Entities<Applicant>>();
+            this.Bind<IGenericRepository<Organization>>().To<Entities<Organization>>();
             //container.Register<DbContext, WIN_Server>(new PerScopeLifetime());
+        
         }
     }
 }

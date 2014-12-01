@@ -140,19 +140,27 @@
     <Compile Include="Logic\Interface\ISavingRepository.cs" />
     <Compile Include="Logic\Model\ActionParamsTyps.cs" />
     <Compile Include="Logic\Service\ActionParam.cs" />
+    <Compile Include="Pages\OrganizationCreatePage.xaml.cs">
+      <DependentUpon>OrganizationCreatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ApplicantCreatePage.xaml.cs">
       <DependentUpon>ApplicantCreatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ApplicantPage.xaml.cs">
       <DependentUpon>ApplicantPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OrganizationPage.xaml.cs">
+      <DependentUpon>OrganizationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Page2.xaml.cs">
       <DependentUpon>Page2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\OrganizationCreateViewModel.cs" />
     <Compile Include="ViewModel\ApplicantCreateViewModel.cs" />
+    <Compile Include="ViewModel\ApplicantViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\ApplicantViewModel.cs" />
+    <Compile Include="ViewModel\OrganizationViewModel.cs" />
     <Compile Include="ViewModel\vievmodel1.cs" />
     <Compile Include="ViewModel\ViewModel2.cs" />
     <Page Include="MainWindow.xaml">
@@ -169,11 +177,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\OrganizationCreatePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\ApplicantCreatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ApplicantPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OrganizationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -236,9 +252,7 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AppData\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
       <Visible>False</Visible>
@@ -263,6 +277,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppData\SQL.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,7 +7,7 @@ using Cursovaia.Logic.Interface;
 
 namespace Cursovaia.Logic.Service
 {
-    public class ActionParam : IActionParam
+    public class ActionParamService : IActionParamService
     {
         public TypeAction TypeAction { get; set; }
 
