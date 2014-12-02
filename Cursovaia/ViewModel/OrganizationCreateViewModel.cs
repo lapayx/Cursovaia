@@ -20,13 +20,13 @@ namespace Cursovaia.ViewModel
         private Organization Organization;
         private Dictionary<string, bool> cheakList;
         public string Caption { get; set; }
-        private bool _isNewApplicant = true;
+        private bool _isNewItem = true;
 
         #region Свойства полей формы
         public string name { get { return this.Organization.Name; }
             set {this.Organization.Name = value.Trim(); RaisePropertyChanged("name"); }
         }
-        public string secondName
+        public string about
         {
             get { return this.Organization.About; }
             set { this.Organization.About = value.Trim(); RaisePropertyChanged("about"); }
@@ -43,9 +43,13 @@ namespace Cursovaia.ViewModel
             if (param.Action == PageAction.Organization && param.TypeAction != TypeAction.Create)
             {
                 this.Organization = this.repository.SelectById(param.Parameter);
+
                 if (this.Organization == null)
                 {
                     this.Organization = new Organization();
+                }
+                else {
+                    this._isNewItem = false;
                 }
                
 
@@ -80,7 +84,7 @@ namespace Cursovaia.ViewModel
                 DIConfig.MainVindow.ShowMessage("Ошибка", "Не все поля заполнены верно");
                 return; 
             }
-            if (this._isNewApplicant)
+            if (this._isNewItem)
                 repository.Insert(Organization);
             else
                 repository.Update(Organization); ;

@@ -17,7 +17,7 @@
             VerticalAlignment="Top" 
             Width="196" 
             Command="{Binding GoToReferen}" 
-            CommandParameter="applicantCreate" />
+            CommandParameter="organizationCreate" />
         <Button 
     		Content="Изменить данные" 
     		HorizontalAlignment="Left" 
