@@ -45,6 +45,12 @@ namespace Cursovaia.ViewModel
         }
 
         /// <summary>
+        /// Цункция обновления источника данных
+        /// </summary>
+        protected virtual void  updateSource(string s = null){
+        
+        }
+        /// <summary>
         /// Для хранения ошибок
         /// </summary>
         public virtual string Error { get { return string.Empty; } }
@@ -65,6 +71,7 @@ namespace Cursovaia.ViewModel
         {
 
             GoToReferen = new RelayCommand<string>(GoToReferense);
+            this.updateSource();
 
         }
 

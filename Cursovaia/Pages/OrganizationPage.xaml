@@ -3,12 +3,19 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="700"
+      d:DesignHeight="500" d:DesignWidth="800"
 	Title="Organization">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Background="White">
 
-    <Grid Background="#FF2EB459">
-   
         <Button 
             Content="Добавить новую организацию" 
             HorizontalAlignment="Left" 
@@ -38,15 +45,15 @@
     		CommandParameter="d " 
     		IsEnabled="{Binding IsSelectedRow}" Grid.ColumnSpan="2"
         />
-        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding sourse}" Margin="10,55,10,10" 
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding SourceForGrid}" Margin="10,55,10,10" 
                  
                  
         	SelectedItem="{Binding Current_row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             >
             <DataGrid.Columns>
                 <DataGridTextColumn Width="50" Header="Id"  Binding="{Binding Id}"/>
-                <DataGridTextColumn Width="200" Header="Названеи"  Binding="{Binding Name}" />
-                <DataGridTextColumn Width="400" Header="Описанеи"  Binding="{Binding About, StringFormat=10}" />
+                <DataGridTextColumn Width="200" Header="Название"  Binding="{Binding Name}" />
+                <DataGridTextColumn Width="400" Header="Описание"  Binding="{Binding About, StringFormat=10}" />
 
             </DataGrid.Columns>
             <DataGrid.BindingGroup>
@@ -54,5 +61,39 @@
             </DataGrid.BindingGroup>
         </DataGrid>
 
+        <Button Width="50"
+                Height="50"
+                Margin="0,0,10,0"
+                Style="{DynamicResource MetroCircleButtonStyle}" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top"
+                Command="{Binding Refresh}"
+                CommandParameter="null" 
+                >
+            <Rectangle Width="20"
+                           Height="23"
+                           Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Fill"
+                                     Visual="{DynamicResource appbar_refresh}" />
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+        <TextBox 
+            HorizontalAlignment="Right" 
+            Height="25" Margin="0,10,65,0" 
+            TextWrapping="Wrap" 
+   
+            VerticalAlignment="Top" 
+            Width="200"
+      Controls:TextBoxHelper.ClearTextButton="True"
+                         Controls:TextBoxHelper.Watermark="Поиск по Названию"
+            Text="{Binding SearchKey,
+                    ValidatesOnDataErrors=True,
+                    UpdateSourceTrigger=PropertyChanged,
+                    NotifyOnValidationError=True
+                 }" FontSize="13" 
+                 
+            />
     </Grid>
 </Page>

@@ -17,10 +17,27 @@ namespace Cursovaia.ViewModel
         private IActionParamService actionParam;
         private Applicant _selectedApplicant;
         public bool IsSelectedApplicant {get;set;}
+        private List<Applicant> source;
+        private string _searhKey = "";
 
-        public List<Applicant> sourse { get {
-            return this.repository.SelectAll().ToList();
-        } }
+        public string SearchKey
+        {
+            get { return this._searhKey; }
+            set { this._searhKey = value.Trim(); RaisePropertyChanged("SourceForGrid"); }
+        }
+        public List<Applicant> SourceForGrid
+        {
+            get
+            {
+                if (this._searhKey.Length > 0)
+                {
+                    string key = this._searhKey.ToLower(); 
+                    return this.source.Where(x => x.SecondName.ToLower().Contains(key)).ToList();
+                }
+                else
+                    return this.source;
+            }
+        }
 
        // ChangeApplicant
         public ApplicantViewModel(IGenericRepository<Applicant> app, IActionParamService param)
@@ -54,17 +71,24 @@ namespace Cursovaia.ViewModel
         } }
 
 
+        protected override void updateSource(string s = null)
+        {
+            this.source = this.repository.SelectAll().ToList();
+            RaisePropertyChanged("SourceForGrid");
+        }
 
         protected override void InitializeCommands()
         {
             base.InitializeCommands();
             Change = new RelayCommand<string>(ChangeApplicant);
             Delete = new RelayCommand<string>(DeleteApplicant);
+            Refresh = new RelayCommand<string>(updateSource);
 
         }        
         
         public ICommand Change { get; set; }
         public ICommand Delete { get; set; }
+        public ICommand Refresh { get; set; }
         private void ChangeApplicant(string s)
         {
             if (this.actionParam.Parameter == null) {
@@ -83,7 +107,7 @@ namespace Cursovaia.ViewModel
             repository.Delete(this.actionParam.Parameter);
             repository.Save();
             DIConfig.MainVindow.ShowMessage("Успех", "Запись удалена");
-            RaisePropertyChanged("sourse");
+            this.updateSource();
         }
     }
 }

@@ -14,14 +14,28 @@ namespace Cursovaia.ViewModel
     class OrganizationViewModel : BaseViewModel
     {
         readonly IGenericRepository<Organization> repository;
+        private List<Organization> source;
         private IActionParamService actionParam;
         private Organization _selectedOrganization;
+        private string _searhKey = "";
         public bool IsSelectedRow { get; set; }
 
-        public List<Organization> sourse
+        public string SearchKey { 
+            get { return this._searhKey; }
+            set { this._searhKey = value.Trim(); RaisePropertyChanged("SourceForGrid"); } 
+        }
+
+        public List<Organization> SourceForGrid
         {
             get {
-            return this.repository.SelectAll().ToList();
+
+                if (this._searhKey.Length > 0)
+                {
+                    string key = this._searhKey.ToLower();
+                    return this.source.Where(x => x.Name.ToLower().Contains(key)).ToList();
+                }
+                else
+                    return this.source;
         } }
 
 
@@ -33,6 +47,7 @@ namespace Cursovaia.ViewModel
 
             InitializeCommands();
         }
+
 
         public Organization Current_row
         {
@@ -56,17 +71,22 @@ namespace Cursovaia.ViewModel
         } }
 
 
-
+        protected override void updateSource(string s = null)
+        {
+            this.source = this.repository.SelectAll().ToList();
+            RaisePropertyChanged("SourceForGrid");
+        }
         protected override void InitializeCommands()
         {
             base.InitializeCommands();
             Change = new RelayCommand<string>(ChangeApplicant);
             Delete = new RelayCommand<string>(DeleteApplicant);
-
+            Refresh = new RelayCommand<string>(updateSource);
         }        
         
         public ICommand Change { get; set; }
         public ICommand Delete { get; set; }
+        public ICommand Refresh { get; set; }
         private void ChangeApplicant(string s)
         {
             if (this.actionParam.Parameter == null) {
@@ -97,7 +117,7 @@ namespace Cursovaia.ViewModel
                 DIConfig.MainVindow.ShowMessage("Успех", "Запись удалена");
             else
                 DIConfig.MainVindow.ShowMessage("Неудача", "Произошла ошибка повторите операцию");
-            RaisePropertyChanged("sourse");
+            this.updateSource();
         }
     }
 }

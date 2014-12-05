@@ -32,7 +32,7 @@
         <Label Grid.ColumnSpan="2" Content="{Binding Caption, FallbackValue=Заголовок}" HorizontalAlignment="Center" Margin="51,0,49,0" RenderTransformOrigin="0.498,0.538" HorizontalContentAlignment="Center" FontSize="24" Width="400"/>
 
         <TextBox Margin="10,20,125,10"
-                Controls:TextboxHelper.Watermark="Имя"
+                Controls:TextBoxHelper.Watermark="Имя"
                 IsEnabled="true"
                 Text="{Binding firstName,
                     ValidatesOnDataErrors=True,
@@ -43,13 +43,13 @@
         <Label Content="Введите имя" Margin="0,20,10,10
                " Grid.Row="1" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="126"/>
         <TextBox Margin="10,10,125,10"
-        	Controls:TextboxHelper.Watermark="Фамилия"
+        	Controls:TextBoxHelper.Watermark="Фамилия"
         	IsEnabled="true"
         	Text="{Binding secondName, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
         	Grid.Row="2" Grid.Column="1" />
         <Label Content="Введите фамилию" Margin="0,10,10,10" Grid.Row="2" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="126"/>
         <TextBox Margin="10,10,125,10"
-        	Controls:TextboxHelper.Watermark="Отчество"
+        	Controls:TextBoxHelper.Watermark="Отчество"
         	IsEnabled="true"
         	Text="{Binding fatherName, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
         	Grid.Row="3" Grid.Column="1" />
@@ -65,25 +65,25 @@
             />
         <Label Content="Дата рождения" Margin="0,10,10,10" Grid.Row="4" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="126"/>
         <TextBox Margin="10,10,125,10"
-        	Controls:TextboxHelper.Watermark="Образование"
+        	Controls:TextBoxHelper.Watermark="Образование"
         	IsEnabled="true"
         	Text="{Binding education, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
         	Grid.Row="5" Grid.Column="1" />
         <Label Content="Образование" Margin="0,10,10,10" Grid.Row="5" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="126"/>
         <TextBox Margin="10,10,125,10"
-        	Controls:TextboxHelper.Watermark="Семья"
+        	Controls:TextBoxHelper.Watermark="Семья"
         	IsEnabled="true"
         	Text="{Binding family, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
         	Grid.Row="6" Grid.Column="1" />
         <Label Content="Семья" Margin="0,10,10,10" Grid.Row="6" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="126"/>
         <TextBox Margin="10,10,125,10"
-        	Controls:TextboxHelper.Watermark="Прежнее место работы"
+        	Controls:TextBoxHelper.Watermark="Прежнее место работы"
         	IsEnabled="true"
         	Text="{Binding lastWorkSpace, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
         	Grid.Row="7" Grid.Column="1" />
         <Label Content="Прежнее место работы" Margin="0,10,10,10" Grid.Row="7" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="126"/>
         <TextBox Margin="10,10,125,10"
-        	Controls:TextboxHelper.Watermark="Социальный статус"
+        	Controls:TextBoxHelper.Watermark="Социальный статус"
         	IsEnabled="true"
         	Text="{Binding socialStatus , NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
         	Grid.Row="8" Grid.Column="1" />
