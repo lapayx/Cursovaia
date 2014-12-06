@@ -33,7 +33,7 @@
     		Width="150" 
     		Command="{Binding Change}" 
     		CommandParameter="organizationCreate" 
-    		IsEnabled="{Binding IsSelectedRow}" Grid.ColumnSpan="2"
+    		IsEnabled="{Binding IsSelectedItem}" Grid.ColumnSpan="2"
         />
         <Button 
     		Content="Удалить" 
@@ -43,7 +43,7 @@
     		Width="150" 
     		Command="{Binding Delete}" 
     		CommandParameter="d " 
-    		IsEnabled="{Binding IsSelectedRow}" Grid.ColumnSpan="2"
+    		IsEnabled="{Binding IsSelectedItem}" Grid.ColumnSpan="2"
         />
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding SourceForGrid}" Margin="10,55,10,10" 
                  

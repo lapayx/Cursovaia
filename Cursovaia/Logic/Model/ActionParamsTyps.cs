@@ -10,9 +10,12 @@ namespace Cursovaia.Logic.Model
         Change,
         Delete
     }
-    public enum PageAction { 
-        Appplicant ,
-        Organization
+    public enum PageAction
+    {
+        Appplicant,
+        Organization,
+        ShereProfession,
+        Speciality
     }
     
 }

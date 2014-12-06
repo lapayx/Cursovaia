@@ -15,8 +15,8 @@ namespace Cursovaia.ViewModel
     {
         readonly IGenericRepository<Applicant> repository;
         private IActionParamService actionParam;
-        private Applicant _selectedApplicant;
-        public bool IsSelectedApplicant {get;set;}
+        private Applicant _selectedItem;
+        public bool IsSelectedItem {get;set;}
         private List<Applicant> source;
         private string _searhKey = "";
 
@@ -52,21 +52,21 @@ namespace Cursovaia.ViewModel
         public Applicant Current_row
         {
             get {
-                return _selectedApplicant;
+                return _selectedItem;
         } set {
-            _selectedApplicant = value;
+            _selectedItem = value;
             if (value == null) 
             { 
                 this.actionParam.Parameter = null;
-                this.IsSelectedApplicant = false;
+                this.IsSelectedItem = false;
             } 
             else 
             { 
                 this.actionParam.Parameter =  value.Id;
-                IsSelectedApplicant = true;
+                IsSelectedItem = true;
             }
             
-            RaisePropertyChanged("IsSelectedApplicant");
+            RaisePropertyChanged("IsSelectedItem");
          //   RaisePropertyChanged("Current_row"); 
         } }
 

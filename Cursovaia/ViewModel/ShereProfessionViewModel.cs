@@ -11,12 +11,12 @@ using System.Windows.Input;
 
 namespace Cursovaia.ViewModel
 {
-    class OrganizationViewModel : BaseViewModel
+    class ShereProfessionViewModel : BaseViewModel
     {
-        readonly IGenericRepository<Organization> repository;
-        private List<Organization> source;
+        readonly IGenericRepository<ShereProfession> repository;
+        private List<ShereProfession> source;
         private IActionParamService actionParam;
-        private Organization _selectedItem;
+        private ShereProfession _selectedItem;
         private string _searhKey = "";
         public bool IsSelectedItem { get; set; }
 
@@ -25,7 +25,7 @@ namespace Cursovaia.ViewModel
             set { this._searhKey = value.Trim(); RaisePropertyChanged("SourceForGrid"); } 
         }
 
-        public List<Organization> SourceForGrid
+        public List<ShereProfession> SourceForGrid
         {
             get {
 
@@ -39,17 +39,17 @@ namespace Cursovaia.ViewModel
         } }
 
 
-        public OrganizationViewModel(IGenericRepository<Organization> app, IActionParamService param)
+        public ShereProfessionViewModel(IGenericRepository<ShereProfession> app, IActionParamService param)
         {
             this.repository = app;
             this.actionParam = param;
-            this.actionParam.Set(PageAction.Organization);
+            this.actionParam.Set(PageAction.ShereProfession);
 
             InitializeCommands();
         }
 
 
-        public Organization Current_row
+        public ShereProfession Current_row
         {
             get {
                 return _selectedItem;

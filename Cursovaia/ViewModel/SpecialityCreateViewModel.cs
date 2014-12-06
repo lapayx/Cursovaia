@@ -13,11 +13,11 @@ using Cursovaia.Logic.Model;
 
 namespace Cursovaia.ViewModel
 {
-    class OrganizationCreateViewModel : BaseViewModel
+    class SpecialityCreateViewModel : BaseViewModel
     {
-        readonly IGenericRepository<Organization> repository;
+        readonly IGenericRepository<Speciality> repository;
 
-        private Organization item;
+        private Speciality item;
         private Dictionary<string, bool> cheakList;
         public string Caption { get; set; }
         private bool _isNewItem = true;
@@ -26,31 +26,31 @@ namespace Cursovaia.ViewModel
         public string name { get { return this.item.Name; }
             set {this.item.Name = value.Trim(); RaisePropertyChanged("name"); }
         }
-        public string about
+        public string systemShema
         {
-            get { return this.item.About; }
-            set { this.item.About = value.Trim(); RaisePropertyChanged("about"); }
+            get { return this.item.SystemShema; }
+            set { this.item.SystemShema = value.Trim(); RaisePropertyChanged("systemShema"); }
         }
        
         #endregion
 
 
-        public OrganizationCreateViewModel(IGenericRepository<Organization> reposityry, IActionParamService param)
+        public SpecialityCreateViewModel(IGenericRepository<Speciality> reposityry, IActionParamService param)
         {
             this.repository = reposityry;
-            this.Caption = "Создание новой Организации";
-            this.item = new Organization();
-            if (param.Action == PageAction.Organization && param.TypeAction != TypeAction.Create)
+            this.Caption = "Создание новой должности";
+            this.item = new Speciality();
+            if (param.Action == PageAction.Speciality && param.TypeAction != TypeAction.Create)
             {
                 this.item = this.repository.SelectById(param.Parameter);
 
                 if (this.item == null)
                 {
-                    this.item = new Organization();
+                    this.item = new Speciality();
                 }
                 else {
                     this._isNewItem = false;
-                    this.Caption = "Изменение данных организации";
+                    this.Caption = "Изменение данных должности";
                 }
                
 
@@ -58,7 +58,7 @@ namespace Cursovaia.ViewModel
             
             this.cheakList = new Dictionary<string, bool>();
             cheakList.Add("name", false);
-            cheakList.Add("about", false);
+            cheakList.Add("systemShema", false);
 
             InitializeCommands();
         }
@@ -90,12 +90,12 @@ namespace Cursovaia.ViewModel
             else
                 repository.Update(item); ;
             repository.Save();
-            GoToReferense("organization");
+            GoToReferense("speciality");
         
         }
         private void CancelApplicant(string s) {
 
-            GoToReferense("organization");
+            GoToReferense("speciality");
         }
         public override  string this[string columnName]
         {
@@ -112,10 +112,10 @@ namespace Cursovaia.ViewModel
                             return "Слишком короткое Название";
                         cheakList[columnName] = (this.item.Name != null)? true : false;
                         break;
-                    case "about":
-                        if (this.item.About != null && this.item.About.Length < 2)
-                            return "Слишком короткая Фамилия";
-                        cheakList[columnName] = (this.item.About != null) ? true : false;
+                    case "systemShema":
+                        if (this.item.SystemShema != null && this.item.SystemShema.Length < 2)
+                            return "Минимум 2 символа";
+                        cheakList[columnName] = (this.item.SystemShema != null) ? true : false;
                         break;
                     default :
                         break;

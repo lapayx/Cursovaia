@@ -141,6 +141,15 @@
     <Compile Include="Logic\Interface\ISavingRepository.cs" />
     <Compile Include="Logic\Model\ActionParamsTyps.cs" />
     <Compile Include="Logic\Service\ActionParam.cs" />
+    <Compile Include="Pages\SpecialityCreatePage.xaml.cs">
+      <DependentUpon>SpecialityCreatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SpecialityPage.xaml.cs">
+      <DependentUpon>SpecialityPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ShereProfessionCreatePage.xaml.cs">
+      <DependentUpon>ShereProfessionCreatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OrganizationCreatePage.xaml.cs">
       <DependentUpon>OrganizationCreatePage.xaml</DependentUpon>
     </Compile>
@@ -150,17 +159,24 @@
     <Compile Include="Pages\ApplicantPage.xaml.cs">
       <DependentUpon>ApplicantPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ShereProfessionPage.xaml.cs">
+      <DependentUpon>ShereProfessionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OrganizationPage.xaml.cs">
       <DependentUpon>OrganizationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Page2.xaml.cs">
       <DependentUpon>Page2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\SpecialityCreateViewModel.cs" />
+    <Compile Include="ViewModel\SpecialityViewModel.cs" />
+    <Compile Include="ViewModel\ShereProfessionCreateViewModel.cs" />
     <Compile Include="ViewModel\OrganizationCreateViewModel.cs" />
     <Compile Include="ViewModel\ApplicantCreateViewModel.cs" />
     <Compile Include="ViewModel\ApplicantViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ShereProfessionViewModel.cs" />
     <Compile Include="ViewModel\OrganizationViewModel.cs" />
     <Compile Include="ViewModel\vievmodel1.cs" />
     <Compile Include="ViewModel\ViewModel2.cs" />
@@ -178,6 +194,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\SpecialityCreatePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\SpecialityPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ShereProfessionCreatePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\OrganizationCreatePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -189,6 +217,10 @@
     <Page Include="Pages\ApplicantPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ShereProfessionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\OrganizationPage.xaml">
       <SubType>Designer</SubType>
