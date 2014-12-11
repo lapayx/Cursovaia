@@ -36,5 +36,6 @@ namespace Cursovaia.Logic.DataBase
         public DbSet<ShereProfession> ShereProfession { get; set; }
         public DbSet<Speciality> Speciality { get; set; }
         public DbSet<Vacancy> Vacancy { get; set; }
+        public DbSet<VEmployee> V_EMPLOYEE { get; set; }
     }
 }

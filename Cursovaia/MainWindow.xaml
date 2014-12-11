@@ -22,6 +22,7 @@
                 <MenuItem Header="Организации" Command="{Binding GoToReferen}" CommandParameter="organization"/>
                 <MenuItem Header="Сфера Профессий" Command="{Binding GoToReferen}" CommandParameter="shereProfession"/>
                 <MenuItem Header="Должность персонала" Command="{Binding GoToReferen}" CommandParameter="speciality"/>
+                <MenuItem Header="Сотрудники" Command="{Binding GoToReferen}" CommandParameter="employee"/>
             </MenuItem>
         </Menu>
         <Frame x:Name="MainFrame" Content="Тут что-то должно быть, выберите что" Margin="10,10,10,40" Grid.Row="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>

@@ -15,7 +15,8 @@ namespace Cursovaia.Logic.Model
         Appplicant,
         Organization,
         ShereProfession,
-        Speciality
+        Speciality,
+        Employee
     }
     
 }

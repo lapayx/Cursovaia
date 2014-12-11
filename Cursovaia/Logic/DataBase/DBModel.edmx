@@ -111,6 +111,26 @@
           <Property Name="MAX_EXPERIENCE" Type="int" Nullable="false" />
           <Property Name="DATE_ADD" Type="datetime" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'test1.Apocalipsyz.V_EMPLOYEE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_EMPLOYEE">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_SPECIALITY" />
+            <PropertyRef Name="FIRST_NAME" />
+            <PropertyRef Name="SECOND_NAME" />
+            <PropertyRef Name="FATHER_NAME" />
+            <PropertyRef Name="BIRTHDAY" />
+            <PropertyRef Name="NAME_SPECIALITY" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID_SPECIALITY" Type="int" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SECOND_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FATHER_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BIRTHDAY" Type="datetime" Nullable="false" />
+          <Property Name="NAME_SPECIALITY" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
         <Association Name="FK1EMPLOYEE">
           <End Role="SPECIALITY" Type="Self.SPECIALITY" Multiplicity="1" />
           <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
@@ -244,17 +264,28 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="masterModelStoreContainer">
-          <EntitySet Name="APPLICANT" EntityType="Self.APPLICANT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="HISTORY" EntityType="Self.HISTORY" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ORGANIZATION" EntityType="Self.ORGANIZATION" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PROFESSION" EntityType="Self.PROFESSION" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PROFESSION_SKILL" EntityType="Self.PROFESSION_SKILL" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="REFRESHER_COURSE" EntityType="Self.REFRESHER_COURSE" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="REFRESHERING" EntityType="Self.REFRESHERING" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SHERE_PROFESSION" EntityType="Self.SHERE_PROFESSION" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SPECIALITY" EntityType="Self.SPECIALITY" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="VACANCY" EntityType="Self.VACANCY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="APPLICANT" EntityType="Self.APPLICANT" Schema="Apocalipsyz" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="Apocalipsyz" store:Type="Tables" />
+          <EntitySet Name="HISTORY" EntityType="Self.HISTORY" Schema="Apocalipsyz" store:Type="Tables" />
+          <EntitySet Name="ORGANIZATION" EntityType="Self.ORGANIZATION" Schema="Apocalipsyz" store:Type="Tables" />
+          <EntitySet Name="PROFESSION" EntityType="Self.PROFESSION" Schema="Apocalipsyz" store:Type="Tables" />
+          <EntitySet Name="PROFESSION_SKILL" EntityType="Self.PROFESSION_SKILL" Schema="Apocalipsyz" store:Type="Tables" />
+          <EntitySet Name="REFRESHER_COURSE" EntityType="Self.REFRESHER_COURSE" Schema="Apocalipsyz" store:Type="Tables" />
+          <EntitySet Name="REFRESHERING" EntityType="Self.REFRESHERING" Schema="Apocalipsyz" store:Type="Tables" />
+          <EntitySet Name="SHERE_PROFESSION" EntityType="Self.SHERE_PROFESSION" Schema="Apocalipsyz" store:Type="Tables" />
+          <EntitySet Name="SPECIALITY" EntityType="Self.SPECIALITY" Schema="Apocalipsyz" store:Type="Tables" />
+          <EntitySet Name="VACANCY" EntityType="Self.VACANCY" Schema="Apocalipsyz" store:Type="Tables" />
+          <EntitySet Name="V_EMPLOYEE" EntityType="Self.V_EMPLOYEE" store:Type="Views" store:Schema="Apocalipsyz">
+            <DefiningQuery>SELECT 
+[V_EMPLOYEE].[ID] AS [ID], 
+[V_EMPLOYEE].[ID_SPECIALITY] AS [ID_SPECIALITY], 
+[V_EMPLOYEE].[FIRST_NAME] AS [FIRST_NAME], 
+[V_EMPLOYEE].[SECOND_NAME] AS [SECOND_NAME], 
+[V_EMPLOYEE].[FATHER_NAME] AS [FATHER_NAME], 
+[V_EMPLOYEE].[BIRTHDAY] AS [BIRTHDAY], 
+[V_EMPLOYEE].[NAME_SPECIALITY] AS [NAME_SPECIALITY]
+FROM [Apocalipsyz].[V_EMPLOYEE] AS [V_EMPLOYEE]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK1EMPLOYEE" Association="Self.FK1EMPLOYEE">
             <End Role="SPECIALITY" EntitySet="SPECIALITY" />
             <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
@@ -360,7 +391,8 @@
             <End Role="REFRESHER_COURSE" EntitySet="RefresherCours" />
             <End Role="REFRESHERING" EntitySet="Refreshering" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="V_EMPLOYEE" EntityType="masterModel.VEmployee" />
+          </EntityContainer>
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="Id" />
@@ -384,7 +416,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdSpeciality" Type="Int32" Nullable="false" />
-          <Property Name="FirsName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="SecondName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FatherName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
@@ -621,15 +653,115 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="VEmployee">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdSpeciality" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="SecondName" />
+            <PropertyRef Name="FatherName" />
+            <PropertyRef Name="Birthday" />
+            <PropertyRef Name="NameSpeciality" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdSpeciality" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SecondName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FatherName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NameSpeciality" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="WIN_Server" >
+          <EntitySetMapping Name="Speciality">
+            <EntityTypeMapping TypeName="IsTypeOf(masterModel.Speciality)">
+              <MappingFragment StoreEntitySet="SPECIALITY" >
+                <ScalarProperty Name="SystemShema" ColumnName="SYSTEM_SHEMA" />
+                <ScalarProperty Name="Name" ColumnName="NAME" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="IsTypeOf(masterModel.Employee)">
+              <MappingFragment StoreEntitySet="EMPLOYEE" >
+                <ScalarProperty Name="Birthday" ColumnName="BIRTHDAY" />
+                <ScalarProperty Name="FatherName" ColumnName="FATHER_NAME" />
+                <ScalarProperty Name="SecondName" ColumnName="SECOND_NAME" />
+                <ScalarProperty Name="FirstName" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="IdSpeciality" ColumnName="ID_SPECIALITY" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History">
+            <EntityTypeMapping TypeName="IsTypeOf(masterModel.History)">
+              <MappingFragment StoreEntitySet="HISTORY" >
+                <ScalarProperty Name="AddDate" ColumnName="DATE_ADD" />
+                <ScalarProperty Name="Status" ColumnName="STATUS" />
+                <ScalarProperty Name="IdApplicant" ColumnName="ID_APPLICANT" />
+                <ScalarProperty Name="IdVacancy" ColumnName="ID_VACANCY" />
+                <ScalarProperty Name="IdEmployee" ColumnName="ID_EMPLOYEE" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organization">
+            <EntityTypeMapping TypeName="IsTypeOf(masterModel.Organization)">
+              <MappingFragment StoreEntitySet="ORGANIZATION" >
+                <ScalarProperty Name="About" ColumnName="ABOUT" />
+                <ScalarProperty Name="Name" ColumnName="NAME" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacancy">
+            <EntityTypeMapping TypeName="IsTypeOf(masterModel.Vacancy)">
+              <MappingFragment StoreEntitySet="VACANCY" >
+                <ScalarProperty Name="AddDate" ColumnName="DATE_ADD" />
+                <ScalarProperty Name="MaxExperience" ColumnName="MAX_EXPERIENCE" />
+                <ScalarProperty Name="MinExperience" ColumnName="MIN_EXPERIENCE" />
+                <ScalarProperty Name="Status" ColumnName="STATUS" />
+                <ScalarProperty Name="About" ColumnName="ABOUT" />
+                <ScalarProperty Name="IdProfession" ColumnName="ID_PROFESSION" />
+                <ScalarProperty Name="IdOrganization" ColumnName="ID_ORGANIZATION" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShereProfession">
+            <EntityTypeMapping TypeName="IsTypeOf(masterModel.ShereProfession)">
+              <MappingFragment StoreEntitySet="SHERE_PROFESSION" >
+                <ScalarProperty Name="Name" ColumnName="NAME" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profession">
+            <EntityTypeMapping TypeName="IsTypeOf(masterModel.Profession)">
+              <MappingFragment StoreEntitySet="PROFESSION" >
+                <ScalarProperty Name="IdShereProfession" ColumnName="ID_SHERE_PROFESSION" />
+                <ScalarProperty Name="Name" ColumnName="NAME" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfessionSkill">
+            <EntityTypeMapping TypeName="IsTypeOf(masterModel.ProfessionSkill)">
+              <MappingFragment StoreEntitySet="PROFESSION_SKILL" >
+                <ScalarProperty Name="IdProfession" ColumnName="ID_PROFESSION" />
+                <ScalarProperty Name="IdApplicant" ColumnName="ID_APPLICANT" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Applicant">
-            <EntityTypeMapping TypeName="masterModel.Applicant">
-              <MappingFragment StoreEntitySet="APPLICANT">
+            <EntityTypeMapping TypeName="IsTypeOf(masterModel.Applicant)">
+              <MappingFragment StoreEntitySet="APPLICANT" >
                 <ScalarProperty Name="SocialStatus" ColumnName="SOCIAL_STATUS" />
                 <ScalarProperty Name="Family" ColumnName="FAMILY" />
                 <ScalarProperty Name="Birthday" ColumnName="BIRTHDAY" />
@@ -642,69 +774,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Employee">
-            <EntityTypeMapping TypeName="masterModel.Employee">
-              <MappingFragment StoreEntitySet="EMPLOYEE">
-                <ScalarProperty Name="Birthday" ColumnName="BIRTHDAY" />
-                <ScalarProperty Name="FatherName" ColumnName="FATHER_NAME" />
-                <ScalarProperty Name="SecondName" ColumnName="SECOND_NAME" />
-                <ScalarProperty Name="FirsName" ColumnName="FIRST_NAME" />
-                <ScalarProperty Name="IdSpeciality" ColumnName="ID_SPECIALITY" />
-                <ScalarProperty Name="Id" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="History">
-            <EntityTypeMapping TypeName="masterModel.History">
-              <MappingFragment StoreEntitySet="HISTORY">
-                <ScalarProperty Name="AddDate" ColumnName="DATE_ADD" />
-                <ScalarProperty Name="Status" ColumnName="STATUS" />
-                <ScalarProperty Name="IdApplicant" ColumnName="ID_APPLICANT" />
-                <ScalarProperty Name="IdVacancy" ColumnName="ID_VACANCY" />
-                <ScalarProperty Name="IdEmployee" ColumnName="ID_EMPLOYEE" />
-                <ScalarProperty Name="Id" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Organization">
-            <EntityTypeMapping TypeName="masterModel.Organization">
-              <MappingFragment StoreEntitySet="ORGANIZATION">
-                <ScalarProperty Name="About" ColumnName="ABOUT" />
-                <ScalarProperty Name="Name" ColumnName="NAME" />
-                <ScalarProperty Name="Id" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Profession">
-            <EntityTypeMapping TypeName="masterModel.Profession">
-              <MappingFragment StoreEntitySet="PROFESSION">
-                <ScalarProperty Name="IdShereProfession" ColumnName="ID_SHERE_PROFESSION" />
-                <ScalarProperty Name="Name" ColumnName="NAME" />
-                <ScalarProperty Name="Id" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProfessionSkill">
-            <EntityTypeMapping TypeName="masterModel.ProfessionSkill">
-              <MappingFragment StoreEntitySet="PROFESSION_SKILL">
-                <ScalarProperty Name="IdProfession" ColumnName="ID_PROFESSION" />
-                <ScalarProperty Name="IdApplicant" ColumnName="ID_APPLICANT" />
-                <ScalarProperty Name="Id" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RefresherCours">
-            <EntityTypeMapping TypeName="masterModel.RefresherCours">
-              <MappingFragment StoreEntitySet="REFRESHER_COURSE">
-                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
-                <ScalarProperty Name="Name" ColumnName="NAME" />
-                <ScalarProperty Name="Id" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Refreshering">
-            <EntityTypeMapping TypeName="masterModel.Refreshering">
-              <MappingFragment StoreEntitySet="REFRESHERING">
+            <EntityTypeMapping TypeName="IsTypeOf(masterModel.Refreshering)">
+              <MappingFragment StoreEntitySet="REFRESHERING" >
                 <ScalarProperty Name="EndDate" ColumnName="END_DATE" />
                 <ScalarProperty Name="StartDate" ColumnName="START_DATE" />
                 <ScalarProperty Name="IdApplicant" ColumnName="ID_APPLICANT" />
@@ -713,33 +785,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ShereProfession">
-            <EntityTypeMapping TypeName="masterModel.ShereProfession">
-              <MappingFragment StoreEntitySet="SHERE_PROFESSION">
+          <EntitySetMapping Name="RefresherCours">
+            <EntityTypeMapping TypeName="IsTypeOf(masterModel.RefresherCours)">
+              <MappingFragment StoreEntitySet="REFRESHER_COURSE">
                 <ScalarProperty Name="Name" ColumnName="NAME" />
                 <ScalarProperty Name="Id" ColumnName="ID" />
+                <ScalarProperty Name="DURATION" ColumnName="DURATION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Speciality">
-            <EntityTypeMapping TypeName="masterModel.Speciality">
-              <MappingFragment StoreEntitySet="SPECIALITY">
-                <ScalarProperty Name="SystemShema" ColumnName="SYSTEM_SHEMA" />
-                <ScalarProperty Name="Name" ColumnName="NAME" />
-                <ScalarProperty Name="Id" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Vacancy">
-            <EntityTypeMapping TypeName="masterModel.Vacancy">
-              <MappingFragment StoreEntitySet="VACANCY">
-                <ScalarProperty Name="AddDate" ColumnName="DATE_ADD" />
-                <ScalarProperty Name="MaxExperience" ColumnName="MAX_EXPERIENCE" />
-                <ScalarProperty Name="MinExperience" ColumnName="MIN_EXPERIENCE" />
-                <ScalarProperty Name="Status" ColumnName="STATUS" />
-                <ScalarProperty Name="About" ColumnName="ABOUT" />
-                <ScalarProperty Name="IdProfession" ColumnName="ID_PROFESSION" />
-                <ScalarProperty Name="IdOrganization" ColumnName="ID_ORGANIZATION" />
+          <EntitySetMapping Name="V_EMPLOYEE">
+            <EntityTypeMapping TypeName="masterModel.VEmployee">
+              <MappingFragment StoreEntitySet="V_EMPLOYEE">
+                <ScalarProperty Name="NameSpeciality" ColumnName="NAME_SPECIALITY" />
+                <ScalarProperty Name="Birthday" ColumnName="BIRTHDAY" />
+                <ScalarProperty Name="FatherName" ColumnName="FATHER_NAME" />
+                <ScalarProperty Name="SecondName" ColumnName="SECOND_NAME" />
+                <ScalarProperty Name="FirstName" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="IdSpeciality" ColumnName="ID_SPECIALITY" />
                 <ScalarProperty Name="Id" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -762,6 +825,7 @@
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="DefaultDatabaseSchema" Value="apocalipsyz" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

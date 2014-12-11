@@ -12,21 +12,14 @@ namespace Cursovaia.Logic.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class VEmployee
     {
-        public Employee()
-        {
-            this.History = new HashSet<History>();
-        }
-    
         public int Id { get; set; }
         public int IdSpeciality { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string FatherName { get; set; }
         public System.DateTime Birthday { get; set; }
-    
-        public virtual Speciality Spetialiry { get; set; }
-        public virtual ICollection<History> History { get; set; }
+        public string NameSpeciality { get; set; }
     }
 }

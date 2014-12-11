@@ -135,12 +135,21 @@
     <Compile Include="Logic\DataBase\Vacancy.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Logic\DataBase\VEmployee.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Logic\Interface\IActionParam.cs" />
     <Compile Include="Logic\Interface\IEmplayeeRepository.cs" />
     <Compile Include="Logic\Interface\IGenericRepository.cs" />
     <Compile Include="Logic\Interface\ISavingRepository.cs" />
     <Compile Include="Logic\Model\ActionParamsTyps.cs" />
     <Compile Include="Logic\Service\ActionParam.cs" />
+    <Compile Include="Pages\EmployeeCreatePage.xaml.cs">
+      <DependentUpon>EmployeeCreatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EmployeePage.xaml.cs">
+      <DependentUpon>EmployeePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SpecialityCreatePage.xaml.cs">
       <DependentUpon>SpecialityCreatePage.xaml</DependentUpon>
     </Compile>
@@ -168,6 +177,8 @@
     <Compile Include="Pages\Page2.xaml.cs">
       <DependentUpon>Page2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\EmployeeCreateViewModel.cs" />
+    <Compile Include="ViewModel\EmployeeViewModel.cs" />
     <Compile Include="ViewModel\SpecialityCreateViewModel.cs" />
     <Compile Include="ViewModel\SpecialityViewModel.cs" />
     <Compile Include="ViewModel\ShereProfessionCreateViewModel.cs" />
@@ -194,6 +205,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\EmployeeCreatePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\EmployeePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\SpecialityCreatePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
