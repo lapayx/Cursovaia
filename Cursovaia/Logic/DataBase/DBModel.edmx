@@ -116,20 +116,31 @@ warning 6002: The table/view 'test1.Apocalipsyz.V_EMPLOYEE' does not have a prim
         <EntityType Name="V_EMPLOYEE">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="ID_SPECIALITY" />
-            <PropertyRef Name="FIRST_NAME" />
-            <PropertyRef Name="SECOND_NAME" />
-            <PropertyRef Name="FATHER_NAME" />
-            <PropertyRef Name="BIRTHDAY" />
-            <PropertyRef Name="NAME_SPECIALITY" />
+            
+            
+            
+            
+            
+            
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ID_SPECIALITY" Type="int" Nullable="false" />
           <Property Name="FIRST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="SECOND_NAME" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="FATHER_NAME" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="BIRTHDAY" Type="datetime" Nullable="false" />
           <Property Name="NAME_SPECIALITY" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'test1.Apocalipsyz.V_PROFESSION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_PROFESSION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_SHERE_PROFESSION" Type="int" Nullable="false" />
+          <Property Name="NAME_SHERE_PROFESSION" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <Association Name="FK1EMPLOYEE">
           <End Role="SPECIALITY" Type="Self.SPECIALITY" Multiplicity="1" />
@@ -263,6 +274,18 @@ warning 6002: The table/view 'test1.Apocalipsyz.V_EMPLOYEE' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="PDELETE_FROM_EMPLOYEE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PDELETE_FROM_PROFESSION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PDELETE_FROM_V_PROFESS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PDELETE_FROM_V_PROFESSION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="masterModelStoreContainer">
           <EntitySet Name="APPLICANT" EntityType="Self.APPLICANT" Schema="Apocalipsyz" store:Type="Tables" />
           <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="Apocalipsyz" store:Type="Tables" />
@@ -285,6 +308,14 @@ warning 6002: The table/view 'test1.Apocalipsyz.V_EMPLOYEE' does not have a prim
 [V_EMPLOYEE].[BIRTHDAY] AS [BIRTHDAY], 
 [V_EMPLOYEE].[NAME_SPECIALITY] AS [NAME_SPECIALITY]
 FROM [Apocalipsyz].[V_EMPLOYEE] AS [V_EMPLOYEE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_PROFESSION" EntityType="Self.V_PROFESSION" store:Type="Views" store:Schema="Apocalipsyz">
+            <DefiningQuery>SELECT 
+[V_PROFESSION].[ID] AS [ID], 
+[V_PROFESSION].[NAME] AS [NAME], 
+[V_PROFESSION].[ID_SHERE_PROFESSION] AS [ID_SHERE_PROFESSION], 
+[V_PROFESSION].[NAME_SHERE_PROFESSION] AS [NAME_SHERE_PROFESSION]
+FROM [Apocalipsyz].[V_PROFESSION] AS [V_PROFESSION]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK1EMPLOYEE" Association="Self.FK1EMPLOYEE">
             <End Role="SPECIALITY" EntitySet="SPECIALITY" />
@@ -392,6 +423,22 @@ FROM [Apocalipsyz].[V_EMPLOYEE] AS [V_EMPLOYEE]</DefiningQuery>
             <End Role="REFRESHERING" EntitySet="Refreshering" />
           </AssociationSet>
           <EntitySet Name="V_EMPLOYEE" EntityType="masterModel.VEmployee" />
+          <FunctionImport Name="pDELETE_FROM_EMPLOYEE">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PDELETE_FROM_EMPLOYEE1">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="VProfession" EntityType="masterModel.VProfession" />
+          <FunctionImport Name="PDELETE_FROM_PROFESSION">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PDELETE_FROM_V_PROFESS">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PDELETE_FROM_V_PROFESSION">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="Applicant">
           <Key>
@@ -656,20 +703,23 @@ FROM [Apocalipsyz].[V_EMPLOYEE] AS [V_EMPLOYEE]</DefiningQuery>
         <EntityType Name="VEmployee">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="IdSpeciality" />
-            <PropertyRef Name="FirstName" />
-            <PropertyRef Name="SecondName" />
-            <PropertyRef Name="FatherName" />
-            <PropertyRef Name="Birthday" />
-            <PropertyRef Name="NameSpeciality" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" ConcurrencyMode="None" DefaultValue="-1" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdSpeciality" Type="Int32" Nullable="false" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="SecondName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FatherName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="NameSpeciality" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VProfession">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdShereProfession" Type="Int32" Nullable="false" />
+          <Property Name="NameShereProfession" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -806,7 +856,35 @@ FROM [Apocalipsyz].[V_EMPLOYEE] AS [V_EMPLOYEE]</DefiningQuery>
                 <ScalarProperty Name="Id" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="masterModel.VEmployee">
+              <ModificationFunctionMapping>
+                <DeleteFunction FunctionName="masterModel.Store.PDELETE_FROM_EMPLOYEE" >
+                  <ScalarProperty Name="Id" ParameterName="ID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PDELETE_FROM_EMPLOYEE1" FunctionName="masterModel.Store.PDELETE_FROM_EMPLOYEE" />
+          <EntitySetMapping Name="VProfession">
+            <EntityTypeMapping TypeName="masterModel.VProfession">
+              <MappingFragment StoreEntitySet="V_PROFESSION">
+                <ScalarProperty Name="NameShereProfession" ColumnName="NAME_SHERE_PROFESSION" />
+                <ScalarProperty Name="IdShereProfession" ColumnName="ID_SHERE_PROFESSION" />
+                <ScalarProperty Name="Name" ColumnName="NAME" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="masterModel.VProfession">
+              <ModificationFunctionMapping>
+                <DeleteFunction FunctionName="masterModel.Store.PDELETE_FROM_V_PROFESSION" >
+                  <ScalarProperty Name="Id" ParameterName="ID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PDELETE_FROM_PROFESSION" FunctionName="masterModel.Store.PDELETE_FROM_PROFESSION" />
+          <FunctionImportMapping FunctionImportName="PDELETE_FROM_V_PROFESS" FunctionName="masterModel.Store.PDELETE_FROM_V_PROFESS" />
+          <FunctionImportMapping FunctionImportName="PDELETE_FROM_V_PROFESSION" FunctionName="masterModel.Store.PDELETE_FROM_V_PROFESSION" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

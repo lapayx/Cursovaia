@@ -12,6 +12,9 @@ namespace Cursovaia.Logic.DataBase
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class WIN_Server : DbContext
     {
@@ -37,5 +40,51 @@ namespace Cursovaia.Logic.DataBase
         public DbSet<Speciality> Speciality { get; set; }
         public DbSet<Vacancy> Vacancy { get; set; }
         public DbSet<VEmployee> V_EMPLOYEE { get; set; }
+        public DbSet<VProfession> VProfession { get; set; }
+    
+        public virtual int pDELETE_FROM_EMPLOYEE(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pDELETE_FROM_EMPLOYEE", iDParameter);
+        }
+    
+        public virtual int PDELETE_FROM_EMPLOYEE1(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PDELETE_FROM_EMPLOYEE1", iDParameter);
+        }
+    
+        public virtual int PDELETE_FROM_PROFESSION(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PDELETE_FROM_PROFESSION", iDParameter);
+        }
+    
+        public virtual int PDELETE_FROM_V_PROFESS(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PDELETE_FROM_V_PROFESS", iDParameter);
+        }
+    
+        public virtual int PDELETE_FROM_V_PROFESSION(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PDELETE_FROM_V_PROFESSION", iDParameter);
+        }
     }
 }

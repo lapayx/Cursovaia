@@ -1,4 +1,4 @@
-﻿<Page x:Class="Cursovaia.Pages.EmployeePage"
+﻿<Page x:Class="Cursovaia.Pages.ProfessionPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -23,23 +23,21 @@
             >
             <DataGrid.Columns>
                 <DataGridTextColumn Width="50" Header="Id"  Binding="{Binding Id}"/>
-                <DataGridTextColumn Width="100" Header="Имя"  Binding="{Binding FirstName}" />
-                <DataGridTextColumn Width="100" Header="Фамилия"  Binding="{Binding SecondName}" />
-                <DataGridTextColumn Width="100" Header="Отчество"  Binding="{Binding FatherName}" />
-                <DataGridTextColumn Width="100" Header="Должность"  Binding="{Binding NameSpeciality}"  />
+                <DataGridTextColumn Width="100" Header="Название"  Binding="{Binding Name}" />
+                <DataGridTextColumn Width="100" Header="Сфера"  Binding="{Binding NameShereProfession}" />
             </DataGrid.Columns>
             <DataGrid.BindingGroup>
                 <BindingGroup/>
             </DataGrid.BindingGroup>
         </DataGrid>
         <Button 
-            Content="Добавить нового сотрудника"
+            Content="Добавить новую профессию"
             HorizontalAlignment="Left"
             Height="25" Margin="10,10,0,0" 
             VerticalAlignment="Top" 
             Width="196" 
             Command="{Binding GoToReferen}" 
-            CommandParameter="employeeCreate" />
+            CommandParameter="professionCreate" />
         <Button 
             Content="Изменить данные" 
             HorizontalAlignment="Left" 
@@ -47,7 +45,7 @@
             VerticalAlignment="Top" 
             Width="150" 
             Command="{Binding Change}" 
-            CommandParameter="employeeCreate" 
+            CommandParameter="professionCreate" 
             IsEnabled="{Binding IsSelectedItem}"
             
             />
@@ -58,7 +56,7 @@
         	VerticalAlignment="Top" 
         	Width="150" 
         	Command="{Binding Delete}" 
-        	CommandParameter="employeeCreate" 
+        	CommandParameter="professionCreate" 
         	IsEnabled="{Binding IsSelectedItem}"
             
             />
@@ -88,7 +86,7 @@
             VerticalAlignment="Top" 
             Width="200"
       Controls:TextBoxHelper.ClearTextButton="True"
-                         Controls:TextBoxHelper.Watermark="Поиск по Фамилии"
+                         Controls:TextBoxHelper.Watermark="Поиск по Названию"
             Text="{Binding SearchKey,
                     ValidatesOnDataErrors=True,
                     UpdateSourceTrigger=PropertyChanged,

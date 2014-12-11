@@ -12,19 +12,11 @@ namespace Cursovaia.Logic.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class VEmployee
+    public partial class VProfession
     {
-        public VEmployee()
-        {
-            this.Id = -1;
-        }
-    
         public int Id { get; set; }
-        public int IdSpeciality { get; set; }
-        public string FirstName { get; set; }
-        public string SecondName { get; set; }
-        public string FatherName { get; set; }
-        public System.DateTime Birthday { get; set; }
-        public string NameSpeciality { get; set; }
+        public string Name { get; set; }
+        public int IdShereProfession { get; set; }
+        public string NameShereProfession { get; set; }
     }
 }

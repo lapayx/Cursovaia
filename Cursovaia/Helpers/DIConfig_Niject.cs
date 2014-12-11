@@ -54,7 +54,8 @@ namespace Cursovaia
             this.Bind<INotifyPropertyChanged>().To<SpecialityCreateViewModel>().Named("specialityCreate");
             this.Bind<INotifyPropertyChanged>().To<EmployeeViewModel>().Named("employee");
             this.Bind<INotifyPropertyChanged>().To<EmployeeCreateViewModel>().Named("employeeCreate");
-
+            this.Bind<INotifyPropertyChanged>().To<ProfessionViewModel>().Named("profession");
+            this.Bind<INotifyPropertyChanged>().To<ProfessionCreateViewModel>().Named("professionCreate");
 
 
 
@@ -69,7 +70,8 @@ namespace Cursovaia
             this.Bind<Page>().To<SpecialityCreatePage>().Named("specialityCreate");
             this.Bind<Page>().To<EmployeePage>().Named("employee");
             this.Bind<Page>().To<EmployeeCreatePage>().Named("employeeCreate");
-
+            this.Bind<Page>().To<ProfessionPage>().Named("profession");
+            this.Bind<Page>().To<ProfessionCreatePage>().Named("professionCreate");
 
 
 
@@ -93,6 +95,8 @@ namespace Cursovaia
             this.Bind<IGenericRepository<Speciality>>().To<Entities<Speciality>>();
             this.Bind<IGenericRepository<Employee>>().To<Entities<Employee>>();
             this.Bind<IGenericRepository<VEmployee>>().To<Entities<VEmployee>>();
+            this.Bind<IGenericRepository<Profession>>().To<Entities<Profession>>();
+            this.Bind<IGenericRepository<VProfession>>().To<Entities<VProfession>>();
             //container.Register<DbContext, WIN_Server>(new PerScopeLifetime());
         
         }
