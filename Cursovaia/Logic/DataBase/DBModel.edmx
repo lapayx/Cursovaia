@@ -136,11 +136,25 @@ warning 6002: The table/view 'test1.Apocalipsyz.V_PROFESSION' does not have a pr
         <EntityType Name="V_PROFESSION">
           <Key>
             <PropertyRef Name="ID" />
+            
+            
+            
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="NAME" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ID_SHERE_PROFESSION" Type="int" Nullable="false" />
           <Property Name="NAME_SHERE_PROFESSION" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'test1.Apocalipsyz.V_PROFESSION_SKILL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_PROFESSION_SKILL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID_APPLICANT" Type="int" Nullable="false" />
+          <Property Name="ID_PROFESSION" Type="int" Nullable="false" />
+          <Property Name="NAME_PROFESSION" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK1EMPLOYEE">
           <End Role="SPECIALITY" Type="Self.SPECIALITY" Multiplicity="1" />
@@ -274,6 +288,18 @@ warning 6002: The table/view 'test1.Apocalipsyz.V_PROFESSION' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="P_DELETE_V_PROFESSION_SKILL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="P_INSERT_V_ROFESSION_SKILL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
+          <Parameter Name="ID_APPLICANT" Type="int" Mode="In" />
+          <Parameter Name="ID_PROFESSION" Type="int" Mode="In" />
+        </Function>
+        <Function Name="P_UPDATE_V_ROFESSION_SKILL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="ID_APPLICANT" Type="int" Mode="In" />
+          <Parameter Name="ID_PROFESSION" Type="int" Mode="In" />
+        </Function>
         <Function Name="PDELETE_FROM_EMPLOYEE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
@@ -316,6 +342,14 @@ FROM [Apocalipsyz].[V_EMPLOYEE] AS [V_EMPLOYEE]</DefiningQuery>
 [V_PROFESSION].[ID_SHERE_PROFESSION] AS [ID_SHERE_PROFESSION], 
 [V_PROFESSION].[NAME_SHERE_PROFESSION] AS [NAME_SHERE_PROFESSION]
 FROM [Apocalipsyz].[V_PROFESSION] AS [V_PROFESSION]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_PROFESSION_SKILL" EntityType="Self.V_PROFESSION_SKILL" store:Type="Views" store:Schema="Apocalipsyz">
+            <DefiningQuery>SELECT 
+[V_PROFESSION_SKILL].[ID] AS [ID], 
+[V_PROFESSION_SKILL].[ID_APPLICANT] AS [ID_APPLICANT], 
+[V_PROFESSION_SKILL].[ID_PROFESSION] AS [ID_PROFESSION], 
+[V_PROFESSION_SKILL].[NAME_PROFESSION] AS [NAME_PROFESSION]
+FROM [Apocalipsyz].[V_PROFESSION_SKILL] AS [V_PROFESSION_SKILL]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK1EMPLOYEE" Association="Self.FK1EMPLOYEE">
             <End Role="SPECIALITY" EntitySet="SPECIALITY" />
@@ -431,13 +465,26 @@ FROM [Apocalipsyz].[V_PROFESSION] AS [V_PROFESSION]</DefiningQuery>
           </FunctionImport>
           <EntitySet Name="VProfession" EntityType="masterModel.VProfession" />
           <FunctionImport Name="PDELETE_FROM_PROFESSION">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PDELETE_FROM_V_PROFESS">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
+          <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PDELETE_FROM_V_PROFESSION">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="VProfessionSkill" EntityType="masterModel.VProfessionSkill" />
+          <FunctionImport Name="P_DELETE_V_PROFESSION_SKILL">
             <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="P_INSERT_V_ROFESSION_SKILL">
+            <Parameter Name="ID_APPLICANT" Mode="In" Type="Int32" />
+            <Parameter Name="ID_PROFESSION" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="P_UPDATE_V_ROFESSION_SKILL">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ID_APPLICANT" Mode="In" Type="Int32" />
+            <Parameter Name="ID_PROFESSION" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Applicant">
@@ -721,6 +768,15 @@ FROM [Apocalipsyz].[V_PROFESSION] AS [V_PROFESSION]</DefiningQuery>
           <Property Name="IdShereProfession" Type="Int32" Nullable="false" />
           <Property Name="NameShereProfession" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="VProfessionSkill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="IdProfession" Type="Int32" Nullable="false" />
+          <Property Name="NameProfession" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -885,6 +941,35 @@ FROM [Apocalipsyz].[V_PROFESSION] AS [V_PROFESSION]</DefiningQuery>
           <FunctionImportMapping FunctionImportName="PDELETE_FROM_PROFESSION" FunctionName="masterModel.Store.PDELETE_FROM_PROFESSION" />
           <FunctionImportMapping FunctionImportName="PDELETE_FROM_V_PROFESS" FunctionName="masterModel.Store.PDELETE_FROM_V_PROFESS" />
           <FunctionImportMapping FunctionImportName="PDELETE_FROM_V_PROFESSION" FunctionName="masterModel.Store.PDELETE_FROM_V_PROFESSION" />
+          <EntitySetMapping Name="VProfessionSkill">
+            <EntityTypeMapping TypeName="masterModel.VProfessionSkill">
+              <MappingFragment StoreEntitySet="V_PROFESSION_SKILL">
+                <ScalarProperty Name="NameProfession" ColumnName="NAME_PROFESSION" />
+                <ScalarProperty Name="IdProfession" ColumnName="ID_PROFESSION" />
+                <ScalarProperty Name="IdApplicant" ColumnName="ID_APPLICANT" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="masterModel.VProfessionSkill">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="masterModel.Store.P_INSERT_V_ROFESSION_SKILL">
+                  <ScalarProperty Name="IdProfession" ParameterName="ID_PROFESSION" />
+                  <ScalarProperty Name="IdApplicant" ParameterName="ID_APPLICANT" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="masterModel.Store.P_UPDATE_V_ROFESSION_SKILL">
+                  <ScalarProperty Name="IdProfession" ParameterName="ID_PROFESSION" Version="Current" />
+                  <ScalarProperty Name="IdApplicant" ParameterName="ID_APPLICANT" Version="Current" />
+                  <ScalarProperty Name="Id" ParameterName="ID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="masterModel.Store.P_DELETE_V_PROFESSION_SKILL">
+                  <ScalarProperty Name="Id" ParameterName="ID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="P_DELETE_V_PROFESSION_SKILL" FunctionName="masterModel.Store.P_DELETE_V_PROFESSION_SKILL" />
+          <FunctionImportMapping FunctionImportName="P_INSERT_V_ROFESSION_SKILL" FunctionName="masterModel.Store.P_INSERT_V_ROFESSION_SKILL" />
+          <FunctionImportMapping FunctionImportName="P_UPDATE_V_ROFESSION_SKILL" FunctionName="masterModel.Store.P_UPDATE_V_ROFESSION_SKILL" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -35,7 +35,7 @@ namespace Cursovaia.ViewModel
                     return this.source.Where(x => x.Name.ToLower().Contains(key)).ToList();
                 }
                 else
-                    return this.source;
+                    return this.source.ToList();
             }
         }
 

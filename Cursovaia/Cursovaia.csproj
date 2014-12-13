@@ -141,6 +141,9 @@
     <Compile Include="Logic\DataBase\VProfession.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Logic\DataBase\VProfessionSkill.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Logic\Interface\IActionParam.cs" />
     <Compile Include="Logic\Interface\IEmplayeeRepository.cs" />
     <Compile Include="Logic\Interface\IGenericRepository.cs" />
@@ -355,6 +358,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppData\SQL insert.sql" />
     <Content Include="AppData\SQL.sql" />
     <Resource Include="Resources\Entypo-license.txt" />
     <Resource Include="Resources\WindowsIcons-license.txt" />

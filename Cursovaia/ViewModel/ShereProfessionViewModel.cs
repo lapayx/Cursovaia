@@ -7,6 +7,7 @@ using Cursovaia.Logic.Interface;
 using Ninject;
 using Cursovaia.Logic.Model;
 using System.Windows.Input;
+using System.Diagnostics;
 
 
 namespace Cursovaia.ViewModel
@@ -35,7 +36,7 @@ namespace Cursovaia.ViewModel
                     return this.source.Where(x => x.Name.ToLower().Contains(key)).ToList();
                 }
                 else
-                    return this.source;
+                    return this.source.ToList();
         } }
 
 
@@ -109,8 +110,11 @@ namespace Cursovaia.ViewModel
                 repository.Delete(this.actionParam.Parameter);
                 repository.Save();
             }
-            catch (ExecutionEngineException e) {
+            catch (SystemException e)
+            {
+
                 success = false;
+                Debug.WriteLine(e.Source + "\n" + e.Message);
             }
             if(success)
             
