@@ -1,4 +1,4 @@
-﻿<Page x:Class="Cursovaia.Pages.SpecialityPage"
+﻿<Page x:Class="Cursovaia.Pages.ProfessionSkillPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -15,34 +15,18 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="45"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
-        <Button 
-            Content="Добавить новую должность" 
-            HorizontalAlignment="Left" 
-            Height="25" 
-            Margin="10,5,0,0" 
-            VerticalAlignment="Top" 
-            Width="196" 
-            Command="{Binding GoToReferen}" 
-            CommandParameter="specialityCreate" Grid.Row="1" />
-        <Button 
-    		Content="Изменить данные" 
-    		HorizontalAlignment="Left" 
-    		Height="25" Margin="211,5,0,0" 
-    		VerticalAlignment="Top" 
-    		Width="150" 
-    		Command="{Binding Change}" 
-    		CommandParameter="specialityCreate" 
-    		IsEnabled="{Binding IsSelectedItem}" Grid.Row="1"
-        />
         <Button 
     		Content="Удалить" 
     		HorizontalAlignment="Left" 
-    		Height="25" Margin="366,5,0,0" 
+    		Height="25" Margin="10,5,0,0" 
     		VerticalAlignment="Top" 
     		Width="150" 
     		Command="{Binding Delete}" 
@@ -56,8 +40,7 @@
             >
             <DataGrid.Columns>
                 <DataGridTextColumn Width="50" Header="Id"  Binding="{Binding Id}"/>
-                <DataGridTextColumn Width="200" Header="Название"  Binding="{Binding Name}" />
-                <DataGridTextColumn Width="400" Header="Системная роль"  Binding="{Binding SystemShema, StringFormat=10}" />
+                <DataGridTextColumn Width="200" Header="Название"  Binding="{Binding NameProfession}" />
 
             </DataGrid.Columns>
             <DataGrid.BindingGroup>
@@ -72,7 +55,7 @@
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top"
                 Command="{Binding Refresh}"
-                CommandParameter="null" Grid.Row="1" 
+                CommandParameter="null" Grid.Row="1" Grid.Column="1" 
                 >
             <Rectangle Width="20"
                            Height="23"
@@ -96,11 +79,48 @@
                     ValidatesOnDataErrors=True,
                     UpdateSourceTrigger=PropertyChanged,
                     NotifyOnValidationError=True
-                 }" FontSize="13" Grid.Row="1" 
+                 }" FontSize="13" Grid.Row="1" Grid.Column="1" 
                  
             />
         <Label 
-        	Content="{Binding Caption, FallbackValue=Заголовок}" 
-        	Margin="10,0,10,0" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
+            Content="{Binding Caption, FallbackValue=Заголовок}" 
+            Margin="10,0,10,0" FontSize="24" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2"/>
+        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="395" Margin="10,50,0,0" Grid.Row="1" VerticalAlignment="Top" Width="380">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Добавить профессию" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="30" Width="208" FontSize="16"/>
+            <Label Content="Профессия" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="125"/>
+            <ComboBox 
+            	Grid.Column="1" 
+            	HorizontalAlignment="Left" 
+            	Margin="10,41,0,283" 
+            	Grid.Row="1" 
+            	Width="206"
+            	ItemsSource="{Binding ProfessionSourse}"
+            	DisplayMemberPath="Name"
+            	SelectedValuePath="Id"
+            	SelectedValue="{Binding NewIdProfessionSkill}"
+                IsEnabled="{Binding newIdProfessionSkill}"
+                />
+            <Button 
+                Content="Добавить" 
+                Command="{Binding AddNewProfession}" 
+                CommandParameter="void"
+                Margin="67,72,71,0" 
+                Grid.Row="1" 
+                HorizontalAlignment="Center" 
+                Width="90" 
+                Height="21" 
+                VerticalAlignment="Top" 
+                FontSize="11" 
+                Grid.Column="1"
+                IsEnabled="{Binding IsSelectedNewIdProfessionSkill}"/>
+        </Grid>
     </Grid>
 </Page>

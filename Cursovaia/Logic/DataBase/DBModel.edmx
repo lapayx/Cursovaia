@@ -151,7 +151,7 @@ warning 6002: The table/view 'test1.Apocalipsyz.V_PROFESSION_SKILL' does not hav
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="ID_APPLICANT" Type="int" Nullable="false" />
           <Property Name="ID_PROFESSION" Type="int" Nullable="false" />
           <Property Name="NAME_PROFESSION" Type="varchar" MaxLength="50" Nullable="false" />
@@ -772,7 +772,7 @@ FROM [Apocalipsyz].[V_PROFESSION_SKILL] AS [V_PROFESSION_SKILL]</DefiningQuery>
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="IdApplicant" Type="Int32" Nullable="false" />
           <Property Name="IdProfession" Type="Int32" Nullable="false" />
           <Property Name="NameProfession" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -956,11 +956,6 @@ FROM [Apocalipsyz].[V_PROFESSION_SKILL] AS [V_PROFESSION_SKILL]</DefiningQuery>
                   <ScalarProperty Name="IdProfession" ParameterName="ID_PROFESSION" />
                   <ScalarProperty Name="IdApplicant" ParameterName="ID_APPLICANT" />
                 </InsertFunction>
-                <UpdateFunction FunctionName="masterModel.Store.P_UPDATE_V_ROFESSION_SKILL">
-                  <ScalarProperty Name="IdProfession" ParameterName="ID_PROFESSION" Version="Current" />
-                  <ScalarProperty Name="IdApplicant" ParameterName="ID_APPLICANT" Version="Current" />
-                  <ScalarProperty Name="Id" ParameterName="ID" Version="Current" />
-                </UpdateFunction>
                 <DeleteFunction FunctionName="masterModel.Store.P_DELETE_V_PROFESSION_SKILL">
                   <ScalarProperty Name="Id" ParameterName="ID" />
                 </DeleteFunction>

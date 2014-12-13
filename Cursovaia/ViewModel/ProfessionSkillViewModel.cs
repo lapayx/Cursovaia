@@ -12,46 +12,77 @@ using System.Diagnostics;
 
 namespace Cursovaia.ViewModel
 {
-    class SpecialityViewModel : BaseViewModel
+    class ProfessionSkillViewModel : BaseViewModel
     {
-        readonly IGenericRepository<Speciality> repository;
-        private List<Speciality> source;
+        readonly IGenericRepository<VProfessionSkill> repository;
+        readonly IGenericRepository<Profession> professionRepository;
+
+        private List<VProfessionSkill> source;
         private IActionParamService actionParam;
-        private Speciality _selectedItem;
+        private VProfessionSkill _selectedItem;
+        private int _newIdProfessionSkill;
+        private int _idApplicant;
         private string _searhKey = "";
         public string Caption { get; set; }
         public bool IsSelectedItem { get; set; }
+
+        public int NewIdProfessionSkill
+        {
+            get { return this._newIdProfessionSkill; } 
+            set{
+                this._newIdProfessionSkill = value;
+                if (value == 0)
+                    IsSelectedNewIdProfessionSkill = false;
+                else
+                    IsSelectedNewIdProfessionSkill = true;
+                RaisePropertyChanged("IsSelectedNewIdProfessionSkill");
+            }}
+
+        public bool IsSelectedNewIdProfessionSkill { get; set; }
 
         public string SearchKey { 
             get { return this._searhKey; }
             set { this._searhKey = value.Trim(); RaisePropertyChanged("SourceForGrid"); } 
         }
 
-        public List<Speciality> SourceForGrid
+
+        public List<Profession> ProfessionSourse { get{
+            var t = this.source.Select(x => x.IdProfession).Distinct().ToList();
+            this.NewIdProfessionSkill = 0;
+            RaisePropertyChanged("NewIdProfessionSkill");
+
+            return this.professionRepository.SelectAll().Where(x=> ! t.Contains(x.Id)).ToList();
+        
+        }}
+
+        public List<VProfessionSkill> SourceForGrid
         {
             get {
 
                 if (this._searhKey.Length > 0)
                 {
                     string key = this._searhKey.ToLower();
-                    return this.source.Where(x => x.Name.ToLower().Contains(key)).ToList();
+                    return this.source.Where(x => x.NameProfession.ToLower().Contains(key)).ToList();
                 }
                 else
                     return this.source.ToList();
         } }
 
 
-        public SpecialityViewModel(IGenericRepository<Speciality> app, IActionParamService param)
+        public ProfessionSkillViewModel(IGenericRepository<VProfessionSkill> app, IGenericRepository<Profession> prof, IActionParamService param)
         {
             this.repository = app;
             this.actionParam = param;
+            this.professionRepository = prof;
             this.actionParam.Set(PageAction.Speciality);
-            this.Caption = "Должности сотрудников";
+            this.Caption = "Владение професиями кем-то";
+            this._idApplicant = 1;
+
             InitializeCommands();
         }
 
 
-        public Speciality Current_row
+        public VProfessionSkill Current_row
         {
             get {
                 return _selectedItem;
@@ -75,30 +106,36 @@ namespace Cursovaia.ViewModel
 
         protected override void updateSource(string s = null)
         {
-            this.source = this.repository.SelectAll().ToList();
+            this.source = this.repository.SelectAll().Where(x => x.IdApplicant == this._idApplicant).ToList();
             RaisePropertyChanged("SourceForGrid");
+            RaisePropertyChanged("ProfessionSourse");
         }
         protected override void InitializeCommands()
         {
             base.InitializeCommands();
-            Change = new RelayCommand<string>(ChangeApplicant);
-            Delete = new RelayCommand<string>(DeleteApplicant);
+            AddNewProfession = new RelayCommand<string>(addNewProfession);
+            Delete = new RelayCommand<string>(DeleteItem);
             Refresh = new RelayCommand<string>(updateSource);
-        }        
-        
-        public ICommand Change { get; set; }
+        }
+
+        public ICommand AddNewProfession { get; set; }
         public ICommand Delete { get; set; }
         public ICommand Refresh { get; set; }
-        private void ChangeApplicant(string s)
+        private void addNewProfession(string s)
         {
-            if (this.actionParam.Parameter == null) {
-                DIConfig.MainVindow.ShowMessage("Ошибка", "Не выбрана организация");
-                return;
+            try
+            {
+               /// плохо,оооочень плохо,не делать так
+                repository.db.P_INSERT_V_ROFESSION_SKILL(this._idApplicant,this._newIdProfessionSkill);
             }
-            this.actionParam.TypeAction = TypeAction.Change;
-            GoToReferense(s);
+            catch (SystemException e)
+            {
+                DIConfig.MainVindow.ShowMessage("Неудача", "Произошла ошибка повторите операцию");
+                Debug.WriteLine(e.Source + "\n" + e.Message);
+            }
+            this.updateSource();
         }
-        private void DeleteApplicant(string s)
+        private void DeleteItem(string s)
         {
 
             if (this.actionParam.Parameter == null) {
@@ -110,6 +147,7 @@ namespace Cursovaia.ViewModel
             {
                 repository.Delete(this.actionParam.Parameter);
                 repository.Save();
+               
             }
             catch (SystemException e)
             {

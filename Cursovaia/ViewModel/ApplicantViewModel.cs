@@ -19,6 +19,7 @@ namespace Cursovaia.ViewModel
         public bool IsSelectedItem {get;set;}
         private List<Applicant> source;
         private string _searhKey = "";
+        public string Caption { get; set; }
 
         public string SearchKey
         {
@@ -45,6 +46,7 @@ namespace Cursovaia.ViewModel
             this.repository = app;
             this.actionParam = param;
             this.actionParam.Set(PageAction.Appplicant);
+            this.Caption = "Список соискателей";
 
             InitializeCommands();
         }

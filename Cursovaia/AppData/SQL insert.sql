@@ -51,8 +51,13 @@ insert into EMPLOYEE(FIRST_NAME, SECOND_NAME,FATHER_NAME, BIRTHDAY, ID_SPECIALIT
 	Values ('Шмерцов ','Николай','никифирович', '15/11/1980', 1)
 insert into EMPLOYEE(FIRST_NAME, SECOND_NAME,FATHER_NAME, BIRTHDAY, ID_SPECIALITY)
 	Values ('Пункол','Никифор','Шкрадж', '8/5/1989', 2)
-
-
+/********************************************************************/
+insert into V_PROFESSION_SKILL (ID_APPLICANT ,ID_PROFESSION )
+	Values(1,1)
+	insert into V_PROFESSION_SKILL (ID_APPLICANT ,ID_PROFESSION )
+	Values(1,3)
+insert into V_PROFESSION_SKILL (ID_APPLICANT ,ID_PROFESSION )
+	Values(2,3)
 
 
 

@@ -162,6 +162,9 @@
     <Compile Include="Pages\EmployeePage.xaml.cs">
       <DependentUpon>EmployeePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ProfessionSkillPage.xaml.cs">
+      <DependentUpon>ProfessionSkillPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SpecialityCreatePage.xaml.cs">
       <DependentUpon>SpecialityCreatePage.xaml</DependentUpon>
     </Compile>
@@ -189,11 +192,12 @@
     <Compile Include="Pages\Page2.xaml.cs">
       <DependentUpon>Page2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\EmployeeCreateViewModel - Copy.cs" />
+    <Compile Include="ViewModel\EmployeeCreateViewModel.cs" />
     <Compile Include="ViewModel\ProfessionCreateViewModel.cs" />
     <Compile Include="ViewModel\ProfessionViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel.cs" />
     <Compile Include="ViewModel\SpecialityCreateViewModel.cs" />
+    <Compile Include="ViewModel\ProfessionSkillViewModel.cs" />
     <Compile Include="ViewModel\SpecialityViewModel.cs" />
     <Compile Include="ViewModel\ShereProfessionCreateViewModel.cs" />
     <Compile Include="ViewModel\OrganizationCreateViewModel.cs" />
@@ -232,6 +236,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\EmployeePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ProfessionSkillPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -20,6 +20,7 @@ namespace Cursovaia.ViewModel
         private ShereProfession _selectedItem;
         private string _searhKey = "";
         public bool IsSelectedItem { get; set; }
+        public string Caption { get; set; }
 
         public string SearchKey { 
             get { return this._searhKey; }
@@ -45,7 +46,7 @@ namespace Cursovaia.ViewModel
             this.repository = app;
             this.actionParam = param;
             this.actionParam.Set(PageAction.ShereProfession);
-
+            this.Caption = "Сферы профессий";
             InitializeCommands();
         }
 
