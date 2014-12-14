@@ -182,6 +182,9 @@
     <Compile Include="Pages\HistoryPage.xaml.cs">
       <DependentUpon>HistoryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\HistoryCreatePage.xaml.cs">
+      <DependentUpon>HistoryCreatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\VacancyCreatePage.xaml.cs">
       <DependentUpon>VacancyCreatePage.xaml</DependentUpon>
     </Compile>
@@ -233,9 +236,11 @@
     <Compile Include="Report.xaml.cs">
       <DependentUpon>Report.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\HistoryViewModel.cs" />
     <Compile Include="ViewModel\VacancyCreateViewModel.cs" />
     <Compile Include="ViewModel\EmployeeCreateViewModel.cs" />
     <Compile Include="ViewModel\ProfessionCreateViewModel.cs" />
+    <Compile Include="ViewModel\HistoryCreateViewModel.cs" />
     <Compile Include="ViewModel\VacancyViewModel.cs" />
     <Compile Include="ViewModel\ProfessionViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel.cs" />
@@ -267,6 +272,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\HistoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\HistoryCreatePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

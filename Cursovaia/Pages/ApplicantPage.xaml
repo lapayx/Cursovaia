@@ -55,6 +55,26 @@
                 Command="{Binding GoToReferen}"
                 CommandParameter="professionSkill" 
                 />
+            <Button 
+            	Content="Перейти к &#xA;историям" 
+            	Grid.Column="1" HorizontalAlignment="Left" 
+            	Margin="10,113,0,0" VerticalAlignment="Top" 
+            	Width="110" 
+            	Height="46"
+            	IsEnabled="{Binding IsSelectedItem}"
+            	Command="{Binding GoToReferen}"
+            	CommandParameter="history" 
+                />
+            <Button 
+            	Content="Попробовать &#xD;&#xA;вакансию" 
+            	Grid.Column="1" HorizontalAlignment="Left" 
+            	Margin="10,164,0,0" VerticalAlignment="Top" 
+            	Width="110" 
+            	Height="46"
+            	IsEnabled="{Binding IsSelectedItem}"
+            	Command="{Binding GoToReferen}"
+            	CommandParameter="history" 
+                />
         </Grid>
         <Button Content="Добавить нового соискателя" 
                 HorizontalAlignment="Left" Height="25" Margin="10,4,0,0" VerticalAlignment="Top" Width="196" 

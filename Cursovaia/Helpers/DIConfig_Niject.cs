@@ -59,7 +59,7 @@ namespace Cursovaia
             this.Bind<INotifyPropertyChanged>().To<ProfessionSkillViewModel>().Named("professionSkill");
             this.Bind<INotifyPropertyChanged>().To<VacancyViewModel>().Named("vacancy");
             this.Bind<INotifyPropertyChanged>().To<VacancyCreateViewModel>().Named("vacancyCreate");
-
+            this.Bind<INotifyPropertyChanged>().To<HistoryViewModel>().Named("history");
 
             this.Bind<Page>().To<Page1>().Named("page1");
             this.Bind<Page>().To<ApplicantPage>().Named("applicant");
@@ -77,7 +77,7 @@ namespace Cursovaia
             this.Bind<Page>().To<ProfessionSkillPage>().Named("professionSkill");
             this.Bind<Page>().To<VacancyPage>().Named("vacancy");
             this.Bind<Page>().To<VacancyCreatePage>().Named("vacancyCreate");
-
+            this.Bind<Page>().To<HistoryPage>().Named("history");
 
 
 

@@ -68,11 +68,11 @@ namespace Cursovaia.ViewModel
             
         {
             base.InitializeCommands();
-            Save = new RelayCommand<string>(SaveApplicant);
-            Cancel = new RelayCommand<string>(CancelApplicant);
+            Save = new RelayCommand<string>(SaveItem);
+            Cancel = new RelayCommand<string>(CancelItem);
 
         }
-        private  void SaveApplicant( string s)
+        private  void SaveItem( string s)
         {
             if (cheakList.Where(x => x.Value == false).Count() > 0)
             {
@@ -88,7 +88,7 @@ namespace Cursovaia.ViewModel
             GoToReferense("shereProfession");
         
         }
-        private void CancelApplicant(string s) {
+        private void CancelItem(string s) {
 
             GoToReferense("shereProfession");
         }

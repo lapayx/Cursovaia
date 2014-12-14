@@ -12,6 +12,7 @@ namespace Cursovaia.Logic.Model
     }
     public enum PageAction
     {
+        None,
         Appplicant,
         Organization,
         ShereProfession,

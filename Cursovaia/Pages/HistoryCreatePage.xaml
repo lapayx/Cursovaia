@@ -1,0 +1,55 @@
+﻿<Page x:Class="Cursovaia.Pages.HistoryCreatePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="500
+      " d:DesignWidth="500
+      "
+	Title="ApplicantCreatePage">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="56"/>
+
+
+            <RowDefinition Height="294"/>
+
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="{Binding Caption, FallbackValue=Заголовок}" HorizontalAlignment="Center" Margin="51,0,49,0" RenderTransformOrigin="0.498,0.538" HorizontalContentAlignment="Center" FontSize="24" Width="400"/>
+        <Button Content="Сохранить" Command="{Binding Save}" 
+                CommandParameter="void" Margin="101,10,279,0"
+                Grid.Row="3" HorizontalAlignment="Center" Width="120" Height="35" VerticalAlignment="Top" FontSize="15"
+                IsEnabled="{Binding IsSelectedItem}"
+                />
+        <Button Content="Отмена" Command="{Binding Cancel}" CommandParameter="void" Margin="266,10,134,0" Grid.Row="3" HorizontalAlignment="Center" Width="100" Height="35" VerticalAlignment="Top" FontSize="15"/>
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding SourceForGrid}" 
+                 
+        	SelectionMode="Single"
+        	SelectedItem="{Binding Current_row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10" Grid.Row="2"
+            >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="50" Header="Id"  Binding="{Binding Id}"/>
+                <DataGridTextColumn Width="100" Header="Профессия"  Binding="{Binding NameProfession}" />
+                <DataGridTextColumn Width="100" Header="Организация"  Binding="{Binding NameOrganization}" />
+                <DataGridTextColumn Width="100" Header="Актуальность"  Binding="{Binding Status}" />
+                <DataGridTextColumn Width="130" Header="Мин опыт, лет"  Binding="{Binding MinExperience}"  />
+                <DataGridTextColumn Width="100" Header="Макс опыт, лет"  Binding="{Binding MinExperience}"  />
+                <DataGridTextColumn Width="130" Header="Дата добавления"  Binding="{Binding DateAdd, StringFormat=dd.MM.yyyy}" />
+                <DataGridTextColumn Width="100" Header="Описание"  Binding="{Binding ABout}" />
+
+            </DataGrid.Columns>
+            <DataGrid.BindingGroup>
+                <BindingGroup/>
+            </DataGrid.BindingGroup>
+        </DataGrid>
+        <Label Content="{Binding CaptionApplicant, FallbackValue=Заголовок}" HorizontalAlignment="Center" Margin="51,5,49,10" RenderTransformOrigin="0.498,0.538" HorizontalContentAlignment="Center" FontSize="24" Width="400" Grid.Row="1"/>
+    </Grid>
+</Page>

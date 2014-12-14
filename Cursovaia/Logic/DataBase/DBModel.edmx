@@ -136,6 +136,19 @@ warning 6002: The table/view 'test1.Apocalipsyz.V_HISTORY' does not have a prima
         <EntityType Name="V_HISTORY">
           <Key>
             <PropertyRef Name="ID" />
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <PropertyRef Name="ID_ORGANIZATION" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="ID_EMPLOYEE" Type="int" Nullable="false" />
@@ -150,6 +163,7 @@ warning 6002: The table/view 'test1.Apocalipsyz.V_HISTORY' does not have a prima
           <Property Name="NAME_PROFESSION" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EMPLOYEE_FIRST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="EMPLOYEE_SECOND_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ID_ORGANIZATION" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'test1.Apocalipsyz.V_PROFESSION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -419,7 +433,8 @@ FROM [Apocalipsyz].[V_EMPLOYEE] AS [V_EMPLOYEE]</DefiningQuery>
 [V_HISTORY].[NAME_ORGANIZATION] AS [NAME_ORGANIZATION], 
 [V_HISTORY].[NAME_PROFESSION] AS [NAME_PROFESSION], 
 [V_HISTORY].[EMPLOYEE_FIRST_NAME] AS [EMPLOYEE_FIRST_NAME], 
-[V_HISTORY].[EMPLOYEE_SECOND_NAME] AS [EMPLOYEE_SECOND_NAME]
+[V_HISTORY].[EMPLOYEE_SECOND_NAME] AS [EMPLOYEE_SECOND_NAME], 
+[V_HISTORY].[ID_ORGANIZATION] AS [ID_ORGANIZATION]
 FROM [Apocalipsyz].[V_HISTORY] AS [V_HISTORY]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_PROFESSION" EntityType="Self.V_PROFESSION" store:Type="Views" store:Schema="Apocalipsyz">
@@ -919,6 +934,7 @@ FROM [Apocalipsyz].[V_VACANCY] AS [V_VACANCY]</DefiningQuery>
         <EntityType Name="VHistory">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="IdOrganization" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="IdEmployee" Type="Int32" Nullable="false" />
@@ -933,6 +949,7 @@ FROM [Apocalipsyz].[V_VACANCY] AS [V_VACANCY]</DefiningQuery>
           <Property Name="NameProfession" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmployeeFirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="EmployeeSecondName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdOrganization" Type="Int32" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1154,6 +1171,7 @@ FROM [Apocalipsyz].[V_VACANCY] AS [V_VACANCY]</DefiningQuery>
           <EntitySetMapping Name="VHistory">
             <EntityTypeMapping TypeName="masterModel.VHistory">
               <MappingFragment StoreEntitySet="V_HISTORY">
+                <ScalarProperty Name="IdOrganization" ColumnName="ID_ORGANIZATION" />
                 <ScalarProperty Name="EmployeeSecondName" ColumnName="EMPLOYEE_SECOND_NAME" />
                 <ScalarProperty Name="EmployeeFirstName" ColumnName="EMPLOYEE_FIRST_NAME" />
                 <ScalarProperty Name="NameProfession" ColumnName="NAME_PROFESSION" />

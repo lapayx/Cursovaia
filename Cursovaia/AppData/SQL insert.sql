@@ -1,5 +1,4 @@
 ﻿
-
 /*
 DROP TABLE HISTORY  
 DROP TABLE REFRESHERING
@@ -60,8 +59,10 @@ insert into VACANCY(ID_ORGANIZATION, ID_PROFESSION,ABOUT, MIN_EXPERIENCE,MAX_EXP
 insert into VACANCY(ID_ORGANIZATION, ID_PROFESSION,ABOUT, MIN_EXPERIENCE,MAX_EXPERIENCE,DATE_ADD)
 	Values (1,1,'Срочно нужен',3,100, SYSDATETIME())
 
+/*************************************************************************************************/
 
-
+insert into HISTORY(ID_EMPLOYEE, ID_VACANCY, ID_APPLICANT,STATUS,DATE_ADD)
+	Values (1,1,1,1,  SYSDATETIME())
 
 
 

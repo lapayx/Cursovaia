@@ -38,7 +38,7 @@
             VerticalAlignment="Top" 
             Width="209" 
             Command="{Binding GoToReferen}" 
-            CommandParameter="vacancy"/>
+            CommandParameter="history"/>
 
     </Grid>
     <Controls:MetroWindow.RightWindowCommands>

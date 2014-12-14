@@ -27,5 +27,6 @@ namespace Cursovaia.Logic.DataBase
         public string NameProfession { get; set; }
         public string EmployeeFirstName { get; set; }
         public string EmployeeSecondName { get; set; }
+        public int IdOrganization { get; set; }
     }
 }

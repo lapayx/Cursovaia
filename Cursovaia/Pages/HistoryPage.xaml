@@ -42,28 +42,20 @@
             </DataGrid.BindingGroup>
         </DataGrid>
         <Button 
-            Content="Добавить нового сотрудника"
-            HorizontalAlignment="Left"
+            Content="Изменить статус на откланено" 
+            HorizontalAlignment="Left" 
             Height="25" Margin="10,5,0,0" 
             VerticalAlignment="Top" 
-            Width="196" 
-            Command="{Binding GoToReferen}" 
-            CommandParameter="employeeCreate" Grid.Row="1" />
-        <Button 
-            Content="Изменить данные" 
-            HorizontalAlignment="Left" 
-            Height="25" Margin="211,5,0,0" 
-            VerticalAlignment="Top" 
-            Width="150" 
+            Width="202" 
             Command="{Binding Change}" 
-            CommandParameter="employeeCreate" 
+            CommandParameter="-1" 
             IsEnabled="{Binding IsSelectedItem}" Grid.Row="1"
             
             />
         <Button 
         	Content="Удалить" 
         	HorizontalAlignment="Left" 
-        	Height="25" Margin="366,5,0,0" 
+        	Height="25" Margin="424,5,0,0" 
         	VerticalAlignment="Top" 
         	Width="150" 
         	Command="{Binding Delete}" 
@@ -108,5 +100,16 @@
         <Label 
         	Content="{Binding Caption, FallbackValue=Заголовок}" 
         	Margin="10,0,10,0" FontSize="24" RenderTransformOrigin="0.5,0.5"/>
+        <Button 
+        	Content="Изменить статус на одобрено" 
+        	HorizontalAlignment="Left" 
+        	Height="25" Margin="217,5,0,0" 
+        	VerticalAlignment="Top" 
+        	Width="202" 
+        	Command="{Binding Change}" 
+        	CommandParameter="1" 
+        	IsEnabled="{Binding IsSelectedItem}" Grid.Row="1"
+            
+            />
     </Grid>
 </Page>
