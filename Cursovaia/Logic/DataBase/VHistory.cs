@@ -12,17 +12,20 @@ namespace Cursovaia.Logic.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class History
+    public partial class VHistory
     {
         public int Id { get; set; }
         public int IdEmployee { get; set; }
         public int IdVacancy { get; set; }
         public int IdApplicant { get; set; }
         public int Status { get; set; }
-        public System.DateTime AddDate { get; set; }
-    
-        public virtual Applicant APPLICANT { get; set; }
-        public virtual Employee EMPLOYEE { get; set; }
-        public virtual Vacancy VACANCY { get; set; }
+        public System.DateTime DateAdd { get; set; }
+        public string ApplicantFirstName { get; set; }
+        public string ApplicantSecondName { get; set; }
+        public string About { get; set; }
+        public string NameOrganization { get; set; }
+        public string NameProfession { get; set; }
+        public string EmployeeFirstName { get; set; }
+        public string EmployeeSecondName { get; set; }
     }
 }

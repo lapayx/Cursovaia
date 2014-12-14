@@ -43,6 +43,7 @@ namespace Cursovaia.Logic.DataBase
         public DbSet<VProfession> VProfession { get; set; }
         public DbSet<VProfessionSkill> VProfessionSkill { get; set; }
         public DbSet<VVacancy> VVacancy { get; set; }
+        public DbSet<VHistory> VHistory { get; set; }
     
         public virtual int pDELETE_FROM_EMPLOYEE(Nullable<int> iD)
         {
@@ -148,6 +149,50 @@ namespace Cursovaia.Logic.DataBase
                 new ObjectParameter("STATUS", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("P_UPDATE_STATUS_V_VACANCY", iDParameter, sTATUSParameter);
+        }
+    
+        public virtual int P_DELETE_V_HISTORE(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("P_DELETE_V_HISTORE", iDParameter);
+        }
+    
+        public virtual int P_DELETE_V_HISTORY(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("P_DELETE_V_HISTORY", iDParameter);
+        }
+    
+        public virtual int P_UPDATE_STATUS_V_HISTORE(Nullable<int> iD, Nullable<int> sTATUS)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            var sTATUSParameter = sTATUS.HasValue ?
+                new ObjectParameter("STATUS", sTATUS) :
+                new ObjectParameter("STATUS", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("P_UPDATE_STATUS_V_HISTORE", iDParameter, sTATUSParameter);
+        }
+    
+        public virtual int P_UPDATE_STATUS_V_HISTORY(Nullable<int> iD, Nullable<int> sTATUS)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            var sTATUSParameter = sTATUS.HasValue ?
+                new ObjectParameter("STATUS", sTATUS) :
+                new ObjectParameter("STATUS", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("P_UPDATE_STATUS_V_HISTORY", iDParameter, sTATUSParameter);
         }
     }
 }

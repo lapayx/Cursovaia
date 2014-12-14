@@ -38,7 +38,7 @@
           <Property Name="ID_EMPLOYEE" Type="int" Nullable="false" />
           <Property Name="ID_VACANCY" Type="int" Nullable="false" />
           <Property Name="ID_APPLICANT" Type="int" Nullable="false" />
-          <Property Name="STATUS" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
           <Property Name="DATE_ADD" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ORGANIZATION">
@@ -130,6 +130,26 @@ warning 6002: The table/view 'test1.Apocalipsyz.V_EMPLOYEE' does not have a prim
           <Property Name="FATHER_NAME" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="BIRTHDAY" Type="datetime" Nullable="false" />
           <Property Name="NAME_SPECIALITY" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'test1.Apocalipsyz.V_HISTORY' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_HISTORY">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID_EMPLOYEE" Type="int" Nullable="false" />
+          <Property Name="ID_VACANCY" Type="int" Nullable="false" />
+          <Property Name="ID_APPLICAN" Type="int" Nullable="false" />
+          <Property Name="STATUS" Type="int" Nullable="false" />
+          <Property Name="DATE_ADD" Type="datetime" Nullable="false" />
+          <Property Name="APPLICANT_FIRST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="APPLICANT_SECOND_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ABOUT" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NAME_ORGANIZATION" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NAME_PROFESSION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMPLOYEE_FIRST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EMPLOYEE_SECOND_NAME" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'test1.Apocalipsyz.V_PROFESSION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -317,6 +337,12 @@ warning 6002: The table/view 'test1.Apocalipsyz.V_VACANCY' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="P_DELETE_V_HISTORE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="P_DELETE_V_HISTORY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
         <Function Name="P_DELETE_V_PROFESSION_SKILL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
@@ -326,6 +352,14 @@ warning 6002: The table/view 'test1.Apocalipsyz.V_VACANCY' does not have a prima
         <Function Name="P_INSERT_V_ROFESSION_SKILL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
           <Parameter Name="ID_APPLICANT" Type="int" Mode="In" />
           <Parameter Name="ID_PROFESSION" Type="int" Mode="In" />
+        </Function>
+        <Function Name="P_UPDATE_STATUS_V_HISTORE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="STATUS" Type="int" Mode="In" />
+        </Function>
+        <Function Name="P_UPDATE_STATUS_V_HISTORY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="STATUS" Type="int" Mode="In" />
         </Function>
         <Function Name="P_UPDATE_STATUS_V_VACANCY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
           <Parameter Name="ID" Type="int" Mode="In" />
@@ -370,6 +404,23 @@ warning 6002: The table/view 'test1.Apocalipsyz.V_VACANCY' does not have a prima
 [V_EMPLOYEE].[BIRTHDAY] AS [BIRTHDAY], 
 [V_EMPLOYEE].[NAME_SPECIALITY] AS [NAME_SPECIALITY]
 FROM [Apocalipsyz].[V_EMPLOYEE] AS [V_EMPLOYEE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_HISTORY" EntityType="Self.V_HISTORY" store:Type="Views" store:Schema="Apocalipsyz">
+            <DefiningQuery>SELECT 
+[V_HISTORY].[ID] AS [ID], 
+[V_HISTORY].[ID_EMPLOYEE] AS [ID_EMPLOYEE], 
+[V_HISTORY].[ID_VACANCY] AS [ID_VACANCY], 
+[V_HISTORY].[ID_APPLICAN] AS [ID_APPLICAN], 
+[V_HISTORY].[STATUS] AS [STATUS], 
+[V_HISTORY].[DATE_ADD] AS [DATE_ADD], 
+[V_HISTORY].[APPLICANT_FIRST_NAME] AS [APPLICANT_FIRST_NAME], 
+[V_HISTORY].[APPLICANT_SECOND_NAME] AS [APPLICANT_SECOND_NAME], 
+[V_HISTORY].[ABOUT] AS [ABOUT], 
+[V_HISTORY].[NAME_ORGANIZATION] AS [NAME_ORGANIZATION], 
+[V_HISTORY].[NAME_PROFESSION] AS [NAME_PROFESSION], 
+[V_HISTORY].[EMPLOYEE_FIRST_NAME] AS [EMPLOYEE_FIRST_NAME], 
+[V_HISTORY].[EMPLOYEE_SECOND_NAME] AS [EMPLOYEE_SECOND_NAME]
+FROM [Apocalipsyz].[V_HISTORY] AS [V_HISTORY]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_PROFESSION" EntityType="Self.V_PROFESSION" store:Type="Views" store:Schema="Apocalipsyz">
             <DefiningQuery>SELECT 
@@ -544,6 +595,21 @@ FROM [Apocalipsyz].[V_VACANCY] AS [V_VACANCY]</DefiningQuery>
             <Parameter Name="ID" Mode="In" Type="Int32" />
             <Parameter Name="STATUS" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="VHistory" EntityType="masterModel.VHistory" />
+          <FunctionImport Name="P_DELETE_V_HISTORE">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="P_DELETE_V_HISTORY">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="P_UPDATE_STATUS_V_HISTORE">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="STATUS" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="P_UPDATE_STATUS_V_HISTORY">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="STATUS" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="Applicant">
           <Key>
@@ -583,7 +649,7 @@ FROM [Apocalipsyz].[V_VACANCY] AS [V_VACANCY]</DefiningQuery>
           <Property Name="IdEmployee" Type="Int32" Nullable="false" />
           <Property Name="IdVacancy" Type="Int32" Nullable="false" />
           <Property Name="IdApplicant" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="AddDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="APPLICANT" Relationship="masterModel.FK3HISTORY" FromRole="HISTORY" ToRole="APPLICANT" />
           <NavigationProperty Name="EMPLOYEE" Relationship="masterModel.FK1HISTORY" FromRole="HISTORY" ToRole="EMPLOYEE" />
@@ -850,6 +916,24 @@ FROM [Apocalipsyz].[V_VACANCY] AS [V_VACANCY]</DefiningQuery>
           <Property Name="NameOrganization" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="NameProfession" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="VHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdEmployee" Type="Int32" Nullable="false" />
+          <Property Name="IdVacancy" Type="Int32" Nullable="false" />
+          <Property Name="IdApplicant" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ApplicantFirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicantSecondName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="About" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NameOrganization" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NameProfession" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeFirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeSecondName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1067,6 +1151,40 @@ FROM [Apocalipsyz].[V_VACANCY] AS [V_VACANCY]</DefiningQuery>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="P_DELETE_V_VACANCY" FunctionName="masterModel.Store.P_DELETE_V_VACANCY" />
           <FunctionImportMapping FunctionImportName="P_UPDATE_STATUS_V_VACANCY" FunctionName="masterModel.Store.P_UPDATE_STATUS_V_VACANCY" />
+          <EntitySetMapping Name="VHistory">
+            <EntityTypeMapping TypeName="masterModel.VHistory">
+              <MappingFragment StoreEntitySet="V_HISTORY">
+                <ScalarProperty Name="EmployeeSecondName" ColumnName="EMPLOYEE_SECOND_NAME" />
+                <ScalarProperty Name="EmployeeFirstName" ColumnName="EMPLOYEE_FIRST_NAME" />
+                <ScalarProperty Name="NameProfession" ColumnName="NAME_PROFESSION" />
+                <ScalarProperty Name="NameOrganization" ColumnName="NAME_ORGANIZATION" />
+                <ScalarProperty Name="About" ColumnName="ABOUT" />
+                <ScalarProperty Name="ApplicantSecondName" ColumnName="APPLICANT_SECOND_NAME" />
+                <ScalarProperty Name="ApplicantFirstName" ColumnName="APPLICANT_FIRST_NAME" />
+                <ScalarProperty Name="DateAdd" ColumnName="DATE_ADD" />
+                <ScalarProperty Name="Status" ColumnName="STATUS" />
+                <ScalarProperty Name="IdApplicant" ColumnName="ID_APPLICAN" />
+                <ScalarProperty Name="IdVacancy" ColumnName="ID_VACANCY" />
+                <ScalarProperty Name="IdEmployee" ColumnName="ID_EMPLOYEE" />
+                <ScalarProperty Name="Id" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="masterModel.VHistory">
+              <ModificationFunctionMapping>
+                <UpdateFunction FunctionName="masterModel.Store.P_UPDATE_STATUS_V_HISTORY">
+                  <ScalarProperty Name="Status" ParameterName="STATUS" Version="Current" />
+                  <ScalarProperty Name="Id" ParameterName="ID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="masterModel.Store.P_DELETE_V_HISTORY">
+                  <ScalarProperty Name="Id" ParameterName="ID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="P_DELETE_V_HISTORE" FunctionName="masterModel.Store.P_DELETE_V_HISTORE" />
+          <FunctionImportMapping FunctionImportName="P_DELETE_V_HISTORY" FunctionName="masterModel.Store.P_DELETE_V_HISTORY" />
+          <FunctionImportMapping FunctionImportName="P_UPDATE_STATUS_V_HISTORE" FunctionName="masterModel.Store.P_UPDATE_STATUS_V_HISTORE" />
+          <FunctionImportMapping FunctionImportName="P_UPDATE_STATUS_V_HISTORY" FunctionName="masterModel.Store.P_UPDATE_STATUS_V_HISTORY" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

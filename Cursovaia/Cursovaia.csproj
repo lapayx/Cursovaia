@@ -138,6 +138,9 @@
     <Compile Include="Logic\DataBase\VEmployee.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Logic\DataBase\VHistory.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Logic\DataBase\VProfession.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
