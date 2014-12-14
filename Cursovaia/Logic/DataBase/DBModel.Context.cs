@@ -194,5 +194,18 @@ namespace Cursovaia.Logic.DataBase
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("P_UPDATE_STATUS_V_HISTORY", iDParameter, sTATUSParameter);
         }
+    
+        public virtual int P_ADD_HISTORY(Nullable<int> iD_APPLICANT, Nullable<int> iD_VACANCY)
+        {
+            var iD_APPLICANTParameter = iD_APPLICANT.HasValue ?
+                new ObjectParameter("ID_APPLICANT", iD_APPLICANT) :
+                new ObjectParameter("ID_APPLICANT", typeof(int));
+    
+            var iD_VACANCYParameter = iD_VACANCY.HasValue ?
+                new ObjectParameter("ID_VACANCY", iD_VACANCY) :
+                new ObjectParameter("ID_VACANCY", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("P_ADD_HISTORY", iD_APPLICANTParameter, iD_VACANCYParameter);
+        }
     }
 }

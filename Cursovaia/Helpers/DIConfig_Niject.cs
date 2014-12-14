@@ -43,7 +43,7 @@ namespace Cursovaia
         public override void Load()
         {
             this.Bind<INotifyPropertyChanged>().To<vievmodel1>().Named("page1");
-           // this.Bind<INotifyPropertyChanged>().To<ViewModel2>().Named("page2");
+            this.Bind<INotifyPropertyChanged>().To<AboutViewModel>().Named("about");
             this.Bind<INotifyPropertyChanged>().To<ApplicantViewModel>().Named("applicant");
             this.Bind<INotifyPropertyChanged>().To<ApplicantCreateViewModel>().Named("applicantCreate");
             this.Bind<INotifyPropertyChanged>().To<OrganizationViewModel>().Named("organization");
@@ -60,8 +60,10 @@ namespace Cursovaia
             this.Bind<INotifyPropertyChanged>().To<VacancyViewModel>().Named("vacancy");
             this.Bind<INotifyPropertyChanged>().To<VacancyCreateViewModel>().Named("vacancyCreate");
             this.Bind<INotifyPropertyChanged>().To<HistoryViewModel>().Named("history");
+            this.Bind<INotifyPropertyChanged>().To<HistoryCreateViewModel>().Named("historyCreate");
 
             this.Bind<Page>().To<Page1>().Named("page1");
+            this.Bind<Page>().To<AboutPage>().Named("about");
             this.Bind<Page>().To<ApplicantPage>().Named("applicant");
             this.Bind<Page>().To<ApplicantCreatePage>().Named("applicantCreate");
             this.Bind<Page>().To<OrganizationPage>().Named("organization");
@@ -78,7 +80,7 @@ namespace Cursovaia
             this.Bind<Page>().To<VacancyPage>().Named("vacancy");
             this.Bind<Page>().To<VacancyCreatePage>().Named("vacancyCreate");
             this.Bind<Page>().To<HistoryPage>().Named("history");
-
+            this.Bind<Page>().To<HistoryCreatePage>().Named("historyCreate");
 
 
 

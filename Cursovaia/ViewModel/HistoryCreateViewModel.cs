@@ -19,48 +19,28 @@ namespace Cursovaia.ViewModel
         private List<VVacancy> source;
         private IActionParamService actionParam;
         private VVacancy _selectedItem;
-        private Organization _organization;
-        private string _searhKey = "";
         public string Caption { get; set; }
+        public string CaptionApplicant { get; set; }
         public bool IsSelectedItem { get; set; }
-
-
-        public bool IsSelectedNewIdProfessionSkill { get; set; }
-
-        public string SearchKey { 
-            get { return this._searhKey; }
-            set { this._searhKey = value.Trim(); RaisePropertyChanged("SourceForGrid"); } 
-        }
-
 
 
         public List<VVacancy> SourceForGrid
         {
-            get {
-
-                if (this._searhKey.Length > 0)
-                {
-                    string key = this._searhKey.ToLower();
-                    return this.source.Where(x => x.NameProfession.ToLower().Contains(key)).ToList();
-                }
-                else
-                    return this.source.ToList();
-        } }
+          get{
+              return this.source.ToList();
+            } 
+        }
 
 
-        public HistoryCreateViewModel(IGenericRepository<VVacancy> app, IGenericRepository<Organization> org, IActionParamService param)
+        public HistoryCreateViewModel(IGenericRepository<VVacancy> vac, IGenericRepository<Applicant> app, IActionParamService param)
         {
-            this.repository = app;
+            this.repository = vac;
             this.actionParam = param;
 
            // this.actionParam.Set(PageAction.ProfessionSkill);
-            this.Caption = "Список вакансий";
-            if (this.actionParam.Action == PageAction.Organization && this.actionParam.Parameter != null)
-            {
-                this._organization = org.SelectById(this.actionParam.Parameter);
-                this.Caption = "Список вакансий от" + _organization.Name;
-            }
-            this.actionParam.Set(PageAction.Vacancy);
+            this.Caption = "Добавление истории";
+            var t = app.SelectById(this.actionParam.Parameter);
+            this.CaptionApplicant = t.FirstName+ " " + t.SecondName;
             InitializeCommands();
         }
 
@@ -73,12 +53,10 @@ namespace Cursovaia.ViewModel
             _selectedItem = value;
             if (value == null) 
             { 
-                this.actionParam.Parameter = null;
                 this.IsSelectedItem = false;
             } 
             else 
             { 
-                this.actionParam.Parameter =  value.Id;
                 IsSelectedItem = true;
             }
 
@@ -108,10 +86,26 @@ namespace Cursovaia.ViewModel
         }
         private void SaveItem(string s)
         {
-          
-            
-            GoToReferense("shereProfession");
+            bool success = true;
+            try
+            {
+                repository.db.P_ADD_HISTORY((int)this.actionParam.Parameter, _selectedItem.Id);
+            }
+            catch (SystemException e)
+            {
 
+                success = false;
+                Debug.WriteLine(e.Source + "\n" + e.Message);
+            }
+            if (success)
+            {
+                DIConfig.MainVindow.ShowMessage("Успех", "В историю соискателя добавлена вакансия №" + _selectedItem.Id);
+                GoToReferense("applicant");
+            }
+            else
+                DIConfig.MainVindow.ShowMessage("Неудача", "Произошла ошибка. \n Допускается только одна запись в истории для одной вакансии имеющая статус 0");
+            this.updateSource();
+            
         }
         private void CancelItem(string s)
         {

@@ -73,7 +73,7 @@
             	Height="46"
             	IsEnabled="{Binding IsSelectedItem}"
             	Command="{Binding GoToReferen}"
-            	CommandParameter="history" 
+            	CommandParameter="historyCreate" 
                 />
         </Grid>
         <Button Content="Добавить нового соискателя" 

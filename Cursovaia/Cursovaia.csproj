@@ -188,6 +188,9 @@
     <Compile Include="Pages\VacancyCreatePage.xaml.cs">
       <DependentUpon>VacancyCreatePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\VacancyPage.xaml.cs">
       <DependentUpon>VacancyPage.xaml</DependentUpon>
     </Compile>
@@ -255,6 +258,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ShereProfessionViewModel.cs" />
     <Compile Include="ViewModel\OrganizationViewModel.cs" />
+    <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\vievmodel1.cs" />
     <Compile Include="ViewModel\ViewModel2.cs" />
     <Page Include="MainWindow.xaml">
@@ -280,6 +284,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\VacancyCreatePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

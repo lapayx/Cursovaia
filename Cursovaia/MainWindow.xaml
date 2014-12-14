@@ -23,13 +23,22 @@
                 <MenuItem Header="Сфера Профессий" Command="{Binding GoToReferen}" CommandParameter="shereProfession"/>
                 <MenuItem Header="Должность персонала" Command="{Binding GoToReferen}" CommandParameter="speciality"/>
                 <MenuItem Header="Сотрудники" Command="{Binding GoToReferen}" CommandParameter="employee"/>
-                <MenuItem Header="профессии" Command="{Binding GoToReferen}" CommandParameter="profession"/>
+                <MenuItem Header="Профессии" Command="{Binding GoToReferen}" CommandParameter="profession"/>
                 <MenuItem Header="Вакансии" Command="{Binding GoToReferen}" CommandParameter="vacancy"/>
+                <MenuItem Header="История" Command="{Binding GoToReferen}" CommandParameter="history"/>
                 
             </MenuItem>
         </Menu>
-        <Frame x:Name="MainFrame" Content="Тут что-то должно быть, выберите что" Margin="10,0,10,40" Grid.Row="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
-        <Button Content="Кнопка тест, не забыть как делать" Grid.Column="1" HorizontalAlignment="Left" Margin="287,0,0,0" VerticalAlignment="Top" Width="209" Command="{Binding GoToReferen}" CommandParameter="applicantCreate"/>
+        <Frame x:Name="MainFrame" Content="Выберите действия из меню" Margin="10,0,10,40" Grid.Row="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
+        <Button 
+            Content="Кнопка тест, не забыть как делать"
+            Grid.Column="1" HorizontalAlignment="Left" 
+            Margin="287,0,0,0" VerticalAlignment="Top"
+            Width="209"
+            Command="{Binding GoToReferen}" 
+            CommandParameter="applicantCreate"
+            Visibility="Collapsed"
+            />
         <Button 
             Content="Кнопка с новшестовами" 
             Grid.Column="1" 
@@ -38,13 +47,15 @@
             VerticalAlignment="Top" 
             Width="209" 
             Command="{Binding GoToReferen}" 
-            CommandParameter="history"/>
+            CommandParameter="history"
+            Visibility="Collapsed"
+            />
 
     </Grid>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button Content="Настройки" />
-            <Button>
+
+            <Button Command="{Binding GoToReferen}" CommandParameter="about">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="20" Height="20"
                    Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">

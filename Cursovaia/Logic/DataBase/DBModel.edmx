@@ -351,6 +351,10 @@ warning 6002: The table/view 'test1.Apocalipsyz.V_VACANCY' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="P_ADD_HISTORY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
+          <Parameter Name="ID_APPLICANT" Type="int" Mode="In" />
+          <Parameter Name="ID_VACANCY" Type="int" Mode="In" />
+        </Function>
         <Function Name="P_DELETE_V_HISTORE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Apocalipsyz">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
@@ -624,6 +628,10 @@ FROM [Apocalipsyz].[V_VACANCY] AS [V_VACANCY]</DefiningQuery>
           <FunctionImport Name="P_UPDATE_STATUS_V_HISTORY">
             <Parameter Name="ID" Mode="In" Type="Int32" />
             <Parameter Name="STATUS" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="P_ADD_HISTORY">
+            <Parameter Name="ID_APPLICANT" Mode="In" Type="Int32" />
+            <Parameter Name="ID_VACANCY" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Applicant">
@@ -1203,6 +1211,7 @@ FROM [Apocalipsyz].[V_VACANCY] AS [V_VACANCY]</DefiningQuery>
           <FunctionImportMapping FunctionImportName="P_DELETE_V_HISTORY" FunctionName="masterModel.Store.P_DELETE_V_HISTORY" />
           <FunctionImportMapping FunctionImportName="P_UPDATE_STATUS_V_HISTORE" FunctionName="masterModel.Store.P_UPDATE_STATUS_V_HISTORE" />
           <FunctionImportMapping FunctionImportName="P_UPDATE_STATUS_V_HISTORY" FunctionName="masterModel.Store.P_UPDATE_STATUS_V_HISTORY" />
+          <FunctionImportMapping FunctionImportName="P_ADD_HISTORY" FunctionName="masterModel.Store.P_ADD_HISTORY" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
