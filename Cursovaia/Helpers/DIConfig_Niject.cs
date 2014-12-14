@@ -102,6 +102,7 @@ namespace Cursovaia
             this.Bind<IGenericRepository<VProfessionSkill>>().To<Entities<VProfessionSkill>>();
             this.Bind<IGenericRepository<VVacancy>>().To<Entities<VVacancy>>(); 
             this.Bind<IGenericRepository<Vacancy>>().To<Entities<Vacancy>>();
+            this.Bind<IGenericRepository<VHistory>>().To<Entities<VHistory>>();
             //container.Register<DbContext, WIN_Server>(new PerScopeLifetime());
         
         }
