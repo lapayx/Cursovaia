@@ -20,26 +20,47 @@
             <RowDefinition Height="45"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding SourceForGrid}" Margin="10,50,10,10" 
+        <Grid Margin="10,50,10,10" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="130"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding SourceForGrid}" 
                  
-                 
-                 SelectedItem="{Binding Path=Current_row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"
+                 SelectionMode="Single"
+    			SelectedItem="{Binding Current_row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="647"
             >
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="50" Header="Id"  Binding="{Binding Id}"/>
-                <DataGridTextColumn Width="100" Header="Имя"  Binding="{Binding FirstName}" />
-                <DataGridTextColumn Width="100" Header="Фамилия"  Binding="{Binding SecondName}" />
-                <DataGridTextColumn Width="100" Header="Отчество"  Binding="{Binding FatherName}" />
-                <DataGridTextColumn Width="130" Header="Дата рождения"  Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"  />
-                <DataGridTextColumn Width="100" Header="Образование"  Binding="{Binding Education}"  />
-                <DataGridTextColumn/>
-                <DataGridTextColumn/>
-            </DataGrid.Columns>
-            <DataGrid.BindingGroup>
-                <BindingGroup/>
-            </DataGrid.BindingGroup>
-        </DataGrid>
-        <Button Content="Добавить нового соискателя" HorizontalAlignment="Left" Height="25" Margin="10,4,0,0" VerticalAlignment="Top" Width="196" Command="{Binding GoToReferen}" CommandParameter="applicantCreate" Grid.Row="1" />
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="50" Header="Id"  Binding="{Binding Id}"/>
+                    <DataGridTextColumn Width="100" Header="Имя"  Binding="{Binding FirstName}" />
+                    <DataGridTextColumn Width="100" Header="Фамилия"  Binding="{Binding SecondName}" />
+                    <DataGridTextColumn Width="100" Header="Отчество"  Binding="{Binding FatherName}" />
+                    <DataGridTextColumn Width="130" Header="Дата рождения"  Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"  />
+                    <DataGridTextColumn Width="100" Header="Образование"  Binding="{Binding Education}"  />
+                 
+
+                </DataGrid.Columns>
+                <DataGrid.BindingGroup>
+                    <BindingGroup/>
+                </DataGrid.BindingGroup>
+            </DataGrid>
+            <Label Content="Дополнительная&#xD;&#xA;информация:" Grid.Column="1" Margin="10,10,10,0" VerticalAlignment="Top" Height="47"/>
+            <Button 
+                Content="Перейти к &#xD;&#xA;профессиям" 
+                Grid.Column="1" HorizontalAlignment="Left" 
+                Margin="10,62,0,0" VerticalAlignment="Top" 
+                Width="110" 
+                Height="46"
+                IsEnabled="{Binding IsSelectedItem}"
+                Command="{Binding GoToReferen}"
+                CommandParameter="professionSkill" 
+                />
+        </Grid>
+        <Button Content="Добавить нового соискателя" 
+                HorizontalAlignment="Left" Height="25" Margin="10,4,0,0" VerticalAlignment="Top" Width="196" 
+                Command="{Binding GoToReferen}"
+                CommandParameter="applicantCreate" 
+                Grid.Row="1" />
         <Button 
             Content="Изменить данные" 
             HorizontalAlignment="Left" 
@@ -73,7 +94,7 @@
                 >
             <Rectangle Width="20"
                            Height="23"
-                           Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                           Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
                 <Rectangle.OpacityMask>
                     <VisualBrush Stretch="Fill"
                                      Visual="{DynamicResource appbar_refresh}" />
@@ -89,11 +110,7 @@
             Width="200"
       Controls:TextBoxHelper.ClearTextButton="True"
                          Controls:TextBoxHelper.Watermark="Поиск по Фамилии"
-            Text="{Binding SearchKey,
-                    ValidatesOnDataErrors=True,
-                    UpdateSourceTrigger=PropertyChanged,
-                    NotifyOnValidationError=True
-                 }" FontSize="13" Grid.Row="1" 
+            Text="{Binding SearchKey, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" FontSize="13" Grid.Row="1" 
                  
             />
         <Label 

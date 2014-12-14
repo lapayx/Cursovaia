@@ -17,7 +17,8 @@ namespace Cursovaia.Logic.Model
         ShereProfession,
         Speciality,
         Employee,
-        Profession
+        Profession,
+        ProfessionSkill
     }
     
 }

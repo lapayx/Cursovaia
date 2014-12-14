@@ -21,7 +21,7 @@ namespace Cursovaia.ViewModel
         private IActionParamService actionParam;
         private VProfessionSkill _selectedItem;
         private int _newIdProfessionSkill;
-        private int _idApplicant;
+        private Applicant _applicant;
         private string _searhKey = "";
         public string Caption { get; set; }
         public bool IsSelectedItem { get; set; }
@@ -69,15 +69,16 @@ namespace Cursovaia.ViewModel
         } }
 
 
-        public ProfessionSkillViewModel(IGenericRepository<VProfessionSkill> app, IGenericRepository<Profession> prof, IActionParamService param)
+        public ProfessionSkillViewModel(IGenericRepository<VProfessionSkill> app, IGenericRepository<Profession> prof,IGenericRepository<Applicant> applicant, IActionParamService param)
         {
             this.repository = app;
             this.actionParam = param;
             this.professionRepository = prof;
-            this.actionParam.Set(PageAction.Speciality);
-            this.Caption = "Владение професиями кем-то";
-            this._idApplicant = 1;
+           // this.actionParam.Set(PageAction.ProfessionSkill);
+            
 
+            this._applicant = applicant.SelectById(this.actionParam.Parameter);
+            this.Caption = "Владение професиями "+_applicant.FirstName+" "+_applicant.SecondName;
             InitializeCommands();
         }
 
@@ -106,7 +107,7 @@ namespace Cursovaia.ViewModel
 
         protected override void updateSource(string s = null)
         {
-            this.source = this.repository.SelectAll().Where(x => x.IdApplicant == this._idApplicant).ToList();
+            this.source = this.repository.SelectAll().Where(x => x.IdApplicant == this._applicant.Id).ToList();
             RaisePropertyChanged("SourceForGrid");
             RaisePropertyChanged("ProfessionSourse");
         }
@@ -126,7 +127,7 @@ namespace Cursovaia.ViewModel
             try
             {
                /// плохо,оооочень плохо,не делать так
-                repository.db.P_INSERT_V_ROFESSION_SKILL(this._idApplicant,this._newIdProfessionSkill);
+                repository.db.P_INSERT_V_ROFESSION_SKILL(this._applicant.Id,this._newIdProfessionSkill);
             }
             catch (SystemException e)
             {
