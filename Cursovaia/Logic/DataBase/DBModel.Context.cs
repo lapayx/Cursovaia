@@ -42,6 +42,7 @@ namespace Cursovaia.Logic.DataBase
         public DbSet<VEmployee> V_EMPLOYEE { get; set; }
         public DbSet<VProfession> VProfession { get; set; }
         public DbSet<VProfessionSkill> VProfessionSkill { get; set; }
+        public DbSet<VVacancy> VVacancy { get; set; }
     
         public virtual int pDELETE_FROM_EMPLOYEE(Nullable<int> iD)
         {
@@ -125,6 +126,28 @@ namespace Cursovaia.Logic.DataBase
                 new ObjectParameter("ID_PROFESSION", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("P_UPDATE_V_ROFESSION_SKILL", iDParameter, iD_APPLICANTParameter, iD_PROFESSIONParameter);
+        }
+    
+        public virtual int P_DELETE_V_VACANCY(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("P_DELETE_V_VACANCY", iDParameter);
+        }
+    
+        public virtual int P_UPDATE_STATUS_V_VACANCY(Nullable<int> iD, Nullable<int> sTATUS)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            var sTATUSParameter = sTATUS.HasValue ?
+                new ObjectParameter("STATUS", sTATUS) :
+                new ObjectParameter("STATUS", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("P_UPDATE_STATUS_V_VACANCY", iDParameter, sTATUSParameter);
         }
     }
 }

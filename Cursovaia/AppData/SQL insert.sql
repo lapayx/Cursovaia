@@ -53,9 +53,13 @@ insert into V_PROFESSION_SKILL (ID_APPLICANT ,ID_PROFESSION )
 	Values(1,3)
 insert into V_PROFESSION_SKILL (ID_APPLICANT ,ID_PROFESSION )
 	Values(2,3)
+/***********************************************************************************************/
 
 
-
+insert into VACANCY(ID_ORGANIZATION, ID_PROFESSION,ABOUT, MIN_EXPERIENCE,MAX_EXPERIENCE,DATE_ADD)
+	Values (1,1,'Срочно нужен',0,100, SYSDATETIME())
+insert into VACANCY(ID_ORGANIZATION, ID_PROFESSION,ABOUT, MIN_EXPERIENCE,MAX_EXPERIENCE,DATE_ADD)
+	Values (1,1,'Срочно нужен',3,100, SYSDATETIME())
 
 
 

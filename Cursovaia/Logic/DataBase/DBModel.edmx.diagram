@@ -30,6 +30,7 @@
         <EntityTypeShape EntityType="masterModel.VEmployee" Width="1.5" PointX="0.75" PointY="9.75" FillColor="255, 128, 128" />
         <EntityTypeShape EntityType="masterModel.VProfession" Width="1.5" PointX="2.75" PointY="9.75" FillColor="255, 128, 128" />
         <EntityTypeShape EntityType="masterModel.VProfessionSkill" Width="1.875" PointX="4.625" PointY="9.75" FillColor="255, 128, 128" />
+        <EntityTypeShape EntityType="masterModel.VVacancy" Width="1.5" PointX="7" PointY="9.75" FillColor="255, 128, 128" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

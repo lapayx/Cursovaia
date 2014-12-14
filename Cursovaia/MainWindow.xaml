@@ -24,6 +24,8 @@
                 <MenuItem Header="Должность персонала" Command="{Binding GoToReferen}" CommandParameter="speciality"/>
                 <MenuItem Header="Сотрудники" Command="{Binding GoToReferen}" CommandParameter="employee"/>
                 <MenuItem Header="профессии" Command="{Binding GoToReferen}" CommandParameter="profession"/>
+                <MenuItem Header="Вакансии" Command="{Binding GoToReferen}" CommandParameter="vacancy"/>
+                
             </MenuItem>
         </Menu>
         <Frame x:Name="MainFrame" Content="Тут что-то должно быть, выберите что" Margin="10,0,10,40" Grid.Row="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
@@ -36,7 +38,7 @@
             VerticalAlignment="Top" 
             Width="209" 
             Command="{Binding GoToReferen}" 
-            CommandParameter="professionSkill"/>
+            CommandParameter="vacancy"/>
 
     </Grid>
     <Controls:MetroWindow.RightWindowCommands>

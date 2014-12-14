@@ -18,7 +18,8 @@ namespace Cursovaia.Logic.Model
         Speciality,
         Employee,
         Profession,
-        ProfessionSkill
+        ProfessionSkill,
+        Vacancy
     }
     
 }

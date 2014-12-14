@@ -144,12 +144,21 @@
     <Compile Include="Logic\DataBase\VProfessionSkill.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Logic\DataBase\VVacancy.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Logic\Interface\IActionParam.cs" />
     <Compile Include="Logic\Interface\IEmplayeeRepository.cs" />
     <Compile Include="Logic\Interface\IGenericRepository.cs" />
     <Compile Include="Logic\Interface\ISavingRepository.cs" />
     <Compile Include="Logic\Model\ActionParamsTyps.cs" />
     <Compile Include="Logic\Service\ActionParam.cs" />
+    <Compile Include="Pages\VacancyCreatePage.xaml.cs">
+      <DependentUpon>VacancyCreatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VacancyPage.xaml.cs">
+      <DependentUpon>VacancyPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ProfessionCreatePage.xaml.cs">
       <DependentUpon>ProfessionCreatePage.xaml</DependentUpon>
     </Compile>
@@ -192,8 +201,10 @@
     <Compile Include="Pages\Page2.xaml.cs">
       <DependentUpon>Page2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\VacancyCreateViewModel.cs" />
     <Compile Include="ViewModel\EmployeeCreateViewModel.cs" />
     <Compile Include="ViewModel\ProfessionCreateViewModel.cs" />
+    <Compile Include="ViewModel\VacancyViewModel.cs" />
     <Compile Include="ViewModel\ProfessionViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel.cs" />
     <Compile Include="ViewModel\SpecialityCreateViewModel.cs" />
@@ -223,6 +234,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\VacancyCreatePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\VacancyPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\ProfessionCreatePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
