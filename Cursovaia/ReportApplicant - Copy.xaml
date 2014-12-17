@@ -1,9 +1,9 @@
-﻿<Window x:Class="Cursovaia.Report"
+﻿<Window x:Class="Cursovaia.ReportApplicant"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:RV="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
-        Title="Отчет об история" 
-        Height="500" Width="1000">
+        Title="Отчет об Соискателях" 
+        Height="800" Width="1000">
     <Grid>
         <WindowsFormsHost  Name="wiFormsHost1">
             <RV:ReportViewer x:Name="Report1">

@@ -236,6 +236,12 @@
     <Compile Include="Pages\Page2.xaml.cs">
       <DependentUpon>Page2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReportApplicant - Copy.xaml.cs">
+      <DependentUpon>ReportApplicant - Copy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportVacancy.xaml.cs">
+      <DependentUpon>ReportVacancy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Report.xaml.cs">
       <DependentUpon>Report.xaml</DependentUpon>
     </Compile>
@@ -355,6 +361,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ReportApplicant - Copy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ReportVacancy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Report.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -385,7 +399,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\Report1.rdlc" />
+    <EmbeddedResource Include="Report\ApplicantReport.rdlc" />
+    <EmbeddedResource Include="Report\hist.rdlc" />
+    <EmbeddedResource Include="Report\VakancyReport.rdlc" />
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
@@ -409,7 +425,9 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\Cursovaia.Logic.DataBase.Applicant.datasource" />
     <None Include="Properties\DataSources\Cursovaia.Logic.DataBase.VHistory.datasource" />
+    <None Include="Properties\DataSources\Cursovaia.Logic.DataBase.VVacancy.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

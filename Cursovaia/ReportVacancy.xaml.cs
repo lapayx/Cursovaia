@@ -28,9 +28,9 @@ namespace Cursovaia
     /// <summary>
     /// Interaction logic for Report.xaml
     /// </summary>
-    public partial class Report : Window
+    public partial class ReportVacancy : Window
     {
-        public Report()
+        public ReportVacancy()
         {
             InitializeComponent();
             Loaded += DisplayReport;
@@ -40,12 +40,12 @@ namespace Cursovaia
             DIConfig.kernel.Get<WIN_Server>();
             try
             {
-                IGenericRepository<VHistory> t = DIConfig.kernel.Get<IGenericRepository<VHistory>>();
+                IGenericRepository<VVacancy> t = DIConfig.kernel.Get<IGenericRepository<VVacancy>>();
             
                 var qry = t.SelectAll().ToList(); // 
                 Report1.ProcessingMode = ProcessingMode.Local;
-                Report1.LocalReport.ReportEmbeddedResource = "Cursovaia.Report.hist.rdlc"; // .Reports if the report isin the Reports folder not in the root
-                ReportDataSource dataSource = new ReportDataSource("DataSet2", qry);
+                Report1.LocalReport.ReportEmbeddedResource = "Cursovaia.Report.VakancyReport.rdlc"; // .Reports if the report isin the Reports folder not in the root
+                ReportDataSource dataSource = new ReportDataSource("DataSet1", qry);
                 Report1.LocalReport.DataSources.Clear();
                 Report1.LocalReport.DataSources.Add(dataSource);
 

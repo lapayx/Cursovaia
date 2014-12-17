@@ -28,6 +28,12 @@
                 <MenuItem Header="История" Command="{Binding GoToReferen}" CommandParameter="history"/>
                 
             </MenuItem>
+            <MenuItem Header="Отчеты">
+                <MenuItem Header="Отчет по вакансиям" Click="MenuItem_Click_1" />
+                <MenuItem Header="отчет по историям" Click="MenuItem_Click_2" />
+                <MenuItem Header="Отчет по Соискателям" Click="MenuItem_Click_3" />
+
+            </MenuItem>
         </Menu>
         <Frame x:Name="MainFrame" Content="Выберите действия из меню" Margin="10,0,10,40" Grid.Row="1" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
         <Button 

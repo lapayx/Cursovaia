@@ -31,9 +31,10 @@ namespace Cursovaia
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        public MainWindow()
+        public  MainWindow() 
         {
             InitializeComponent();
+            
             DIConfig.kernel.Get<WIN_Server>();
             DIConfig.MainVindow = this;
             Loaded += MainWindow_Loaded;
@@ -60,6 +61,24 @@ namespace Cursovaia
         {
             //var result =  this.ShowInputAsync("Hello!", "What is your name?");
             this.ShowMessageAsync(title, message);
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            var t = new ReportVacancy();
+            t.Show();
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            var t = new Report();
+            t.Show();
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            var t = new ReportApplicant();
+            t.Show();
         }
     }
 }
