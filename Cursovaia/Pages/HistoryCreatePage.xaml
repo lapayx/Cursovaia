@@ -36,7 +36,7 @@
         	SelectedItem="{Binding Current_row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10" Grid.Row="2"
             >
             <DataGrid.Columns>
-                <DataGridTextColumn Width="50" Header="Id"  Binding="{Binding Id}"/>
+                <DataGridTextColumn Width="50" Header="Код вакансии"  Binding="{Binding Id}"/>
                 <DataGridTextColumn Width="100" Header="Профессия"  Binding="{Binding NameProfession}" />
                 <DataGridTextColumn Width="100" Header="Организация"  Binding="{Binding NameOrganization}" />
                 <DataGridTextColumn Width="100" Header="Актуальность"  Binding="{Binding Status}" />

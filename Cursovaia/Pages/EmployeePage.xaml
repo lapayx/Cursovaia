@@ -26,7 +26,6 @@
                  SelectedItem="{Binding Path=Current_row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"
             >
             <DataGrid.Columns>
-                <DataGridTextColumn Width="50" Header="Id"  Binding="{Binding Id}"/>
                 <DataGridTextColumn Width="100" Header="Имя"  Binding="{Binding FirstName}" />
                 <DataGridTextColumn Width="100" Header="Фамилия"  Binding="{Binding SecondName}" />
                 <DataGridTextColumn Width="100" Header="Отчество"  Binding="{Binding FatherName}" />

@@ -4,12 +4,18 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="500" d:DesignWidth="900"
 	Title="Page1">
 
-    <Grid Background="#FFD42C2C">
-        <Ellipse Fill="#FF1D1DC7" HorizontalAlignment="Left" Height="147" Margin="90,73,0,0" Stroke="Black" VerticalAlignment="Top" Width="123"/>
-        <Label Content="{Binding tt, FallbackValue='No Data'}" HorizontalAlignment="Left" Margin="56,27,0,0" VerticalAlignment="Top" Foreground="#FFEC2121" FontSize="20"/>
-
+    <Grid>
+        <Button Content="Добавить соискателя" HorizontalAlignment="Left" Margin="20,51,0,0" VerticalAlignment="Top" Width="175" Height="40"/>
+        <Button Content="Добавить организацию" HorizontalAlignment="Left" Margin="20,111,0,0" VerticalAlignment="Top" Width="175" Height="40"/>
+        <Button Content="Добавить вакансию" HorizontalAlignment="Left" Margin="20,174,0,0" VerticalAlignment="Top" Width="175" Height="40"/>
+        <Button Content="Просмотр всех активных вакансий" HorizontalAlignment="Left" Margin="239,114,0,0" VerticalAlignment="Top" Width="247" Height="40"/>
+        <Button Content="Просмотр всех активных историй" HorizontalAlignment="Left" Margin="239,174,0,0" VerticalAlignment="Top" Width="247" Height="40"/>
+        <Button Content="Просмотр всех активных вакансий" HorizontalAlignment="Left" Margin="239,114,0,0" VerticalAlignment="Top" Width="247" Height="40"/>
+        <Button Content="Просмотр всех активных историй" HorizontalAlignment="Left" Margin="239,174,0,0" VerticalAlignment="Top" Width="247" Height="40"/>
+        <Button Content="Просмотр всех активных соискателей" HorizontalAlignment="Left" Margin="239,51,0,0" VerticalAlignment="Top" Width="247" Height="40"/>
+        <Label Content="Основные функции" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" Width="466" FontSize="18"/>
     </Grid>
 </Page>

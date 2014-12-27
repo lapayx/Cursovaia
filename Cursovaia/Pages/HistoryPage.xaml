@@ -26,16 +26,16 @@
                  SelectedItem="{Binding Path=Current_row, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"
             >
             <DataGrid.Columns>
-                <DataGridTextColumn Width="50" Header="Id"  Binding="{Binding Id}"/>
-                <DataGridTextColumn Width="120" Header="ID Вакансии"  Binding="{Binding IdVacancy}"  />
+                
+                <DataGridTextColumn Width="120" Header="Код Вакансии"  Binding="{Binding IdVacancy}"  />
                 <DataGridTextColumn Width="200" Header="Имя Соискателя"  Binding="{Binding ApplicantFirstName}" />
                 <DataGridTextColumn Width="200" Header="Фамилия Соискателя"  Binding="{Binding ApplicantSecondName}" />
                 <DataGridTextColumn Width="200" Header="Название организации"  Binding="{Binding NameOrganization}" />
                 
-                <DataGridTextColumn Width="100" Header="Код статуса"  Binding="{Binding Status}"  />
+                
                 <DataGridTextColumn Width="100" Header="Дата"  Binding="{Binding DateAdd}"  />
                 <DataGridTextColumn Width="100" Header="Профессия"  Binding="{Binding NameProfession}"  />
-                
+                <DataGridTextColumn Width="100" Header="Код статуса"  Binding="{Binding Status}"  />
             </DataGrid.Columns>
             <DataGrid.BindingGroup>
                 <BindingGroup/>
