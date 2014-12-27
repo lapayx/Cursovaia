@@ -1,4 +1,6 @@
 ﻿
+select  * FROM SPECIALITY
+
 /*
 DROP TABLE HISTORY  
 DROP TABLE REFRESHERING
@@ -62,7 +64,7 @@ insert into VACANCY(ID_ORGANIZATION, ID_PROFESSION,ABOUT, MIN_EXPERIENCE,MAX_EXP
 /*************************************************************************************************/
 
 insert into HISTORY(ID_EMPLOYEE, ID_VACANCY, ID_APPLICANT,STATUS,DATE_ADD)
-	Values (1,1,1,1,  SYSDATETIME())
+	Values (1,1,1,0,  SYSDATETIME())
 
 
 

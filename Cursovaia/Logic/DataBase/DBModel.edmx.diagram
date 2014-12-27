@@ -4,18 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="988e1d3d9d4240d0a66251becff2d3c4" Name="Diagram1" ZoomLevel="97" >
+      <Diagram DiagramId="988e1d3d9d4240d0a66251becff2d3c4" Name="Diagram1" ZoomLevel="93" >
         <EntityTypeShape EntityType="masterModel.Applicant" Width="1.5" PointX="2.875" PointY="4.125" />
         <EntityTypeShape EntityType="masterModel.Employee" Width="1.5" PointX="3.5" PointY="0.5" />
         <EntityTypeShape EntityType="masterModel.History" Width="1.5" PointX="5.75" PointY="3.625" />
-        <EntityTypeShape EntityType="masterModel.Organization" Width="1.5" PointX="7.5" PointY="0.5" />
-        <EntityTypeShape EntityType="masterModel.Profession" Width="1.5" PointX="7.5" PointY="7.25" />
-        <EntityTypeShape EntityType="masterModel.ProfessionSkill" Width="1.5" PointX="5.25" PointY="7.5" />
+        <EntityTypeShape EntityType="masterModel.Organization" Width="1.5" PointX="7.75" PointY="7.5" />
+        <EntityTypeShape EntityType="masterModel.Profession" Width="1.5" PointX="2.875" PointY="9.375" />
+        <EntityTypeShape EntityType="masterModel.ProfessionSkill" Width="1.5" PointX="0.625" PointY="9.25" />
         <EntityTypeShape EntityType="masterModel.RefresherCours" Width="1.75" PointX="0.5" PointY="3.25" />
         <EntityTypeShape EntityType="masterModel.Refreshering" Width="1.5" PointX="0.5" PointY="6.25" />
-        <EntityTypeShape EntityType="masterModel.ShereProfession" Width="1.5" PointX="9.625" PointY="7.375" />
-        <EntityTypeShape EntityType="masterModel.Speciality" Width="1.5" PointX="0.75" PointY="0.5" />
-        <EntityTypeShape EntityType="masterModel.Vacancy" Width="1.5" PointX="8.375" PointY="3.25" />
+        <EntityTypeShape EntityType="masterModel.ShereProfession" Width="1.5" PointX="5.25" PointY="10.375" />
+        <EntityTypeShape EntityType="masterModel.Speciality" Width="1.875" PointX="0.75" PointY="0.5" />
+        <EntityTypeShape EntityType="masterModel.Vacancy" Width="1.5" PointX="5.625" PointY="7" />
         <AssociationConnector Association="masterModel.FK1PROFESSION_SKILL" />
         <AssociationConnector Association="masterModel.FK2REFRESHERING" />
         <AssociationConnector Association="masterModel.FK3HISTORY" />
@@ -27,11 +27,11 @@
         <AssociationConnector Association="masterModel.FK1VACANCY" />
         <AssociationConnector Association="masterModel.FK2PROFESSION_SKILL" />
         <AssociationConnector Association="masterModel.FK1REFRESHERING" />
-        <EntityTypeShape EntityType="masterModel.VEmployee" Width="1.5" PointX="0.75" PointY="9.75" FillColor="255, 128, 128" />
-        <EntityTypeShape EntityType="masterModel.VProfession" Width="1.5" PointX="2.75" PointY="9.75" FillColor="255, 128, 128" />
-        <EntityTypeShape EntityType="masterModel.VProfessionSkill" Width="1.875" PointX="4.625" PointY="9.75" FillColor="255, 128, 128" />
-        <EntityTypeShape EntityType="masterModel.VVacancy" Width="1.5" PointX="7" PointY="9.75" FillColor="255, 128, 128" />
-        <EntityTypeShape EntityType="masterModel.VHistory" Width="2.125" PointX="8.875" PointY="9.75" FillColor="255, 128, 128" />
+        <EntityTypeShape EntityType="masterModel.VEmployee" Width="1.5" PointX="0.75" PointY="15.75" FillColor="255, 128, 128" />
+        <EntityTypeShape EntityType="masterModel.VProfession" Width="1.5" PointX="2.75" PointY="15.75" FillColor="255, 128, 128" />
+        <EntityTypeShape EntityType="masterModel.VProfessionSkill" Width="1.875" PointX="4.625" PointY="15.75" FillColor="255, 128, 128" />
+        <EntityTypeShape EntityType="masterModel.VVacancy" Width="1.5" PointX="7" PointY="15.75" FillColor="255, 128, 128" />
+        <EntityTypeShape EntityType="masterModel.VHistory" Width="2.125" PointX="8.875" PointY="15.75" FillColor="255, 128, 128" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

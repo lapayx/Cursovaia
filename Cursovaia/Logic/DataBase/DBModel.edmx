@@ -96,6 +96,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NAME" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="COUNT_EMPLOYEE" Type="int" Nullable="false" />
           <Property Name="SYSTEM_SHEMA" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="VACANCY">
@@ -745,6 +746,7 @@ FROM [Apocalipsyz].[V_VACANCY] AS [V_VACANCY]</DefiningQuery>
           <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="SystemShema" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Employee" Relationship="masterModel.FK1EMPLOYEE" FromRole="SPECIALITY" ToRole="EMPLOYEE" />
+          <Property Name="CountEmployee" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Vacancy">
           <Key>
@@ -968,6 +970,7 @@ FROM [Apocalipsyz].[V_VACANCY] AS [V_VACANCY]</DefiningQuery>
           <EntitySetMapping Name="Speciality">
             <EntityTypeMapping TypeName="IsTypeOf(masterModel.Speciality)">
               <MappingFragment StoreEntitySet="SPECIALITY" >
+                <ScalarProperty Name="CountEmployee" ColumnName="COUNT_EMPLOYEE" />
                 <ScalarProperty Name="SystemShema" ColumnName="SYSTEM_SHEMA" />
                 <ScalarProperty Name="Name" ColumnName="NAME" />
                 <ScalarProperty Name="Id" ColumnName="ID" />
