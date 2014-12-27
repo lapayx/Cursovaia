@@ -22,6 +22,7 @@ namespace Cursovaia.Logic.DataBase
         public int Id { get; set; }
         public string Name { get; set; }
         public string SystemShema { get; set; }
+        public int CountEmployee { get; set; }
     
         public virtual ICollection<Employee> Employee { get; set; }
     }

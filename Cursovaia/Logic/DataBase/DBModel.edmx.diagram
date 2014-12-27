@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="masterModel.RefresherCours" Width="1.75" PointX="0.5" PointY="3.25" />
         <EntityTypeShape EntityType="masterModel.Refreshering" Width="1.5" PointX="0.5" PointY="6.25" />
         <EntityTypeShape EntityType="masterModel.ShereProfession" Width="1.5" PointX="5.25" PointY="10.375" />
-        <EntityTypeShape EntityType="masterModel.Speciality" Width="1.5" PointX="0.75" PointY="0.5" />
+        <EntityTypeShape EntityType="masterModel.Speciality" Width="1.875" PointX="0.75" PointY="0.5" />
         <EntityTypeShape EntityType="masterModel.Vacancy" Width="1.5" PointX="5.625" PointY="7" />
         <AssociationConnector Association="masterModel.FK1PROFESSION_SKILL" />
         <AssociationConnector Association="masterModel.FK2REFRESHERING" />
