@@ -41,7 +41,9 @@ namespace Cursovaia
             try
             {
                 IGenericRepository<VVacancy> t = DIConfig.kernel.Get<IGenericRepository<VVacancy>>();
-            
+                IGenericRepository<Profession> p = DIConfig.kernel.Get<IGenericRepository<Profession>>();
+                Combo.ItemsSource = p.SelectAll().ToList();
+
                 var qry = t.SelectAll().ToList(); // 
                 Report1.ProcessingMode = ProcessingMode.Local;
                 Report1.LocalReport.ReportEmbeddedResource = "Cursovaia.Report.VakancyReport.rdlc"; // .Reports if the report isin the Reports folder not in the root
